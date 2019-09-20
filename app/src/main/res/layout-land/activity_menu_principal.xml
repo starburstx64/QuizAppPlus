@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
+        android:translationY="-50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher_foreground" />
@@ -15,17 +16,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/game_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Juego"/>
+            android:text="@string/juego"/>
         <Button
+            android:id="@+id/option_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Opciones"/>
+            android:text="@string/opciones"/>
     </LinearLayout>
     <Button
+        android:id="@+id/punctuation_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Puntuación"/>
+        android:text="@string/puntuacion"/>
 
 </LinearLayout>
