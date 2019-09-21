@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temas"
+            android:textSize="30sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40sp"
+            android:text="Todos"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/cine_checkbox"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Cine"
+            android:textSize="30sp" />
+
+        <CheckBox
+            android:id="@+id/deportes_checkbox"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Deporte"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/musica_checkbox"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Musica"
+            android:textSize="30sp" />
+
+        <CheckBox
+            android:id="@+id/historia_checkbox"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+
+            android:text="Historia"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/smash_checkbox"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Smash"
+            android:textSize="30sp" />
+
+        <CheckBox
+            android:id="@+id/varios_checkbox"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Varios"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. de Preguntas"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/spinner_preguntas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/facil_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Facil"
+                android:textSize="30sp" />
+
+            <RadioButton
+                android:id="@+id/medio_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Medio"
+                android:textSize="30sp" />
+
+            <RadioButton
+                android:id="@+id/dificil_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dificil"
+                android:textSize="30sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/enable_switch_pistas"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:text="Habilitar pistas"
+            android:textSize="30sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. de pistas"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/spinner_pistas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
