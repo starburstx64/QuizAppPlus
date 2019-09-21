@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">QuizAppPlus</string>
+
+    <string name="pregunta_act_1">Pregunta 1/10</string>
+    <string name="pregunta_act_2">Pregunta 2/10</string>
+    <string name="pregunta_act_3">Pregunta 3/10</string>
+    <string name="pregunta_act_4">Pregunta 4/10</string>
+    <string name="pregunta_act_5">Pregunta 5/10</string>
+    <string name="pregunta_act_6">Pregunta 6/10</string>
+    <string name="pregunta_act_7">Pregunta 7/10</string>
+    <string name="pregunta_act_8">Pregunta 8/10</string>
+    <string name="pregunta_act_9">Pregunta 9/10</string>
+    <string name="pregunta_act_10">Pregunta 10/10</string>
+
+    <string name="pistas_act_0">Pista 0/3</string>
+    <string name="pistas_act_1">Pista 1/3</string>
+    <string name="pistas_act_2">Pista 2/3</string>
+    <string name="pistas_act_3">Pista 3/3</string>
+
+    <string name="respuesta_1">Respuesta 1</string>
+    <string name="respuesta_2">Respuesta 2</string>
+    <string name="respuesta_3">Respuesta 3</string>
+    <string name="respuesta_4">Respuesta 4</string>
+
+
+    <string name="validacion_pregunta_1">Pregunta contestada incorrectamente</string>
+    <string name="validacion_pregunta_2">Pregunta contestada correctamente</string>
+    <string name="validacion_pregunta_3">Pregunta aun no respondida</string>
+
+    <string-array name="mejores_puntajes">
+        <item>1st - AAA </item>
+        <item>2nd - YYY </item>
+        <item>3rd - BBB </item>
+        <item>4th - BAS </item>
+        <item>5th - QWE </item>
+        <item>6th - RTY </item>
+        <item>7th - DDD </item>
+        <item>8th - ASA </item>
+        <item>9th - TTT </item>
+        <item>10th - ZZZ </item>
+    </string-array>
+
+
+    <string name="Puntaje_final">0000000</string>
 </resources>
