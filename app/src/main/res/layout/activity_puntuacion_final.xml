@@ -23,17 +23,19 @@
 
 
     <ImageView
+        android:id="@+id/imagenFinal"
         android:layout_width="160dp"
         android:layout_height="225dp"
         android:layout_gravity="center"
         android:src="@mipmap/bufon" />
 
     <TextView
+        android:id="@+id/puntajeFinal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/Puntaje_final"
-        android:textSize="30sp"
-        android:gravity="center"/>
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +43,7 @@
         android:gravity="center">
 
         <ListView
+            android:id="@+id/puntajes_ListView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></ListView>
 
@@ -53,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Menu Principal"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
 
 </LinearLayout>
