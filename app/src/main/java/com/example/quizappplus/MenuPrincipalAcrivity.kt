@@ -30,7 +30,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
         btnJuego.setOnClickListener{
             val intent:Intent= Intent(this, PreguntasActivity::class .java)
-
+            intent.putExtra("EXTRA_CONFIGURACIONES_VIEWMODEL_FORQUESTIONS",ConfiguracionesModel)
             startActivity(intent)
         }
 

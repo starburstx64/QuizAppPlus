@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_configuraciones.*
 
 const val CONFIGURACIONES_REQUEST_CODE = 1000
@@ -70,7 +71,11 @@ class ConfiguracionesActivity : AppCompatActivity() {
         //lista de checkboxes
         val checkBoxes = listOf<CheckBox>(
             cineCheckBox,
-            musicaCheckBox
+            musicaCheckBox,
+            smashCheckBox,
+            deporteCheckBox,
+            historiaCheckBox,
+            variosCheckBox
         )
 
         //Asignar el modelo
@@ -97,6 +102,22 @@ class ConfiguracionesActivity : AppCompatActivity() {
         }
         musicaCheckBox.setOnClickListener {
             model.categorias[1].seleccionada = musicaCheckBox.isChecked
+            ActualizarVM()
+        }
+        smashCheckBox.setOnClickListener{
+            model.categorias[2].seleccionada=smashCheckBox.isChecked
+            ActualizarVM()
+        }
+        deporteCheckBox.setOnClickListener{
+            model.categorias[3].seleccionada=deporteCheckBox.isChecked
+            ActualizarVM()
+        }
+        historiaCheckBox.setOnClickListener{
+            model.categorias[4].seleccionada=historiaCheckBox.isChecked
+            ActualizarVM()
+        }
+        variosCheckBox.setOnClickListener{
+            model.categorias[5].seleccionada=variosCheckBox.isChecked
             ActualizarVM()
         }
         habilitarPistasSwitch.setOnClickListener {

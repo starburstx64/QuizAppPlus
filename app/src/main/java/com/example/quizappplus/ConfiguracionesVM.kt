@@ -224,12 +224,23 @@ class ConfiguracionesVM:ViewModel(),Serializable {
     init {
         categorias = listOf(
             Categoria("Cine",true,preguntasCine),
-            Categoria("Música",false,preguntasMusica),
+            Categoria("Música",true,preguntasMusica),
             Categoria("Smash", false,preguntasSmash),
             Categoria("Deporte", false,preguntasDeporte),
             Categoria("Historia", false,preguntasHistoria),
             Categoria("Varios", false,preguntasVarios)
         )
+    }
+
+    fun GetCategoriasUsadas():List<Categoria>
+    {
+        var catUsadas:MutableList<Categoria> = mutableListOf()
+        for (i in 0..categorias.size-1)
+        {
+            if(categorias[i].seleccionada==true)
+                catUsadas.add(categorias[i])
+        }
+        return catUsadas
     }
 
 }
