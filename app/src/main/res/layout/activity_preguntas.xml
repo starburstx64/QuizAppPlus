@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Prev"
-            android:background="@color/red"/>
+            android:background="@color/dark_blue"/>
 
 
         <Button
@@ -107,7 +107,7 @@
             android:layout_margin="10dp"
             android:text="Next"
             android:translationX="180dp"
-            android:background="@color/red"/>
+            android:background="@color/dark_blue"/>
     </LinearLayout>
 
     <LinearLayout
