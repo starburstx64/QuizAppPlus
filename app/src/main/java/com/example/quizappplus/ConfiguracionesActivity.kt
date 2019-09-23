@@ -1,11 +1,13 @@
 package com.example.quizappplus
 
+import android.app.Activity
+import android.app.Instrumentation
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CheckBox
-import android.widget.RadioButton
-import android.widget.Spinner
-import android.widget.Switch
+import android.widget.*
+
+const val CONFIGURACIONES_REQUEST_CODE=1000
 
 class ConfiguracionesActivity : AppCompatActivity() {
 
@@ -30,7 +32,12 @@ class ConfiguracionesActivity : AppCompatActivity() {
 
     //Switchs
     private lateinit var habilitarPistasSwitch:Switch
+
+    //Buttons
+    //private lateinit var volverButton:Button
     //endregion
+
+    private lateinit var model:ConfiguracionesVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +60,65 @@ class ConfiguracionesActivity : AppCompatActivity() {
         dificilRadioButton=findViewById(R.id.dificil_radio_button)
 
         habilitarPistasSwitch=findViewById(R.id.enable_switch_pistas)
+
+        //volverButton=findViewById(R.id.volver_Button)
         //endregion
+        //lista de checkboxes
+        val checkBoxes= listOf<CheckBox>(
+            cineCheckBox,
+            musicaCheckBox
+        )
+
+        //Asignar el modelo
+        model = intent.getSerializableExtra("EXTRA_CONFIGURACINES_VIEWMODEL") as ConfiguracionesVM
+        //checarEnvio(model)
+
+        //Asignar las configuraciones
+        for(i in 0..model.categorias.size-1)
+        {
+            if(model.categorias[i].seleccionada==true)
+            {
+                checkBoxes[i].isChecked=true
+            }
+        }
+
+        //Modificaciones
+        cineCheckBox.setOnClickListener{
+            ActualizarVM()
+            val intent: Intent = Intent()
+            intent.putExtra("EXTRA_RESULT_CONFIUGRACION_VIEWMODEL",model)
+            setResult(Activity.RESULT_OK,intent)
+        }
+        /*volverButton.setOnClickListener{
+            finishActivity(1)
+        }*/
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+    }
+    private fun ActualizarVM()
+    {
+        model.categorias[0].seleccionada=cineCheckBox.isChecked
+    }
+
+    private fun checarEnvio(model:ConfiguracionesVM?){
+        val respuesta: Toast =
+            if(model != null){
+                Toast.makeText(
+                    this,
+                    "CORRECTO",
+                    Toast.LENGTH_SHORT
+                )
+            } else{
+                Toast.makeText(
+                    this,
+                    "INCORRECTO",
+                    Toast.LENGTH_SHORT
+                )
+            }
+        respuesta.show()
     }
 }
