@@ -10,7 +10,20 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ligh_blue"
+            android:text="CONFIGURACIONES"
+            android:textSize="35dp"
+            android:paddingLeft="50sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -19,13 +32,16 @@
             android:text="Temas"
             android:textSize="30sp"
             android:textColor="@color/ligh_blue"/>
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <CheckBox
             android:id="@+id/todos_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40sp"
+            android:layout_marginStart="120sp"
             android:text="Todos"
             android:textSize="30sp"
             android:textColor="@color/white"/>
