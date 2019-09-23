@@ -55,6 +55,30 @@
     <string name="musica4">¿Quién era el vocalista de Nirvana?</string>
     <string name="musica5">¿Cual de las siguientes canciones no es de Queen?</string>
 
+    <string name="smash1">¿Quiénes fueron los creadores de Super Smash Bros?</string>
+    <string name="smash2">¿Cuántos personajes tiene el Super Smash Bros 64?</string>
+    <string name="smash3">¿Cuánto daño hace el Falcon Punch en el Super Smash Bros de la Wii U?</string>
+    <string name="smash4">¿Cuál es el movimiento especial de Jigglypuff hacia abajo?</string>
+    <string name="smash5">¿Quién es el jefe final de Super Smash Bros Brawl?</string>
+
+    <string name="deporte1">¿En qué año fueron los primeros Juegos Olímpicos modernos?</string>
+    <string name="deporte2">¿Dónde se celebraron los primeros Juegos olimpicos de la era moderna?</string>
+    <string name="deporte3">Deporte que hace uso de un guante de cuero, un palo de madera o metal y una pelota de cuero</string>
+    <string name="deporte4">¿Cual es el deporta que practica Messi de manera profesional?</string>
+    <string name="deporte5">El salto de la garrocha consiste en</string>
+
+    <string name="historia1">¿Quién fue el primer presidente de Estados Unidos?</string>
+    <string name="historia2">¿Qué periodo comprende la Segunda Guerra Mundial?</string>
+    <string name="historia3">¿Qué emperador romano legalizó el cristianismo y puso fin a la persecución de los cristianos?</string>
+    <string name="historia4">¿Qué hito informático de 1969 cambiaría radicalmente el curso de la historia de la humanidad?</string>
+    <string name="historia5">¿Por qué es significativo el Poema de Gilgamesh?</string>
+
+    <string name="varios1">2 + 2 = </string>
+    <string name="varios2">El dicho "Mi casa es tu casa" se usa para </string>
+    <string name="varios3">¿Cuál fue la primera consola de videojuegos?</string>
+    <string name="varios4">El termino "Cubreme las espaldas" se usa para</string>
+    <string name="varios5">En el juego UNO cuando se tiene una carta se debe decir</string>
+
     <string-array name="numPreguntas">
         <item>5</item>
         <item>6</item>
