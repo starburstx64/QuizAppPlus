@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:text="Puntuacion final!"
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/red"/>
 
     </LinearLayout>
 
@@ -35,7 +36,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/Puntaje_final"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="@color/red"/>
 
     <LinearLayout
         android:layout_width="match_parent"
