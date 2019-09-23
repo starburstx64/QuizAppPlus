@@ -1,12 +1,17 @@
 package com.example.quizappplus
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.activity_configuraciones.*
 import kotlinx.android.synthetic.main.activity_preguntas.*
+import kotlin.random.Random
 
 class PreguntasActivity : AppCompatActivity() {
 
@@ -61,6 +66,19 @@ class PreguntasActivity : AppCompatActivity() {
         //Ya que tenemos las preguntas hay que poner la primera
         updateQuestion()
 
+        //region Cosas de pistas
+        contPistasTextView.isVisible=ConfiguracionesModel.pistas
+        if (ConfiguracionesModel.pistas)
+        {
+            contPistasTextView.text = "Pista ${model.getPistasUsadas()}/${ConfiguracionesModel.numPistas}"
+        }
+        contPistasTextView.setOnClickListener{
+            if(model.getCurrentQuestion().contestada==false && (model.getPistasUsadas()!=ConfiguracionesModel.numPistas)) {
+                UsarPista()
+            }
+        }
+        //endregion
+
         siguiente_button.setOnClickListener {
             model.nextQuestion()
             updateQuestion()
@@ -72,20 +90,26 @@ class PreguntasActivity : AppCompatActivity() {
 
         btnRespuesta1.setOnClickListener {
             ComprobarRespuesta(0)
+            model.ContestarPregunta()
             updateQuestion()
         }
         btnRespuesta2.setOnClickListener {
             ComprobarRespuesta(1)
+            model.ContestarPregunta()
             updateQuestion()
         }
         btnRespuesta3.setOnClickListener {
             ComprobarRespuesta(2)
+            model.ContestarPregunta()
             updateQuestion()
         }
         btnRespuesta4.setOnClickListener {
             ComprobarRespuesta(3)
+            model.ContestarPregunta()
             updateQuestion()
         }
+
+
     }
 
     private fun updateQuestion() {
@@ -96,7 +120,8 @@ class PreguntasActivity : AppCompatActivity() {
         //Con esto sabemos si la pregunta fue contestada o no
         val contestada: Boolean = (model.getCurrentQuestion().contestada)
         //Con esto ponemos el contador de preguntas como debe
-        contPreguntasTextView.setText("Pregunta:${model.numQuestion + 1}/${model.numOfQuestions}")
+        contPreguntasTextView.text = "Pregunta:${model.numQuestion + 1}/${model.numOfQuestions}"
+        contPistasTextView.text = "Pista ${model.getPistasUsadas()}/${ConfiguracionesModel.numPistas}"
         //Esto nos sirve para poner el estado de la pregunta en el tv de abajo
         val estadoPregunta =
             if (contestada == false) {
@@ -110,6 +135,10 @@ class PreguntasActivity : AppCompatActivity() {
         estadoPreguntaTextView.text = estadoPregunta
         //Y ahora vamos a ver si los botones deben estar habilitados o no
         HabilitarBotones(ConfiguracionesModel.dificultad)
+        if(model.PreguntasContestadas==model.numOfQuestions){
+            TerminarJuego()
+        }
+
     }
 
     private fun SetOpciones(dificultad: Int) {
@@ -157,6 +186,51 @@ class PreguntasActivity : AppCompatActivity() {
             2 -> {
                 btnRespuesta4.isEnabled = false
                 btnRespuesta4.isVisible = false
+            }
+        }
+    }
+
+    private fun UsarPista(){
+        //primero consigamos los botones
+        var opcionesbtns: List<Button> = listOf(
+            btnRespuesta1, btnRespuesta2, btnRespuesta3, btnRespuesta4
+        )
+        //ahora veamos cuales podemos usar
+        var botonesUtilizables:MutableList<Button> = mutableListOf()
+        for (i in 0..ConfiguracionesModel.dificultad){
+            if (GetResultSelectedOption(i)==false && opcionesbtns[i].isEnabled==true)
+                botonesUtilizables.add(opcionesbtns[i])
+        }
+        //ya que sabemos cuales podemos utilizar, seleccionemos uno al azar y quitemoslo
+        botonesUtilizables[Random.nextInt(0,botonesUtilizables.size)].isEnabled=false
+        var contEnables:Int = 0
+        for (i in 0..ConfiguracionesModel.dificultad){
+            if (opcionesbtns[i].isEnabled)
+                contEnables++
+        }
+        if (contEnables==1)
+        {
+            model.getCurrentQuestion().contestada=true
+            model.getCurrentQuestion().correcta=true
+            updateQuestion()
+        }
+        model.usarPista()
+        contPistasTextView.text = "Pista ${model.getPistasUsadas()}/${ConfiguracionesModel.numPistas}"
+    }
+
+    private fun TerminarJuego(){
+        val intent: Intent = Intent(this, PreguntasActivity::class .java)
+        startActivityForResult(intent, NOMBREJUGADOR_ACTIVITY_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            NOMBREJUGADOR_ACTIVITY_REQUEST_CODE->{
+                when(resultCode){
+                    Activity.RESULT_OK->model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
+                    Activity.RESULT_CANCELED->model.SetNombre("AAA")
+                }
             }
         }
     }

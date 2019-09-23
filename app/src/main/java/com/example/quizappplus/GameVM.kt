@@ -10,6 +10,15 @@ class GameVM :ViewModel(){
     private lateinit var flagQuestions:MutableList<Boolean>
     private var currentQuestion:Int = 0
 
+    private lateinit var nombreJugador:String
+
+    private var preguntasContestadas=0
+
+    val PreguntasContestadas get() = preguntasContestadas
+
+    private var pistasUsadas:Int = 0
+    val NombreJugador get() =nombreJugador
+
     val numOfQuestions get()=questions.size
 
     val numQuestion get()=currentQuestion
@@ -19,6 +28,12 @@ class GameVM :ViewModel(){
     {
         flagQuestions[currentQuestion]=true
     }
+    fun ContestarPregunta(){preguntasContestadas++}
+
+    fun SetNombre(nombre:String){nombreJugador=nombre}
+
+    fun getPistasUsadas() = pistasUsadas
+    fun usarPista(){pistasUsadas++}
 
     fun SetQuestions(categorias:List<Categoria>,numPreguntas:Int){
         //Sacar todas las preguntas de las categorias seleccionadas
