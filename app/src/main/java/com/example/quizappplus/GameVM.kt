@@ -7,11 +7,18 @@ import kotlin.random.Random
 
 class GameVM :ViewModel(){
     private lateinit var questions:List<Pregunta>
+    private lateinit var flagQuestions:MutableList<Boolean>
     private var currentQuestion:Int = 0
 
     val numOfQuestions get()=questions.size
 
     val numQuestion get()=currentQuestion
+    val flagQuestion get() = flagQuestions[currentQuestion]
+
+    fun ActualizaFlag()
+    {
+        flagQuestions[currentQuestion]=true
+    }
 
     fun SetQuestions(categorias:List<Categoria>,numPreguntas:Int){
         //Sacar todas las preguntas de las categorias seleccionadas
@@ -29,6 +36,16 @@ class GameVM :ViewModel(){
             preguntasPotenciales.removeAt(selectedIndex)
         }
         questions = preguntasSeleccionadas
+        setFlags()
+    }
+
+    private fun setFlags(){
+        var listaFlags:MutableList<Boolean> = mutableListOf()
+        for(i in 0..questions.size-1)
+        {
+            listaFlags.add(false)
+        }
+        flagQuestions= listaFlags
     }
 
     fun SetQuestionsOptions(dificultad:Int){

@@ -215,8 +215,8 @@ class ConfiguracionesVM:ViewModel(),Serializable {
     //endregion
 
     var categorias:List<Categoria>
-    var numPregunta:Int = 7
-    var dificultad:Int = 3
+    var numPregunta:Int = 5
+    var dificultad:Int = 2
     var pistas: Boolean = false
     var numPistas:Int = 2
 
@@ -224,7 +224,7 @@ class ConfiguracionesVM:ViewModel(),Serializable {
     init {
         categorias = listOf(
             Categoria("Cine",true,preguntasCine),
-            Categoria("Música",true,preguntasMusica),
+            Categoria("Música",false,preguntasMusica),
             Categoria("Smash", false,preguntasSmash),
             Categoria("Deporte", false,preguntasDeporte),
             Categoria("Historia", false,preguntasHistoria),
