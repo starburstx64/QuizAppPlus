@@ -54,4 +54,19 @@
     <string name="musica3">¿Cual de las siguientes obras no es de Mozart?</string>
     <string name="musica4">¿Quién era el vocalista de Nirvana?</string>
     <string name="musica5">¿Cual de las siguientes canciones no es de Queen?</string>
+
+    <string-array name="numPreguntas">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="numCheats">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>

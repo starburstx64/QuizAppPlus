@@ -42,9 +42,9 @@ class ConfiguracionesVM:ViewModel(),Serializable {
     var preguntasMusica:List<Pregunta> = listOf(
         Pregunta(R.string.musica1, listOf(
             Opcion("Ctesibio",true),
-            Opcion("Sofocles",true),
-            Opcion("Euripides",true),
-            Opcion("Socrates",true)
+            Opcion("Sofocles",false),
+            Opcion("Euripides",false),
+            Opcion("Socrates",false)
 
         )),
         Pregunta(R.string.musica2, listOf(
@@ -75,10 +75,10 @@ class ConfiguracionesVM:ViewModel(),Serializable {
     //endregion
 
     var categorias:List<Categoria>
-    var numPregunta:Int = 5
-    var dificultad:Int = 2
+    var numPregunta:Int = 7
+    var dificultad:Int = 3
     var pistas: Boolean = false
-    var numPistas:Int = 1
+    var numPistas:Int = 2
 
 
     init {

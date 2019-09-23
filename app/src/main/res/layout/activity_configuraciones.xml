@@ -107,6 +107,7 @@
         <Spinner
             android:id="@+id/spinner_preguntas"
             android:layout_width="wrap_content"
+            android:entries="@array/numPreguntas"
             android:layout_height="match_parent" />
     </LinearLayout>
 
@@ -115,6 +116,7 @@
         android:layout_height="wrap_content">
 
         <RadioGroup
+            android:id="@+id/dificultad_Radiogroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -168,6 +170,7 @@
 
         <Spinner
             android:id="@+id/spinner_pistas"
+            android:entries="@array/numCheats"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
