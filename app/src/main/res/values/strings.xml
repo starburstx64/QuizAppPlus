@@ -42,4 +42,31 @@
 
 
     <string name="Puntaje_final">0000000</string>
+
+    <string name="cine1">Nombre de la pelicula mas taquillera del 2019</string>
+    <string name="cine2">Como se llama la serie de peliculas donde los juguetes cobran vida</string>
+    <string name="cine3">¿Quién es el director de Piratas del caribe: La maldición del perla negra?</string>
+    <string name="cine4">¿Como se llamaba el burro que estaba siempre a lado de shrek?</string>
+    <string name="cine5">¿De que compañia es Las cronicas de Narnia: el león, la bruja y el ropero?</string>
+
+    <string name="musica1">¿Quién inventó el organo hidráulico?</string>
+    <string name="musica2">¿Quién fue el primer artista en grabar rock and roll?</string>
+    <string name="musica3">¿Cual de las siguientes obras no es de Mozart?</string>
+    <string name="musica4">¿Quién era el vocalista de Nirvana?</string>
+    <string name="musica5">¿Cual de las siguientes canciones no es de Queen?</string>
+
+    <string-array name="numPreguntas">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="numCheats">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>
