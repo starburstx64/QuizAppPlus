@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PuntuacionActivity">
+    tools:context=".PuntuacionActivity"
+    android:background="@color/black">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Puntuaciones"
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
@@ -31,7 +34,8 @@
         <ListView
             android:id="@+id/lista_puntuaciones"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content"
+            android:background="@color/white"></ListView>
 
 
     </LinearLayout>

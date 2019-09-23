@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MenuPrincipalAcrivity">
+    tools:context=".MenuPrincipalAcrivity"
+    android:background="@color/orange">
 
     <ImageView
         android:id="@+id/logo_imageView"

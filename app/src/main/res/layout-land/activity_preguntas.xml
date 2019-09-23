@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/blue">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/gray">
 
         <TextView
             android:id="@+id/pregunta_contador"
@@ -15,16 +17,18 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="@string/pregunta_act_1"
-            android:textSize="20sp" />
+            android:textSize="21dp"
+            android:textColor="@color/white"/>
 
 
         <TextView
             android:id="@+id/pista_contador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="170dp"
+            android:paddingLeft="460dp"
             android:text="@string/pistas_act_0"
-            android:textSize="20sp" />
+            android:textSize="21sp"
+            android:textColor="@color/white"/>
 
 
     </LinearLayout>
@@ -39,7 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pregunta: "
-            android:textSize="20sp" />
+            android:textSize="30sp"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
