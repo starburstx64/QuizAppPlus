@@ -5,28 +5,35 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MenuPrincipalAcrivity">
 
     <ImageView
+        android:id="@+id/logo_imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher_foreground" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <Button
+            android:id="@+id/juego_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Juego"/>
+            android:text="Juego" />
+
         <Button
+            android:id="@+id/opciones_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Opciones"/>
+            android:text="Opciones" />
     </LinearLayout>
+
     <Button
+        android:id="@+id/puntuacion_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Puntuación"/>
-
+        android:text="Puntuación" />
 
 </LinearLayout>
