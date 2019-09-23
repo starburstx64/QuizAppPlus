@@ -104,8 +104,8 @@ class ConfiguracionesActivity : AppCompatActivity() {
             model.pistas = habilitarPistasSwitch.isChecked
             ActualizarVM()
         }
-        spinner_preguntas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(var1: AdapterView<*>, var2: View, position: Int, var4: Long) {
+        numPreguntasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(var1: AdapterView<*>, var2: View?, position: Int, var4: Long) {
                 model.numPregunta = spinner_preguntas.selectedItem.toString().toInt()
                 ActualizarVM()
             }
@@ -113,8 +113,8 @@ class ConfiguracionesActivity : AppCompatActivity() {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
-        spinner_pistas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(var1: AdapterView<*>, var2: View, position: Int, var4: Long) {
+        numPistasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(var1: AdapterView<*>, var2: View?, position: Int, var4: Long) {
                 model.numPistas = spinner_pistas.selectedItem.toString().toInt()
                 ActualizarVM()
             }

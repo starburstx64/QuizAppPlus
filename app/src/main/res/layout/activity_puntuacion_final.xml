@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PuntuacionFinalActivity">
+    tools:context=".PuntuacionFinalActivity"
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             android:text="Puntuacion final!"
             android:textAlignment="center"
             android:textSize="30dp"
-            android:textColor="@color/red"/>
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
@@ -37,7 +38,7 @@
         android:gravity="center"
         android:text="@string/Puntaje_final"
         android:textSize="30sp"
-        android:textColor="@color/red"/>
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Menu Principal"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:background="@color/dark_red"/>
 
 
 </LinearLayout>

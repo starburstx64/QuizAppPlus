@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PreguntasActivity"
-    android:background="@color/blue">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray">
+        android:background="@color/dark_blue">
 
         <TextView
             android:id="@+id/pregunta_contador"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:text="@string/pregunta_act_1"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textColor="@color/white"/>
 
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="170dp"
             android:text="@string/pistas_act_0"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:textColor="@color/white"/>
 
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="Pregunta: "
             android:textSize="30sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/dark_blue"/>
 
     </LinearLayout>
 
@@ -73,7 +73,8 @@
             android:id="@+id/respuesta3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/respuesta_3" />
+            android:text="@string/respuesta_3"
+            />
 
         <Button
             android:id="@+id/respuesta4"
@@ -95,7 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Prev" />
+            android:text="Prev"
+            android:background="@color/red"/>
 
 
         <Button
@@ -104,7 +106,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Next"
-            android:translationX="180dp" />
+            android:translationX="180dp"
+            android:background="@color/red"/>
     </LinearLayout>
 
     <LinearLayout
