@@ -61,15 +61,7 @@ class PreguntasActivity : AppCompatActivity() {
 
         arregloPuntuaciones = intent.getSerializableExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS") as ArrayList<Jugador>
 
-        //Sacar la lista con las categorias que usaremos
-        val CategoriasUsadas: List<Categoria> = ConfiguracionesModel.GetCategoriasUsadas()
-        //y usarla para escoger las preguntas al azar
-        model.SetQuestions(CategoriasUsadas, ConfiguracionesModel.numPregunta)
-        model.SetQuestionsOptions(ConfiguracionesModel.dificultad)
-        //Ponemos las cosas a la dificultad adecuada
-        SetDificulty(ConfiguracionesModel.dificultad)
-        //Ya que tenemos las preguntas hay que poner la primera
-        updateQuestion()
+        InicializarJuego()
 
         //region Cosas de pistas
         contPistasTextView.isVisible=ConfiguracionesModel.pistas
@@ -113,8 +105,21 @@ class PreguntasActivity : AppCompatActivity() {
             model.ContestarPregunta()
             updateQuestion()
         }
+    }
 
-
+    private fun InicializarJuego(){
+        if(!model.FlagJuegoIniciado) {
+            //Sacar la lista con las categorias que usaremos
+            val CategoriasUsadas: List<Categoria> = ConfiguracionesModel.GetCategoriasUsadas()
+            //y usarla para escoger las preguntas al azar
+            model.SetQuestions(CategoriasUsadas, ConfiguracionesModel.numPregunta)
+            model.SetQuestionsOptions(ConfiguracionesModel.dificultad)
+            //Ponemos las cosas a la dificultad adecuada
+            model.SetJuegoIniciado()
+        }
+        SetDificulty(ConfiguracionesModel.dificultad)
+        //Ya que tenemos las preguntas hay que poner la primera
+        updateQuestion()
     }
 
     private fun updateQuestion() {

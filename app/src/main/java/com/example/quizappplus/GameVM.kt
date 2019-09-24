@@ -6,6 +6,8 @@ import kotlin.math.log
 import kotlin.random.Random
 
 class GameVM :ViewModel(){
+    private var flagJuegoIniciado=false
+
     private lateinit var questions:List<Pregunta>
     private lateinit var flagQuestions:MutableList<Boolean>
     private var currentQuestion:Int = 0
@@ -13,6 +15,8 @@ class GameVM :ViewModel(){
     private lateinit var nombreJugador:String
 
     private var preguntasContestadas=0
+
+    val FlagJuegoIniciado get() = flagJuegoIniciado
 
     val PreguntasContestadas get() = preguntasContestadas
 
@@ -23,6 +27,8 @@ class GameVM :ViewModel(){
 
     val numQuestion get()=currentQuestion
     val flagQuestion get() = flagQuestions[currentQuestion]
+
+    fun SetJuegoIniciado(){flagJuegoIniciado=true}
 
     fun ActualizaFlag()
     {
