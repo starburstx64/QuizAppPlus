@@ -12,12 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 const val EXTRA_RESULT_TEXT="com.example.quizappplus.EXTRA_RESULT_TEXT"
 const val NOMBREJUGADOR_ACTIVITY_REQUEST_CODE=1100
 
+
+
 class NombreJugadorActivity :AppCompatActivity(){
 
     private lateinit var nombreEditText:EditText
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_nombrejugador)
 
         nombreEditText = findViewById(R.id.Nombre_EditText)
 

@@ -33,6 +33,8 @@ class PreguntasActivity : AppCompatActivity() {
     private lateinit var ConfiguracionesModel: ConfiguracionesVM
     private val model by lazy { ViewModelProviders.of(this)[GameVM::class.java] }
 
+    private lateinit var arregloPuntuaciones:ArrayList<Jugador>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,9 @@ class PreguntasActivity : AppCompatActivity() {
         //Asignar el modelo de las configuraciones
         ConfiguracionesModel =
             intent.getSerializableExtra("EXTRA_CONFIGURACIONES_VIEWMODEL_FORQUESTIONS") as ConfiguracionesVM
+
+        arregloPuntuaciones = intent.getSerializableExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS") as ArrayList<Jugador>
+
         //Sacar la lista con las categorias que usaremos
         val CategoriasUsadas: List<Categoria> = ConfiguracionesModel.GetCategoriasUsadas()
         //y usarla para escoger las preguntas al azar
@@ -219,7 +224,7 @@ class PreguntasActivity : AppCompatActivity() {
     }
 
     private fun TerminarJuego(){
-        val intent: Intent = Intent(this, PreguntasActivity::class .java)
+        val intent: Intent = Intent(this, NombreJugadorActivity::class .java)
         startActivityForResult(intent, NOMBREJUGADOR_ACTIVITY_REQUEST_CODE)
     }
 
@@ -228,7 +233,14 @@ class PreguntasActivity : AppCompatActivity() {
         when(requestCode){
             NOMBREJUGADOR_ACTIVITY_REQUEST_CODE->{
                 when(resultCode){
-                    Activity.RESULT_OK->model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
+                    Activity.RESULT_OK->{
+                        model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
+                        arregloPuntuaciones.add(Jugador(model.NombreJugador,100))
+
+                        val otroIntent: Intent = Intent(this,PuntuacionFinalActivity::class.java)
+                        otroIntent.putExtra("EXTRA_LISTA_PUNTUACIONES",arregloPuntuaciones)
+                        startActivity(otroIntent)
+                    }
                     Activity.RESULT_CANCELED->model.SetNombre("AAA")
                 }
             }
