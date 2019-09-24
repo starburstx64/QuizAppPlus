@@ -4,27 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ConfiguracionesActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:background="@color/ligh_gray">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIGURACIONES"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Temas"
+            android:textColor="@color/red"
             android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <CheckBox
             android:id="@+id/todos_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40sp"
             android:text="Todos"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +61,9 @@
             android:layout_height="wrap_content"
             android:layout_weight=".50"
             android:text="Cine"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
 
         <CheckBox
             android:id="@+id/deportes_checkbox"
@@ -46,7 +71,9 @@
             android:layout_height="wrap_content"
             android:layout_weight=".50"
             android:text="Deporte"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +87,9 @@
             android:layout_height="wrap_content"
             android:layout_weight=".50"
             android:text="Musica"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
 
         <CheckBox
             android:id="@+id/historia_checkbox"
@@ -68,7 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_weight=".50"
             android:text="Historia"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
 
     </LinearLayout>
 
@@ -83,7 +114,9 @@
             android:layout_height="wrap_content"
             android:layout_weight=".50"
             android:text="Smash"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
 
         <CheckBox
             android:id="@+id/varios_checkbox"
@@ -91,29 +124,50 @@
             android:layout_height="wrap_content"
             android:layout_weight=".50"
             android:text="Varios"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No. de Preguntas"
-            android:textSize="30sp" />
+            android:textColor="@color/red"
+            android:textSize="20dp" />
 
         <Spinner
             android:id="@+id/spinner_preguntas"
             android:layout_width="wrap_content"
-            android:entries="@array/numPreguntas"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:entries="@array/numPreguntas" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. de pistas"
+            android:textColor="@color/red"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
+
 
         <RadioGroup
             android:id="@+id/dificultad_Radiogroup"
@@ -125,35 +179,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Facil"
-                android:textSize="30sp" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:buttonTint="@color/black"/>
 
             <RadioButton
                 android:id="@+id/medio_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medio"
                 android:checked="true"
-                android:textSize="30sp" />
+                android:text="Medio"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:buttonTint="@color/black"/>
 
             <RadioButton
                 android:id="@+id/dificil_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dificil"
-                android:textSize="30sp" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:buttonTint="@color/black"/>
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
 
         <Switch
             android:id="@+id/enable_switch_pistas"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:text="Habilitar pistas"
-            android:textSize="30sp" />
+            android:textColor="@color/red"
+            android:textSize="20sp" />
 
 
     </LinearLayout>
@@ -166,13 +228,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No. de pistas"
-            android:textSize="30sp" />
+            android:textColor="@color/red"
+            android:textSize="20dp" />
 
         <Spinner
             android:id="@+id/spinner_pistas"
-            android:entries="@array/numCheats"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:entries="@array/numCheats"
+            android:textAlignment="center" />
 
     </LinearLayout>
     <!--

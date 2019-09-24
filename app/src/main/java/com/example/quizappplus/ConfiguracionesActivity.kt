@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_configuraciones.*
 
 const val CONFIGURACIONES_REQUEST_CODE = 1000
@@ -36,9 +37,8 @@ class ConfiguracionesActivity : AppCompatActivity() {
     //Switchs
     private lateinit var habilitarPistasSwitch: Switch
 
-    //Buttons
-    //private lateinit var volverButton:Button
-    //endregion
+    //lista de checkboxes
+    private lateinit var checkBoxes:List<CheckBox>
 
     private lateinit var model: ConfiguracionesVM
 
@@ -67,10 +67,14 @@ class ConfiguracionesActivity : AppCompatActivity() {
 
         //volverButton=findViewById(R.id.volver_Button)
         //endregion
-        //lista de checkboxes
-        val checkBoxes = listOf<CheckBox>(
+
+        checkBoxes = listOf<CheckBox>(
             cineCheckBox,
-            musicaCheckBox
+            musicaCheckBox,
+            smashCheckBox,
+            deporteCheckBox,
+            historiaCheckBox,
+            variosCheckBox
         )
 
         //Asignar el modelo
@@ -83,6 +87,7 @@ class ConfiguracionesActivity : AppCompatActivity() {
                 checkBoxes[i].isChecked = true
             }
         }
+        todosCheckBox.isChecked=NumCheckBoxesActivos()==6
         habilitarPistasSwitch.isChecked = model.pistas
         spinner_pistas.isEnabled = habilitarPistasSwitch.isChecked
         spinner_preguntas.setSelection(model.numPregunta - 5)
@@ -90,13 +95,63 @@ class ConfiguracionesActivity : AppCompatActivity() {
         ChecarRadioButton(model.dificultad)
         //endregion
 
+
         //region Modificaciones
+        todosCheckBox.setOnClickListener {
+            if (todosCheckBox.isChecked) {
+                for (i in 0..checkBoxes.size - 1) {
+                    checkBoxes[i].isChecked = true
+                    model.categorias[i].seleccionada=true
+                }
+            }
+            ActualizarVM()
+        }
         cineCheckBox.setOnClickListener {
+            if (NumCheckBoxesActivos()==0)
+                cineCheckBox.isChecked=true
+            todosCheckBox.isChecked=NumCheckBoxesActivos()==6
+            ValidatorSpinnerPreguntas()
             model.categorias[0].seleccionada = cineCheckBox.isChecked
             ActualizarVM()
         }
         musicaCheckBox.setOnClickListener {
+            if (NumCheckBoxesActivos()==0)
+                musicaCheckBox.isChecked=true
+            todosCheckBox.isChecked=NumCheckBoxesActivos()==6
+            ValidatorSpinnerPreguntas()
             model.categorias[1].seleccionada = musicaCheckBox.isChecked
+            ActualizarVM()
+        }
+        smashCheckBox.setOnClickListener {
+            if (NumCheckBoxesActivos()==0)
+                smashCheckBox.isChecked=true
+            todosCheckBox.isChecked=NumCheckBoxesActivos()==6
+            ValidatorSpinnerPreguntas()
+            model.categorias[2].seleccionada = smashCheckBox.isChecked
+            ActualizarVM()
+        }
+        deporteCheckBox.setOnClickListener {
+            if (NumCheckBoxesActivos()==0)
+                deporteCheckBox.isChecked = true
+            todosCheckBox.isChecked=NumCheckBoxesActivos()==6
+            ValidatorSpinnerPreguntas()
+            model.categorias[3].seleccionada = deporteCheckBox.isChecked
+            ActualizarVM()
+        }
+        historiaCheckBox.setOnClickListener {
+            if (NumCheckBoxesActivos()==0)
+                historiaCheckBox.isChecked=true
+            todosCheckBox.isChecked=NumCheckBoxesActivos()==6
+            ValidatorSpinnerPreguntas()
+            model.categorias[4].seleccionada = historiaCheckBox.isChecked
+            ActualizarVM()
+        }
+        variosCheckBox.setOnClickListener {
+            if (NumCheckBoxesActivos()==0)
+                variosCheckBox.isChecked=true
+            todosCheckBox.isChecked=NumCheckBoxesActivos()==6
+            ValidatorSpinnerPreguntas()
+            model.categorias[5].seleccionada = variosCheckBox.isChecked
             ActualizarVM()
         }
         habilitarPistasSwitch.setOnClickListener {
@@ -104,34 +159,43 @@ class ConfiguracionesActivity : AppCompatActivity() {
             model.pistas = habilitarPistasSwitch.isChecked
             ActualizarVM()
         }
-        spinner_preguntas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(var1: AdapterView<*>, var2: View, position: Int, var4: Long) {
-                model.numPregunta = spinner_preguntas.selectedItem.toString().toInt()
-                ActualizarVM()
+        numPreguntasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(
+                var1: AdapterView<*>,
+                var2: View?,
+                position: Int,
+                var4: Long
+            ) {
+                ValidatorSpinnerPreguntas()
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
-        spinner_pistas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(var1: AdapterView<*>, var2: View, position: Int, var4: Long) {
+        numPistasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(var1: AdapterView<*>, var2: View?, position: Int, var4: Long) {
+
                 model.numPistas = spinner_pistas.selectedItem.toString().toInt()
                 ActualizarVM()
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         }
-        facilRadioButton.setOnClickListener{
-            model.dificultad=1
+        facilRadioButton.setOnClickListener {
+            model.dificultad = 1
             ActualizarVM()
         }
-        medioRadioButton.setOnClickListener{
-            model.dificultad=2
+        medioRadioButton.setOnClickListener {
+            model.dificultad = 2
             ActualizarVM()
         }
-        dificilRadioButton.setOnClickListener{
-            model.dificultad=3
+        dificilRadioButton.setOnClickListener {
+            model.dificultad = 3
             ActualizarVM()
         }
         //endregion
@@ -155,21 +219,24 @@ class ConfiguracionesActivity : AppCompatActivity() {
         }
     }
 
-    private fun checarEnvio(model: ConfiguracionesVM?) {
-        val respuesta: Toast =
-            if (model != null) {
-                Toast.makeText(
-                    this,
-                    "CORRECTO",
-                    Toast.LENGTH_SHORT
-                )
-            } else {
-                Toast.makeText(
-                    this,
-                    "INCORRECTO",
-                    Toast.LENGTH_SHORT
-                )
-            }
-        respuesta.show()
+    private fun ValidatorSpinnerPreguntas(){
+        if (NumCheckBoxesActivos()>1) {
+            model.numPregunta = spinner_preguntas.selectedItem.toString().toInt()
+            ActualizarVM()
+        }else{
+            model.numPregunta=5
+            spinner_preguntas.setSelection(0)
+        }
+    }
+
+    private fun NumCheckBoxesActivos(): Int {
+        var contCheckBoxesActivos:Int = 0
+        for (i in 0..checkBoxes.size - 1) {
+            contCheckBoxesActivos =
+                if (checkBoxes[i].isChecked)
+                    contCheckBoxesActivos+1
+            else contCheckBoxesActivos
+        }
+        return contCheckBoxesActivos
     }
 }

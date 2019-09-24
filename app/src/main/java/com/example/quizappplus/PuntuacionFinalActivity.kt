@@ -2,10 +2,9 @@ package com.example.quizappplus
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
+
+const val PUNTUACION_FINAL_ACTIVITY_RESULT=1200
 
 class PuntuacionFinalActivity : AppCompatActivity() {
 
@@ -14,8 +13,6 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     private lateinit var puntajeFinalTextView:TextView
     //imageViews
     private lateinit var imagenFinalImageView:ImageView
-    //listViews
-    private lateinit var puntajesListView:ListView
     //Buttons
     private lateinit var menuPrincipalButton:Button
     //endregion
@@ -29,9 +26,13 @@ class PuntuacionFinalActivity : AppCompatActivity() {
 
         imagenFinalImageView=findViewById(R.id.imagenFinal)
 
-        puntajesListView=findViewById(R.id.puntajes_ListView)
-
         menuPrincipalButton=findViewById(R.id.menu_button)
         //endregion
+
+        val listaPuntuaciones = intent.getSerializableExtra("EXTRA_LISTA_PUNTUACIONES") as ArrayList<Jugador>
+        listaPuntuaciones.add(Jugador("jose0",15))
+
+
+
     }
 }
