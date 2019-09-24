@@ -113,7 +113,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="80dp"
+        android:layout_marginVertical="10sp"
         android:gravity="center">
 
         <TextView
@@ -122,7 +122,6 @@
             android:layout_height="wrap_content"
             android:text="@string/validacion_pregunta_3"
             android:textSize="20dp"
-            android:visibility="invisible"
 
             />
 

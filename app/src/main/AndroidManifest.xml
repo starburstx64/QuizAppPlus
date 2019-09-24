@@ -13,6 +13,7 @@
         <activity android:name=".PuntuacionActivity" />
         <activity android:name=".ConfiguracionesActivity" />
         <activity android:name=".PreguntasActivity" />
+        <activity android:name=".NombreJugadorActivity"/>
         <activity android:name=".MenuPrincipalAcrivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

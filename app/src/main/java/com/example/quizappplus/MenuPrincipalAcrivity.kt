@@ -15,7 +15,8 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
     private lateinit var btnOpciones:Button
     private lateinit var btnPuntuacion:Button
     //endregion
-    private lateinit var ConfiguracionesModel:ConfiguracionesVM
+
+    private val model by lazy { ViewModelProviders.of(this)[MenuPrincipalVM::class.java] }
     //region estadosAndroid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +27,12 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnPuntuacion = findViewById(R.id.puntuacion_button)
         //endregion
 
-        ConfiguracionesModel = ConfiguracionesVM()
+        var puntuacionesMaximas:ArrayList<Jugador> = arrayListOf(Jugador("Jose",1000))
 
         btnJuego.setOnClickListener{
             val intent:Intent= Intent(this, PreguntasActivity::class .java)
-
+            intent.putExtra("EXTRA_CONFIGURACIONES_VIEWMODEL_FORQUESTIONS",model.configuraciones)
+            intent.putExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS",puntuacionesMaximas)
             startActivity(intent)
         }
 
@@ -42,7 +44,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
         btnOpciones.setOnClickListener{
             val intent:Intent= Intent(this,ConfiguracionesActivity::class.java)
-            intent.putExtra("EXTRA_CONFIGURACINES_VIEWMODEL",ConfiguracionesModel)
+            intent.putExtra("EXTRA_CONFIGURACINES_VIEWMODEL",model.configuraciones)
             startActivityForResult(intent,CONFIGURACIONES_REQUEST_CODE)
         }
 
@@ -54,7 +56,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         when(requestCode){
             CONFIGURACIONES_REQUEST_CODE-> {
                 when(resultCode){
-                    Activity.RESULT_OK->ConfiguracionesModel = data?.getSerializableExtra("EXTRA_RESULT_CONFIUGRACION_VIEWMODEL") as ConfiguracionesVM
+                    Activity.RESULT_OK->model.configuraciones = data?.getSerializableExtra("EXTRA_RESULT_CONFIUGRACION_VIEWMODEL") as ConfiguracionesVM
                 }
             }
         }

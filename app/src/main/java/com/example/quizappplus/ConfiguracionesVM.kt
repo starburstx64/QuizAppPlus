@@ -215,8 +215,8 @@ class ConfiguracionesVM:ViewModel(),Serializable {
     //endregion
 
     var categorias:List<Categoria>
-    var numPregunta:Int = 7
-    var dificultad:Int = 3
+    var numPregunta:Int = 5
+    var dificultad:Int = 2
     var pistas: Boolean = false
     var numPistas:Int = 2
 
@@ -230,6 +230,17 @@ class ConfiguracionesVM:ViewModel(),Serializable {
             Categoria("Historia", false,preguntasHistoria),
             Categoria("Varios", false,preguntasVarios)
         )
+    }
+
+    fun GetCategoriasUsadas():List<Categoria>
+    {
+        var catUsadas:MutableList<Categoria> = mutableListOf()
+        for (i in 0..categorias.size-1)
+        {
+            if(categorias[i].seleccionada==true)
+                catUsadas.add(categorias[i])
+        }
+        return catUsadas
     }
 
 }

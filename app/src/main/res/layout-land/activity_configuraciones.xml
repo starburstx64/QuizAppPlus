@@ -154,7 +154,6 @@
             android:text="Dificultad"
             android:textSize="20dp"
             android:textColor="@color/red"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -219,11 +218,11 @@
         <Spinner
             android:id="@+id/spinner_pistas"
             android:layout_width="match_parent"
+
             android:layout_height="match_parent"
             android:background="@color/gray"
             android:entries="@array/numCheats"
             android:textAlignment="center" />
-
 
     </LinearLayout>
 
