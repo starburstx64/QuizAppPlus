@@ -13,8 +13,6 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     private lateinit var puntajeFinalTextView:TextView
     //imageViews
     private lateinit var imagenFinalImageView:ImageView
-    //listViews
-    private lateinit var puntajesListView:ListView
     //Buttons
     private lateinit var menuPrincipalButton:Button
     //endregion
@@ -27,8 +25,6 @@ class PuntuacionFinalActivity : AppCompatActivity() {
         puntajeFinalTextView=findViewById(R.id.puntajeFinal)
 
         imagenFinalImageView=findViewById(R.id.imagenFinal)
-
-        puntajesListView=findViewById(R.id.puntajes_ListView)
 
         menuPrincipalButton=findViewById(R.id.menu_button)
         //endregion
