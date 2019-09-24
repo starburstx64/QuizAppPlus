@@ -160,6 +160,7 @@ class ConfiguracionesActivity : AppCompatActivity() {
             ActualizarVM()
         }
         numPreguntasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
             override fun onItemSelected(
                 var1: AdapterView<*>,
                 var2: View?,
@@ -174,12 +175,9 @@ class ConfiguracionesActivity : AppCompatActivity() {
             }
         }
         numPistasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                var1: AdapterView<*>,
-                var2: View?,
-                position: Int,
-                var4: Long
-            ) {
+
+            override fun onItemSelected(var1: AdapterView<*>, var2: View?, position: Int, var4: Long) {
+
                 model.numPistas = spinner_pistas.selectedItem.toString().toInt()
                 ActualizarVM()
             }
