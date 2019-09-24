@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:text="Jugador 1"
-                    android:textSize="13dp13dp"
+                    android:textSize="13dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"/>
                 <TextView
