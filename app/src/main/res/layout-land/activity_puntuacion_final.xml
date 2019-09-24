@@ -38,16 +38,150 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="163dp"
-        android:gravity="center">
+        android:layout_height="163dp">
 
-        <ListView
-            android:id="@+id/puntajes_ListView"
-            android:layout_width="wrap_content"
-            android:layout_height="187dp"></ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="335dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/jugador1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Jugador 1"
+                    android:textSize="13dp13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/jugador2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Jugador 2"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/jugador3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Jugador 3"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/jugador4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Jugador 4"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/jugador5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Jugador 5"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/jugador6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Jugador 6"
+                    android:textSize="13dp"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/puntiacion1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="1000"
+                    android:textSize="13dp"
+                    android:layout_marginLeft="600dp"/>
+
+                <TextView
+                    android:id="@+id/puntiacion2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="1000"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="600dp"/>
+                <TextView
+                    android:id="@+id/puntiacion3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="1000"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="600dp"/>
+                <TextView
+                    android:id="@+id/puntiacion4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="1000"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="600dp"/>
+                <TextView
+                    android:id="@+id/puntiacion5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="1000"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="600dp"/>
+                <TextView
+                    android:id="@+id/puntiacion6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="1000"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="600dp"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/menu_button"
