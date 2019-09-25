@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -29,6 +30,7 @@ class PreguntasActivity : AppCompatActivity() {
     //Btotones navegacion
     private lateinit var btnAvanzar: Button
     private lateinit var btnRetroceder: Button
+    private lateinit var lypreguntas: LinearLayout
     //endregion
     private lateinit var ConfiguracionesModel: ConfiguracionesVM
     private val model by lazy { ViewModelProviders.of(this)[GameVM::class.java] }
@@ -52,6 +54,7 @@ class PreguntasActivity : AppCompatActivity() {
         btnAvanzar = findViewById(R.id.siguiente_button)
         btnRetroceder = findViewById(R.id.anterior_button)
 
+        lypreguntas = findViewById(R.id.layout_activity_preguntas)
         estadoPreguntaTextView = findViewById(R.id.pregunta_estado)
         //endregion
 
@@ -131,13 +134,22 @@ class PreguntasActivity : AppCompatActivity() {
         val estadoPregunta =
             if (contestada == false) {
                 getString(R.string.validacion_pregunta_3)
+                lypreguntas.setBackgroundResource(R.color.white)
+
+
+
             } else {
-                if (model.getCurrentQuestion().correcta) getString(R.string.validacion_pregunta_2)
-                else getString(R.string.validacion_pregunta_1)
+                if (model.getCurrentQuestion().correcta){
+                    getString(R.string.validacion_pregunta_2)
+                    lypreguntas.setBackgroundResource(R.color.blue)
+                }
+
+                else {getString(R.string.validacion_pregunta_1)
+                lypreguntas.setBackgroundResource(R.color.dark_red)}
             }
         estadoPreguntaTextView.isVisible=model.flagQuestion
         model.ActualizaFlag()
-        estadoPreguntaTextView.text = estadoPregunta
+        estadoPreguntaTextView.setText(estadoPregunta.toString())
         //Y ahora vamos a ver si los botones deben estar habilitados o no
         HabilitarBotones(ConfiguracionesModel.dificultad)
         if(model.PreguntasContestadas==model.numOfQuestions){
