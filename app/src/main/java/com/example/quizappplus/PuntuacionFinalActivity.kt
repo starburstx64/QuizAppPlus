@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 
 const val PUNTUACION_FINAL_ACTIVITY_RESULT=1200
+const val EXTRA_JUGADOR_ACTUAL="com.example.quizappPlus.EXTRA_JUGADOR_ACTUAL"
 
 class PuntuacionFinalActivity : AppCompatActivity() {
 
@@ -80,6 +81,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
 
         val listaPuntuaciones = intent.getSerializableExtra("EXTRA_LISTA_PUNTUACIONES") as ArrayList<Jugador>
         model.SetJugadores(listaPuntuaciones)
+        model.SetJugadorActual(intent.getSerializableExtra(EXTRA_JUGADOR_ACTUAL) as Jugador)
         InicializarTodo()
 
     }
@@ -93,6 +95,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             puntuacionesTvs[i].text = model.ListaJugadores[i].puntuacion.toString()
             puntuacionesTvs[i].isVisible=true
         }
+        puntajeFinalTextView.text=model.JugadorActual.puntuacion.toString()
     }
 
     private fun InvisibilizarTvJugadores(){

@@ -146,12 +146,7 @@ class PreguntasActivity : AppCompatActivity() {
         val estadoPregunta =
             if (contestada == false) {
                 getString(R.string.validacion_pregunta_3)
-                lypreguntas.setBackgroundResource(R.color.white)
-
-
-
             } else {
-
                 if (model.getCurrentQuestion().correcta) getString(R.string.validacion_pregunta_2) + usoPista
                 else getString(R.string.validacion_pregunta_1) + usoPista
 
@@ -256,11 +251,13 @@ class PreguntasActivity : AppCompatActivity() {
                 when(resultCode){
                     Activity.RESULT_OK->{
                         model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
-                        arregloPuntuaciones.add(Jugador(model.NombreJugador,model.GetPuntajeFinal(),model.FlagUsoPista,0,model.GetAcuracy()))
+                        var jugadorActual = Jugador(model.NombreJugador,model.GetPuntajeFinal(),model.FlagUsoPista,0,model.GetAcuracy())
+                        arregloPuntuaciones.add(jugadorActual)
                         ordenarPuntajes()
 
                         val otroIntent: Intent = Intent(this,PuntuacionFinalActivity::class.java)
                         otroIntent.putExtra("EXTRA_LISTA_PUNTUACIONES",arregloPuntuaciones as ArrayList<Jugador>)
+                        otroIntent.putExtra(EXTRA_JUGADOR_ACTUAL,jugadorActual)
                         startActivity(otroIntent)
                     }
                     Activity.RESULT_CANCELED->model.SetNombre("AAA")
