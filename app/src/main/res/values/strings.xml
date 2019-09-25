@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">QuizAppPlus</string>
 
+    <string name="opciones">Opciones</string>
+    <string name="juego">Juego</string>
+    <string name="puntuacion">Puntuación</string>
+
     <string name="pregunta_act_1">Pregunta 1/10</string>
     <string name="pregunta_act_2">Pregunta 2/10</string>
     <string name="pregunta_act_3">Pregunta 3/10</string>
