@@ -33,7 +33,7 @@ class PreguntasActivity : AppCompatActivity() {
     private lateinit var ConfiguracionesModel: ConfiguracionesVM
     private val model by lazy { ViewModelProviders.of(this)[GameVM::class.java] }
 
-    private lateinit var arregloPuntuaciones:ArrayList<Jugador>
+    private lateinit var arregloPuntuaciones:MutableList<Jugador>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,12 +133,14 @@ class PreguntasActivity : AppCompatActivity() {
         contPreguntasTextView.text = "Pregunta:${model.numQuestion + 1}/${model.numOfQuestions}"
         contPistasTextView.text = "Pista ${model.getPistasUsadas()}/${ConfiguracionesModel.numPistas}"
         //Esto nos sirve para poner el estado de la pregunta en el tv de abajo
+        val usoPista =
+            if (model.getCurrentQuestion().usoPista) " con pista" else ""
         val estadoPregunta =
             if (contestada == false) {
                 getString(R.string.validacion_pregunta_3)
             } else {
-                if (model.getCurrentQuestion().correcta) getString(R.string.validacion_pregunta_2)
-                else getString(R.string.validacion_pregunta_1)
+                if (model.getCurrentQuestion().correcta) getString(R.string.validacion_pregunta_2) + usoPista
+                else getString(R.string.validacion_pregunta_1) + usoPista
             }
         estadoPreguntaTextView.isVisible=model.flagQuestion
         model.ActualizaFlag()
@@ -240,16 +242,22 @@ class PreguntasActivity : AppCompatActivity() {
                 when(resultCode){
                     Activity.RESULT_OK->{
                         model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
-                        arregloPuntuaciones.add(Jugador(model.NombreJugador,100))
+                        arregloPuntuaciones.add(Jugador(model.NombreJugador,950,model.FlagUsoPista,0))
+                        ordenarPuntajes()
 
                         val otroIntent: Intent = Intent(this,PuntuacionFinalActivity::class.java)
-                        otroIntent.putExtra("EXTRA_LISTA_PUNTUACIONES",arregloPuntuaciones)
+                        otroIntent.putExtra("EXTRA_LISTA_PUNTUACIONES",arregloPuntuaciones as ArrayList<Jugador>)
                         startActivity(otroIntent)
                     }
                     Activity.RESULT_CANCELED->model.SetNombre("AAA")
                 }
             }
         }
+    }
+
+    private fun ordenarPuntajes(){
+        arregloPuntuaciones.sortWith(compareBy({it.puntuacion},{it.posicion},{!(it.usoCheats)}))
+        arregloPuntuaciones.reverse()
     }
 
 

@@ -27,7 +27,8 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnPuntuacion = findViewById(R.id.puntuacion_button)
         //endregion
 
-        var puntuacionesMaximas:ArrayList<Jugador> = arrayListOf(Jugador("Jose",1000))
+        var puntuacionesMaximas:ArrayList<Jugador> = arrayListOf(Jugador("Jose",1000,false,6),
+            Jugador("Pedro",950,true,5))
 
         btnJuego.setOnClickListener{
             val intent:Intent= Intent(this, PreguntasActivity::class .java)
