@@ -27,13 +27,13 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnPuntuacion = findViewById(R.id.puntuacion_button)
         //endregion
 
-        var puntuacionesMaximas:ArrayList<Jugador> = arrayListOf(Jugador("Jose",1000))
+        Inicializar()
 
         btnJuego.setOnClickListener{
             val intent:Intent= Intent(this, PreguntasActivity::class .java)
             intent.putExtra("EXTRA_CONFIGURACIONES_VIEWMODEL_FORQUESTIONS",model.configuraciones)
-            intent.putExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS",puntuacionesMaximas)
-            startActivity(intent)
+            intent.putExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS",model.mejoresPuntajes)
+            startActivityForResult(intent, PREGUNTAS_REQUEST_CODE)
         }
 
         btnPuntuacion.setOnClickListener{
@@ -50,6 +50,15 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
     }
 
+    private fun Inicializar()
+    {
+        if (model.FlagInicio == false){
+            model.SetFlagInicioJuego()
+            model.mejoresPuntajes.add(Jugador("Jose",1000,false,6))
+            model.mejoresPuntajes.add(Jugador("Pedro",950,true,5))
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -58,6 +67,13 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
                 when(resultCode){
                     Activity.RESULT_OK->model.configuraciones = data?.getSerializableExtra("EXTRA_RESULT_CONFIUGRACION_VIEWMODEL") as ConfiguracionesVM
                 }
+            }
+            PREGUNTAS_REQUEST_CODE-> {
+                when(resultCode){
+                    Activity.RESULT_OK->model.mejoresPuntajes = data?.getSerializableExtra(
+                        EXTRA_LISTA_ORDENADA_NUEVA) as ArrayList<Jugador>
+                }
+
             }
         }
     }

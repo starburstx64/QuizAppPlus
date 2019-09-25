@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.activity_configuraciones.*
 import kotlinx.android.synthetic.main.activity_preguntas.*
 import kotlin.random.Random
 
+const val PREGUNTAS_REQUEST_CODE=1300
+const val EXTRA_LISTA_ORDENADA_NUEVA="com.example.quizappPlus.EXTRA_LISTA_ORDENADA_NUEVA"
+
 class PreguntasActivity : AppCompatActivity() {
 
     //region controlesVista
@@ -35,7 +38,7 @@ class PreguntasActivity : AppCompatActivity() {
     private lateinit var ConfiguracionesModel: ConfiguracionesVM
     private val model by lazy { ViewModelProviders.of(this)[GameVM::class.java] }
 
-    private lateinit var arregloPuntuaciones:ArrayList<Jugador>
+    private lateinit var arregloPuntuaciones:MutableList<Jugador>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,15 +67,9 @@ class PreguntasActivity : AppCompatActivity() {
 
         arregloPuntuaciones = intent.getSerializableExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS") as ArrayList<Jugador>
 
-        //Sacar la lista con las categorias que usaremos
-        val CategoriasUsadas: List<Categoria> = ConfiguracionesModel.GetCategoriasUsadas()
-        //y usarla para escoger las preguntas al azar
-        model.SetQuestions(CategoriasUsadas, ConfiguracionesModel.numPregunta)
-        model.SetQuestionsOptions(ConfiguracionesModel.dificultad)
-        //Ponemos las cosas a la dificultad adecuada
-        SetDificulty(ConfiguracionesModel.dificultad)
-        //Ya que tenemos las preguntas hay que poner la primera
-        updateQuestion()
+        InicializarJuego()
+
+        setResult(Activity.RESULT_CANCELED)
 
         //region Cosas de pistas
         contPistasTextView.isVisible=ConfiguracionesModel.pistas
@@ -116,8 +113,21 @@ class PreguntasActivity : AppCompatActivity() {
             model.ContestarPregunta()
             updateQuestion()
         }
+    }
 
-
+    private fun InicializarJuego(){
+        if(!model.FlagJuegoIniciado) {
+            //Sacar la lista con las categorias que usaremos
+            val CategoriasUsadas: List<Categoria> = ConfiguracionesModel.GetCategoriasUsadas()
+            //y usarla para escoger las preguntas al azar
+            model.SetQuestions(CategoriasUsadas, ConfiguracionesModel.numPregunta)
+            model.SetQuestionsOptions(ConfiguracionesModel.dificultad)
+            //Ponemos las cosas a la dificultad adecuada
+            model.SetJuegoIniciado()
+        }
+        SetDificulty(ConfiguracionesModel.dificultad)
+        //Ya que tenemos las preguntas hay que poner la primera
+        updateQuestion()
     }
 
     private fun updateQuestion() {
@@ -131,6 +141,8 @@ class PreguntasActivity : AppCompatActivity() {
         contPreguntasTextView.text = "Pregunta:${model.numQuestion + 1}/${model.numOfQuestions}"
         contPistasTextView.text = "Pista ${model.getPistasUsadas()}/${ConfiguracionesModel.numPistas}"
         //Esto nos sirve para poner el estado de la pregunta en el tv de abajo
+        val usoPista =
+            if (model.getCurrentQuestion().usoPista) " con pista" else ""
         val estadoPregunta =
             if (contestada == false) {
                 getString(R.string.validacion_pregunta_3)
@@ -139,13 +151,10 @@ class PreguntasActivity : AppCompatActivity() {
 
 
             } else {
-                if (model.getCurrentQuestion().correcta){
-                    getString(R.string.validacion_pregunta_2)
-                    lypreguntas.setBackgroundResource(R.color.blue)
-                }
 
-                else {getString(R.string.validacion_pregunta_1)
-                lypreguntas.setBackgroundResource(R.color.dark_red)}
+                if (model.getCurrentQuestion().correcta) getString(R.string.validacion_pregunta_2) + usoPista
+                else getString(R.string.validacion_pregunta_1) + usoPista
+
             }
         estadoPreguntaTextView.isVisible=model.flagQuestion
         model.ActualizaFlag()
@@ -247,16 +256,36 @@ class PreguntasActivity : AppCompatActivity() {
                 when(resultCode){
                     Activity.RESULT_OK->{
                         model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
-                        arregloPuntuaciones.add(Jugador(model.NombreJugador,100))
+                        arregloPuntuaciones.add(Jugador(model.NombreJugador,model.GetPuntajeFinal(),model.FlagUsoPista,0,model.GetAcuracy()))
+                        ordenarPuntajes()
 
                         val otroIntent: Intent = Intent(this,PuntuacionFinalActivity::class.java)
-                        otroIntent.putExtra("EXTRA_LISTA_PUNTUACIONES",arregloPuntuaciones)
+                        otroIntent.putExtra("EXTRA_LISTA_PUNTUACIONES",arregloPuntuaciones as ArrayList<Jugador>)
                         startActivity(otroIntent)
                     }
                     Activity.RESULT_CANCELED->model.SetNombre("AAA")
                 }
             }
         }
+    }
+
+    private fun ordenarPuntajes(){
+        arregloPuntuaciones.sortWith(compareBy({it.puntuacion},{!(it.usoCheats)},{it.posicion}))
+        arregloPuntuaciones.reverse()
+
+        if(arregloPuntuaciones.size>6) {
+            var arregloPuntuacionesAuxiliar: MutableList<Jugador> = mutableListOf()
+            for (i in 0..5) {
+                arregloPuntuacionesAuxiliar.add(arregloPuntuaciones[i])
+            }
+            arregloPuntuaciones=arregloPuntuacionesAuxiliar
+        }
+        for (i in 0 until arregloPuntuaciones.size){
+            arregloPuntuaciones[i].posicion=(6-i)
+        }
+        val intent: Intent = Intent()
+        intent.putExtra(EXTRA_LISTA_ORDENADA_NUEVA,arregloPuntuaciones as ArrayList<Jugador>)
+        setResult(Activity.RESULT_OK,intent)
     }
 
 
