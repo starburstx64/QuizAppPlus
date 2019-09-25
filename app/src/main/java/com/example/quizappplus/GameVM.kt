@@ -110,4 +110,38 @@ class GameVM : ViewModel() {
     fun previousQuestion() {
         currentQuestion = (currentQuestion + questions.size - 1) % questions.size
     }
+
+    fun GetNumRespuestasCorrectas():Int{
+        var contRespuestasCorrectas = 0
+        for (i in 0 until questions.size)
+        {
+            contRespuestasCorrectas=
+                if (questions[i].correcta)
+                    contRespuestasCorrectas +1
+                else
+                    contRespuestasCorrectas
+        }
+        return contRespuestasCorrectas
+    }
+
+    fun GetAcuracy():Double{
+        return (GetNumRespuestasCorrectas()/numOfQuestions)*100.0
+    }
+
+    fun GetPuntajeFinal():Int{
+        var puntaje:Int = 0
+        for (i in 0 until questions.size)
+        {
+            if (questions[i].correcta)
+            {
+                if (questions[i].usoPista)
+                {
+                    puntaje+=50
+                }
+                else
+                    puntaje+=100
+            }
+        }
+        return puntaje
+    }
 }

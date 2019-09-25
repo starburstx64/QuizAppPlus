@@ -13,6 +13,9 @@ import kotlinx.android.synthetic.main.activity_configuraciones.*
 import kotlinx.android.synthetic.main.activity_preguntas.*
 import kotlin.random.Random
 
+const val PREGUNTAS_REQUEST_CODE=1300
+const val EXTRA_LISTA_ORDENADA_NUEVA="com.example.quizappPlus.EXTRA_LISTA_ORDENADA_NUEVA"
+
 class PreguntasActivity : AppCompatActivity() {
 
     //region controlesVista
@@ -62,6 +65,8 @@ class PreguntasActivity : AppCompatActivity() {
         arregloPuntuaciones = intent.getSerializableExtra("EXTRA_PUNTUACIONES_LIST_FORQUESTIONS") as ArrayList<Jugador>
 
         InicializarJuego()
+
+        setResult(Activity.RESULT_CANCELED)
 
         //region Cosas de pistas
         contPistasTextView.isVisible=ConfiguracionesModel.pistas
@@ -242,7 +247,7 @@ class PreguntasActivity : AppCompatActivity() {
                 when(resultCode){
                     Activity.RESULT_OK->{
                         model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)
-                        arregloPuntuaciones.add(Jugador(model.NombreJugador,950,model.FlagUsoPista,0))
+                        arregloPuntuaciones.add(Jugador(model.NombreJugador,model.GetPuntajeFinal(),model.FlagUsoPista,0,model.GetAcuracy()))
                         ordenarPuntajes()
 
                         val otroIntent: Intent = Intent(this,PuntuacionFinalActivity::class.java)
@@ -256,8 +261,22 @@ class PreguntasActivity : AppCompatActivity() {
     }
 
     private fun ordenarPuntajes(){
-        arregloPuntuaciones.sortWith(compareBy({it.puntuacion},{it.posicion},{!(it.usoCheats)}))
+        arregloPuntuaciones.sortWith(compareBy({it.puntuacion},{!(it.usoCheats)},{it.posicion}))
         arregloPuntuaciones.reverse()
+
+        if(arregloPuntuaciones.size>6) {
+            var arregloPuntuacionesAuxiliar: MutableList<Jugador> = mutableListOf()
+            for (i in 0..5) {
+                arregloPuntuacionesAuxiliar.add(arregloPuntuaciones[i])
+            }
+            arregloPuntuaciones=arregloPuntuacionesAuxiliar
+        }
+        for (i in 0 until arregloPuntuaciones.size){
+            arregloPuntuaciones[i].posicion=(6-i)
+        }
+        val intent: Intent = Intent()
+        intent.putExtra(EXTRA_LISTA_ORDENADA_NUEVA,arregloPuntuaciones as ArrayList<Jugador>)
+        setResult(Activity.RESULT_OK,intent)
     }
 
 
