@@ -79,6 +79,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
         menuPrincipalButton=findViewById(R.id.menu_button)
         //endregion
 
+        menuPrincipalButton.isVisible=false
         val listaPuntuaciones = intent.getSerializableExtra("EXTRA_LISTA_PUNTUACIONES") as ArrayList<Jugador>
         model.SetJugadores(listaPuntuaciones)
         model.SetJugadorActual(intent.getSerializableExtra(EXTRA_JUGADOR_ACTUAL) as Jugador)

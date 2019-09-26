@@ -156,8 +156,11 @@ class PreguntasActivity : AppCompatActivity() {
         estadoPreguntaTextView.setText(estadoPregunta.toString())
         //Y ahora vamos a ver si los botones deben estar habilitados o no
         HabilitarBotones(ConfiguracionesModel.dificultad)
-        if(model.PreguntasContestadas==model.numOfQuestions){
-            TerminarJuego()
+        if(model.juegoTerminado==false) {
+            if (model.PreguntasContestadas == model.numOfQuestions) {
+                TerminarJuego()
+                model.juegoTerminado=true
+            }
         }
 
     }

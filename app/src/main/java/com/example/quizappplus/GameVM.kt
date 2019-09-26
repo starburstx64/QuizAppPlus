@@ -8,6 +8,7 @@ import kotlin.random.Random
 class GameVM : ViewModel() {
     private var flagJuegoIniciado = false
     private var flagUsoPista = false
+    var juegoTerminado=false
     private lateinit var questions: List<Pregunta>
     private lateinit var flagQuestions: MutableList<Boolean>
     private var currentQuestion: Int = 0
