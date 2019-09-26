@@ -38,7 +38,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
         btnPuntuacion.setOnClickListener{
             val intent:Intent=Intent(this,PuntuacionActivity::class.java)
-
+            intent.putExtra(EXTRA_MEJORES_PUNTUACIONES,model.mejoresPuntajes)
             startActivity(intent)
         }
 

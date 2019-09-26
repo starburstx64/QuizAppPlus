@@ -125,7 +125,7 @@ class GameVM : ViewModel() {
     }
 
     fun GetAcuracy():Double{
-        return (GetNumRespuestasCorrectas()/numOfQuestions)*100.0
+        return (GetNumRespuestasCorrectas().toDouble()/numOfQuestions.toDouble())*100.0
     }
 
     fun GetPuntajeFinal():Int{
