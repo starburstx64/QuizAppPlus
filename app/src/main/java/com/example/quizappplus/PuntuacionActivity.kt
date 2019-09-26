@@ -3,6 +3,7 @@ package com.example.quizappplus
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -29,9 +30,17 @@ class PuntuacionActivity : AppCompatActivity() {
     private lateinit var tvPuntuacion5: TextView
     private lateinit var tvPuntuacion6: TextView
 
+    private lateinit var imagen1: ImageView
+    private lateinit var imagen2: ImageView
+    private lateinit var imagen3: ImageView
+    private lateinit var imagen4: ImageView
+    private lateinit var imagen5: ImageView
+    private lateinit var imagen6: ImageView
+
     //endregion
     private lateinit var jugadoresTvs:List<TextView>
     private lateinit var puntuacionesTvs:List<TextView>
+    private lateinit var imagenes:List<ImageView>
 
     private val model by lazy { ViewModelProviders.of(this)[PuntuacionesVM::class.java] }
 
@@ -56,6 +65,13 @@ class PuntuacionActivity : AppCompatActivity() {
         tvPuntuacion5 = findViewById(R.id.score5)
         tvPuntuacion6 = findViewById(R.id.score6)
 
+        imagen1=findViewById(R.id.aimagen1)
+        imagen2=findViewById(R.id.aimagen2)
+        imagen3=findViewById(R.id.aimagen3)
+        imagen4=findViewById(R.id.aimagen4)
+        imagen5=findViewById(R.id.aimagen5)
+        imagen6=findViewById(R.id.aimagen6)
+
         jugadoresTvs = listOf(
             tvJugador1,
             tvJugador2,
@@ -71,6 +87,15 @@ class PuntuacionActivity : AppCompatActivity() {
             tvPuntuacion4,
             tvPuntuacion5,
             tvPuntuacion6
+        )
+
+        imagenes = listOf(
+            imagen1,
+            imagen2,
+            imagen3,
+            imagen4,
+            imagen5,
+            imagen6
         )
         //endregion
 
@@ -89,6 +114,10 @@ class PuntuacionActivity : AppCompatActivity() {
             jugadoresTvs[i].isVisible=true
             puntuacionesTvs[i].text = model.ListaJugadores[i].puntuacion.toString()
             puntuacionesTvs[i].isVisible=true
+            if (model.ListaJugadores[i].usoCheats)
+            {
+                imagenes[i].setImageResource(R.mipmap.bufon)
+            }
         }
     }
 

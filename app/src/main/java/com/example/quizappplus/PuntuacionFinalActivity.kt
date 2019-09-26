@@ -27,6 +27,13 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     private lateinit var tvPuntuacion4:TextView
     private lateinit var tvPuntuacion5:TextView
     private lateinit var tvPuntuacion6:TextView
+
+    private lateinit var imagen1:ImageView
+    private lateinit var imagen2:ImageView
+    private lateinit var imagen3:ImageView
+    private lateinit var imagen4:ImageView
+    private lateinit var imagen5:ImageView
+    private lateinit var imagen6:ImageView
     //imageViews
     private lateinit var imagenFinalImageView:ImageView
     //Buttons
@@ -35,6 +42,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     private val model by lazy { ViewModelProviders.of(this)[PuntuacionFinalVM::class.java] }
     private lateinit var jugadoresTvs:List<TextView>
     private lateinit var puntuacionesTvs:List<TextView>
+    private lateinit var imagenes:List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +65,13 @@ class PuntuacionFinalActivity : AppCompatActivity() {
         tvPuntuacion5 = findViewById(R.id.puntiacion5)
         tvPuntuacion6 = findViewById(R.id.puntiacion6)
 
+        imagen1=findViewById(R.id.imagen1)
+        imagen2=findViewById(R.id.imagen2)
+        imagen3=findViewById(R.id.imagen3)
+        imagen4=findViewById(R.id.imagen4)
+        imagen5=findViewById(R.id.imagen5)
+        imagen6=findViewById(R.id.imagen6)
+
         jugadoresTvs = listOf(
             tvJugador1,
             tvJugador2,
@@ -72,6 +87,14 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             tvPuntuacion4,
             tvPuntuacion5,
             tvPuntuacion6
+        )
+        imagenes = listOf(
+            imagen1,
+            imagen2,
+            imagen3,
+            imagen4,
+            imagen5,
+            imagen6
         )
 
         imagenFinalImageView=findViewById(R.id.imagenFinal)
@@ -95,6 +118,10 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             jugadoresTvs[i].isVisible=true
             puntuacionesTvs[i].text = model.ListaJugadores[i].puntuacion.toString()
             puntuacionesTvs[i].isVisible=true
+            if (model.ListaJugadores[i].usoCheats)
+            {
+                imagenes[i].setImageResource(R.mipmap.bufon)
+            }
         }
         puntajeFinalTextView.text="${model.JugadorActual.puntuacion.toString()},${model.JugadorActual.porsentaje.toString()}%"
         SetImagenFinal()

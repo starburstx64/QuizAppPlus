@@ -57,7 +57,6 @@ class PreguntasActivity : AppCompatActivity() {
         btnAvanzar = findViewById(R.id.siguiente_button)
         btnRetroceder = findViewById(R.id.anterior_button)
 
-        lypreguntas = findViewById(R.id.layout_activity_preguntas)
         estadoPreguntaTextView = findViewById(R.id.pregunta_estado)
         //endregion
 
@@ -173,16 +172,22 @@ class PreguntasActivity : AppCompatActivity() {
             btnRespuesta1, btnRespuesta2, btnRespuesta3, btnRespuesta4
         )
         for (i in 0..dificultad) {
+            //En el boton, vamos a escoger entre las opciones de la pregunta, la que este en la posicion del orden es mi posición
             opcionesbtns[i].setText(opciones[ordenOpciones[i]].opcion)
         }
     }
 
     private fun HabilitarBotones(dificultad: Int){
+        val pregunta = model.getCurrentQuestion()
+        val opciones = pregunta.opciones
+        val ordenOpciones = pregunta.ordenOpciones
         var opcionesbtns: List<Button> = listOf(
             btnRespuesta1, btnRespuesta2, btnRespuesta3, btnRespuesta4
         )
         for (i in 0..dificultad) {
             opcionesbtns[i].isEnabled=!(model.getCurrentQuestion().contestada)
+            if(model.getCurrentQuestion().contestada==false)
+                opcionesbtns[i].isEnabled = !(opciones[ordenOpciones[i]].usedCheat)
         }
     }
 
@@ -226,7 +231,19 @@ class PreguntasActivity : AppCompatActivity() {
                 botonesUtilizables.add(opcionesbtns[i])
         }
         //ya que sabemos cuales podemos utilizar, seleccionemos uno al azar y quitemoslo
-        botonesUtilizables[Random.nextInt(0,botonesUtilizables.size)].isEnabled=false
+        val opcionAleatoria= Random.nextInt(0,botonesUtilizables.size)
+        botonesUtilizables[opcionAleatoria].isEnabled=false
+        for (i in 0..ConfiguracionesModel.dificultad){
+            if (opcionesbtns[i].isEnabled==false)
+            {
+                val pregunta = model.getCurrentQuestion()
+                val opciones = pregunta.opciones
+                val ordenOpciones = pregunta.ordenOpciones
+                //opcionesbtns[i].setText(opciones[ordenOpciones[i]].opcion)
+
+                pregunta.opciones[ordenOpciones[i]].usedCheat=true
+            }
+        }
         var contEnables:Int = 0
         for (i in 0..ConfiguracionesModel.dificultad){
             if (opcionesbtns[i].isEnabled)
@@ -236,6 +253,7 @@ class PreguntasActivity : AppCompatActivity() {
         {
             model.getCurrentQuestion().contestada=true
             model.getCurrentQuestion().correcta=true
+            model.ContestarPregunta()
             updateQuestion()
         }
         model.usarPista()
