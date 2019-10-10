@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PreguntasActivity"
+    tools:context=".Vistas.PreguntasActivity"
     android:id="@+id/layout_activity_preguntas"
     android:background="@color/white">
 
@@ -125,6 +125,7 @@
             android:text="@string/validacion_pregunta_3"
             android:textSize="20dp"
             android:textColor="@color/black"/>
+
 
 
     </LinearLayout>
