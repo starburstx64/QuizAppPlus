@@ -1,6 +1,7 @@
-package com.example.quizappplus
+package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.Modelos.Jugador
 
 class PuntuacionesVM:ViewModel() {
     private var listaJugadores:List<Jugador> = listOf()

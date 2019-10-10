@@ -1,4 +1,4 @@
-package com.example.quizappplus
+package com.example.quizappplus.Modelos
 
 import java.io.Serializable
 

@@ -1,13 +1,17 @@
-package com.example.quizappplus
+package com.example.quizappplus.Vistas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.Modelos.Jugador
+import com.example.quizappplus.R
+import com.example.quizappplus.VistaModelos.PuntuacionFinalVM
 
 const val PUNTUACION_FINAL_ACTIVITY_RESULT=1200
 const val EXTRA_JUGADOR_ACTUAL="com.example.quizappPlus.EXTRA_JUGADOR_ACTUAL"
+const val EXTRA_LISTA_PUNTUACIONES="com.example.quizappPlus.EXTRA_LISTA_PUNTUACIONES"
 
 class PuntuacionFinalActivity : AppCompatActivity() {
 
@@ -103,7 +107,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
         //endregion
 
         menuPrincipalButton.isVisible=false
-        val listaPuntuaciones = intent.getSerializableExtra("EXTRA_LISTA_PUNTUACIONES") as ArrayList<Jugador>
+        val listaPuntuaciones = intent.getSerializableExtra(EXTRA_LISTA_PUNTUACIONES) as ArrayList<Jugador>
         model.SetJugadores(listaPuntuaciones)
         model.SetJugadorActual(intent.getSerializableExtra(EXTRA_JUGADOR_ACTUAL) as Jugador)
         InicializarTodo()

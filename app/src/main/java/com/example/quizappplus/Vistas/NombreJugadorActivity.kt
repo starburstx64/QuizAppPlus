@@ -1,15 +1,15 @@
-package com.example.quizappplus
+package com.example.quizappplus.Vistas
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.example.quizappplus.R
 
-const val EXTRA_RESULT_TEXT="com.example.quizappplus.EXTRA_RESULT_TEXT"
+const val EXTRA_RESULT_TEXT="com.example.quizappplus.Vistas.EXTRA_RESULT_TEXT"
 const val NOMBREJUGADOR_ACTIVITY_REQUEST_CODE=1100
 
 
