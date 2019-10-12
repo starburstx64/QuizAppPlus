@@ -14,7 +14,7 @@ import androidx.room.ForeignKey
             onDelete = ForeignKey.NO_ACTION
         )
     ))
-class PreguntaEntity (
+data class PreguntaEntity (
     @PrimaryKey @ColumnInfo (name = "idPregunta") val idPregunta : Int,
     @ColumnInfo (name = "idCategoria") val idCategoria : Int,
     @ColumnInfo (name = "texto") val texto : String
