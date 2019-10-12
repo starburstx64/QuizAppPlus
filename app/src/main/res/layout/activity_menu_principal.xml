@@ -12,7 +12,8 @@
         android:id="@+id/logo_imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/quiz" />
+        android:src="@mipmap/quiz"
+        android:layout_gravity="top"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
