@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
     parentColumns = arrayOf("idUsuario"),
     childColumns = arrayOf("idUsuario")))
 )
-data class JuegonEntity(
+data class JuegoEntity(
     @PrimaryKey(autoGenerate = true)
     var idJuego: Int,
     var idUsuario : Int,
