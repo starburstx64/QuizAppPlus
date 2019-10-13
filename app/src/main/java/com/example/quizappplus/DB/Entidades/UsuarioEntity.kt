@@ -21,8 +21,9 @@ import androidx.room.PrimaryKey
 )
 data class UsuarioEntity (
     @PrimaryKey @ColumnInfo(name = "idUsuario") val idUsuario:Int,
-    @ColumnInfo(name = "idConfiguracion") val idConcifuracion:Int,
+    @ColumnInfo(name = "idConfiguracion") val idConfiguracion:Int,
     @ColumnInfo(name = "idAplicacion") val idAplicacion:Int,
-    @ColumnInfo(name = "imagenAvatar") var imagenAvatar:Int,
+    @ColumnInfo(name = "imagenAvatar") var imagenAvatar:Int?,
+    @ColumnInfo(name = "userName") var userName:String,
     @ColumnInfo(name = "contraseña") var contraseña:String
 )
