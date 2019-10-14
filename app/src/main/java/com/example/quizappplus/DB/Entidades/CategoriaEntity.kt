@@ -1,12 +1,12 @@
 package com.example.quizappplus.DB.Entidades
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "Categoria")
 
 data class CategoriaEntity(
-    @PrimaryKey(autoGenerate = true)
-    var idCategoria : Int,
-    var nombre : String
-)
+    @PrimaryKey @ColumnInfo(name = "idCategoria") val idCategoria : Int,
+    @ColumnInfo(name = "nombre") val nombre : String
+    )
