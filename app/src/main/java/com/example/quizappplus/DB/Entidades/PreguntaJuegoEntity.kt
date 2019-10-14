@@ -23,9 +23,8 @@ import androidx.room.PrimaryKey
 data class PreguntaJuegoEntity (
     @ColumnInfo(name = "idjuego") val idJuego:Int,
     @ColumnInfo(name = "idPregunta") val idPregunta:Int,
-    @ColumnInfo(name = "contestada") val contestada:Boolean,
+    @ColumnInfo(name = "contestada") val contestada:Boolean = false,
     @ColumnInfo(name = "correcta") val correcta:Boolean,
     @ColumnInfo(name = "optionsCheated") val optionsCheated:String,
     @ColumnInfo(name = "cheated") val cheated:Boolean
-
 )
