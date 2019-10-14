@@ -323,6 +323,18 @@ abstract class AppDatabase:RoomDatabase(){
             db.execSQL("INSERT INTO Opcion (idOpcion, texto, isCorrect, idPregunta) VALUES (119, 'LOTERIA', false, 29)")
             //endregion
 
+            //region Configuracion
+            db.execSQL("INSERT INTO Configuracion (idConfiguracion, categoriasUsadas, numeroPreguntas, dificultad, pistasEnabled, numeroPistas) VALUES (0, 1, 5, 0, false, 3)")
+            //endregion
+
+            //region Usuario
+            db.execSQL("INSERT INTO Usuario (idUsuario, idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (0, 0, 0, null, 'alfa', 'notiene')")
+            //endregion
+
+            //region Juego
+            db.execSQL("INSERT INTO Juego (idJuego, idUsuario, estatusJuego, cheated) VALUES (0, 0, 'Terminado', false)")
+            //endregion
+
             //db.setTransactionSuccessful();
             //db.endTransaction();
         }

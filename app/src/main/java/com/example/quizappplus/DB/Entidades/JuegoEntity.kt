@@ -12,5 +12,6 @@ data class JuegoEntity(
     @PrimaryKey(autoGenerate = true)
     var idJuego: Int,
     var idUsuario : Int,
-    var estatusJuego : Int
+    var estatusJuego : String,
+    var cheated : Boolean
 )
