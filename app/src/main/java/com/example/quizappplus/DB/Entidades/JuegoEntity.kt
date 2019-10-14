@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
     parentColumns = arrayOf("idUsuario"),
     childColumns = arrayOf("idUsuario")))
 )
-data class JuegonEntity(
-    @PrimaryKey(autoGenerate = true)
-    var idJuego: Int,
-    var idUsuario : Int,
-    var estatusJuego : Int
+data class JuegoEntity(
+    @PrimaryKey @ColumnInfo(name = "idJuego") val idJuego: Int,
+    @ColumnInfo(name = "idUsuario") val idUsuario : Int,
+    @ColumnInfo(name = "statusJuego") var estatusJuego : Int,
+    @ColumnInfo(name = "cheated")var cheated : Boolean
 )

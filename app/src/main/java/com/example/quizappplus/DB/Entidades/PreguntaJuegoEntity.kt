@@ -24,4 +24,5 @@ data class PreguntaJuegoEntity (
     @ColumnInfo(name = "idPregunta") val idPregunta:Int,
     @ColumnInfo(name = "contestada") var contestada:Boolean = false,
     @ColumnInfo(name = "correcta") var correcta:Boolean
+
 )
