@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
     primaryKeys = arrayOf("idJuego","idPregunta"),
     foreignKeys = arrayOf(
         ForeignKey(
-            entity = JuegoEntity::class,
+            entity = JuegonEntity::class,
             parentColumns = arrayOf("idJuego"),
             childColumns = arrayOf("idJuego"),
             onDelete = ForeignKey.NO_ACTION),
@@ -18,11 +18,13 @@ import androidx.room.PrimaryKey
             parentColumns = arrayOf("idPregunta"),
             childColumns = arrayOf("idPregunta"),
             onDelete = ForeignKey.NO_ACTION)
-    ))
+    )
+)
 data class PreguntaJuegoEntity (
-    @ColumnInfo(name = "idJuego") val idJuego:Int,
+    @ColumnInfo(name = "idjuego") val idJuego:Int,
     @ColumnInfo(name = "idPregunta") val idPregunta:Int,
-    @ColumnInfo(name = "contestada") var contestada:Boolean = false,
-    @ColumnInfo(name = "correcta") var correcta:Boolean
-
+    @ColumnInfo(name = "contestada") val contestada:Boolean = false,
+    @ColumnInfo(name = "correcta") val correcta:Boolean,
+    @ColumnInfo(name = "optionsCheated") val optionsCheated:String,
+    @ColumnInfo(name = "cheated") val cheated:Boolean
 )
