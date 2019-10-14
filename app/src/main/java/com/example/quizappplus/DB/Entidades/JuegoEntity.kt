@@ -1,10 +1,12 @@
 package com.example.quizappplus.DB.Entidades
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(foreignKeys = arrayOf(ForeignKey(entity = UsuarioEntity::class,
+@Entity(tableName = "Juego",
+    foreignKeys = arrayOf(ForeignKey(entity = UsuarioEntity::class,
     parentColumns = arrayOf("idUsuario"),
     childColumns = arrayOf("idUsuario")))
 )
