@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
     primaryKeys = arrayOf("idJuego","idPregunta"),
     foreignKeys = arrayOf(
         ForeignKey(
-            entity = JuegonEntity::class,
+            entity = JuegoEntity::class,
             parentColumns = arrayOf("idJuego"),
             childColumns = arrayOf("idJuego"),
             onDelete = ForeignKey.NO_ACTION),
