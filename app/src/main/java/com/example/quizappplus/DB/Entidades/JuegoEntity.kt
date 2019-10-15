@@ -1,14 +1,13 @@
 package com.example.quizappplus.DB.Entidades
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "Juego",
     foreignKeys = arrayOf(ForeignKey(entity = UsuarioEntity::class,
     parentColumns = arrayOf("idUsuario"),
-    childColumns = arrayOf("idUsuario")))
+    childColumns = arrayOf("idUsuario"))),
+
+    indices = [Index("idUsuario")]
 )
 data class JuegoEntity(
     @PrimaryKey @ColumnInfo(name = "idJuego") val idJuego: Int,

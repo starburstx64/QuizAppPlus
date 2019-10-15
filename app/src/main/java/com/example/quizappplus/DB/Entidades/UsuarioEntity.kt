@@ -1,9 +1,6 @@
 package com.example.quizappplus.DB.Entidades
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "Usuario",
     foreignKeys = arrayOf(
@@ -17,7 +14,9 @@ import androidx.room.PrimaryKey
             parentColumns = arrayOf("idAplicacion"),
             childColumns = arrayOf("idAplicacion"),
             onDelete = ForeignKey.NO_ACTION)
-    )
+    ),
+
+    indices = [Index("idConfiguracion"), Index("idAplicacion")]
 )
 data class UsuarioEntity (
     @PrimaryKey @ColumnInfo(name = "idUsuario") val idUsuario:Int,
