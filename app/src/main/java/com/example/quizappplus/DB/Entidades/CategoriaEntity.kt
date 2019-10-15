@@ -4,9 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity (tableName = "Categoria")
-
+@Entity(tableName = "Categoria")
 data class CategoriaEntity(
-    @PrimaryKey @ColumnInfo(name = "idCategoria") val idCategoria : Int,
-    @ColumnInfo(name = "nombre") var nombre : String
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "idCategoria") val idCategoria : Int,
+    @ColumnInfo(name = "nombre") val nombre : String
 )

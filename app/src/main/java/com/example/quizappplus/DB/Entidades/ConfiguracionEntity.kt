@@ -10,6 +10,6 @@ data class ConfiguracionEntity (
     @ColumnInfo(name = "categoriasUsadas") val categoriasUsadas : String,
     @ColumnInfo(name = "numeroPreguntas") val numeroPreguntas : Int,
     @ColumnInfo(name = "dificultad") val dificultad : String,
-    @ColumnInfo(name = "pistasEnabled") val pistasEnabled : Short,
+    @ColumnInfo(name = "pistasEnabled") val pistasEnabled : Boolean,
     @ColumnInfo(name = "numeroPistas") val numeroPistas : Int
 )
