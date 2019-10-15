@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Configuracion")
 data class ConfiguracionEntity (
     @PrimaryKey @ColumnInfo(name = "idConfiguracion") val idConfiguracion : Int,
-    @ColumnInfo(name = "categoriasUsadas") val categoriasUsadas : List<Int>,
+    @ColumnInfo(name = "categoriasUsadas") val categoriasUsadas : String,
     @ColumnInfo(name = "numeroPreguntas") val numeroPreguntas : Int,
     @ColumnInfo(name = "dificultad") val dificultad : String,
     @ColumnInfo(name = "pistasEnabled") val pistasEnabled : Boolean,
