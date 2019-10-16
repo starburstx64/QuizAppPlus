@@ -86,8 +86,9 @@ class ConfiguracionesActivity : AppCompatActivity() {
             variosCheckBox
         )
 
-        //Asignar las configuraciones al modelo, que fueron pasadas por el activity main
-        model.Inicializar(intent.getSerializableExtra(EXTRA_CONFIGURACINES) as Configuraciones)
+        //Asignar las configuraciones al modelo obteniendolas de la base de datos
+        model.Inicializar()
+
         //Esta variable sirve solo como shortcut para no escribir mas
         val configuraciones = model.configuraciones
 
@@ -227,11 +228,9 @@ class ConfiguracionesActivity : AppCompatActivity() {
     }
 
     //Esta funcion sirve para que cuando cambias algo, el modelo se actualiza para mandarlo de nuevo
-    //Al activity main
+    // a la base de datos
     private fun ActualizarConfiguraciones() {
-        val intent: Intent = Intent()
-        intent.putExtra(EXTRA_RESULT_CONFIUGRACIONES, model.configuraciones)
-        setResult(Activity.RESULT_OK, intent)
+        model.guardarConfiguraciones()
     }
 
     //Activa el radio button dependiendo de la dificultad seleccionada
