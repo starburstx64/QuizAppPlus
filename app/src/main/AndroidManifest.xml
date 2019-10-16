@@ -14,7 +14,7 @@
         <activity android:name=".Vistas.ConfiguracionesActivity" />
         <activity android:name=".Vistas.PreguntasActivity" />
         <activity android:name=".Vistas.NombreJugadorActivity" />
-        <activity android:name=".Vistas.MenuPrincipalAcrivity">
+        <activity android:name=".Vistas.MenuPrincipalAcrivity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
