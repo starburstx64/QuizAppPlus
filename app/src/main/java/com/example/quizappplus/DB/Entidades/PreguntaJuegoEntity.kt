@@ -22,8 +22,10 @@ import androidx.room.*
 data class PreguntaJuegoEntity (
     @ColumnInfo(name = "idJuego") val idJuego:Int,
     @ColumnInfo(name = "idPregunta") val idPregunta:Int,
-    @ColumnInfo(name = "contestada") val contestada:Boolean = false,
-    @ColumnInfo(name = "correcta") val correcta:Boolean,
-    @ColumnInfo(name = "optionsCheated") val optionsCheated:String,
-    @ColumnInfo(name = "cheated") val cheated:Boolean
+    @ColumnInfo(name = "contestada",typeAffinity = ColumnInfo.INTEGER) var contestada:Boolean = false,
+    @ColumnInfo(name = "correcta",typeAffinity = ColumnInfo.INTEGER) var correcta:Boolean = false,
+    @ColumnInfo(name = "ordenEnJuego") val ordenEnJuego:Int,
+    @ColumnInfo(name = "ordenOpciones") val ordenOpciones:Int,
+    @ColumnInfo(name = "optionsCheated") var optionsCheated:String,
+    @ColumnInfo(name = "cheated", typeAffinity = ColumnInfo.INTEGER) var cheated:Boolean
 )

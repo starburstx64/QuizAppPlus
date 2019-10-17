@@ -16,7 +16,10 @@ import androidx.room.*
             onDelete = ForeignKey.NO_ACTION)
     ),
 
-    indices = [Index("idConfiguracion"), Index("idAplicacion")]
+    indices = [
+        Index("idConfiguracion"),
+        Index("idAplicacion")
+    ]
 )
 data class UsuarioEntity (
     @PrimaryKey @ColumnInfo(name = "idUsuario") val idUsuario:Int,
