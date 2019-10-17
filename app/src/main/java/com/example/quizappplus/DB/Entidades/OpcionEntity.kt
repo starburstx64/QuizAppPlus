@@ -14,6 +14,6 @@ import androidx.room.*
 data class OpcionEntity (
     @PrimaryKey(autoGenerate = true)@ColumnInfo(name="idOpcion") val idOpcion : Int,
     @ColumnInfo(name = "texto") val texto : String,
-    @ColumnInfo(name = "isCorrect") val isCorrect : Boolean,
+    @ColumnInfo(name = "isCorrect", typeAffinity = ColumnInfo.INTEGER) val isCorrect : Boolean,
     @ColumnInfo(name = "idPregunta")val idPregunta : Int
 )

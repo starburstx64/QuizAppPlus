@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9fc58f329b7165c3d56c3fbd00e723f1",
+    "identityHash": "294d615b30f8b50daa2fdc988a07e7ee",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -129,7 +129,7 @@
       },
       {
         "tableName": "Juego",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, `statusJuego` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`), FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, `estatusJuego` INTEGER NOT NULL, `numPistas` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`), FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idJuego",
@@ -145,7 +145,13 @@
           },
           {
             "fieldPath": "estatusJuego",
-            "columnName": "statusJuego",
+            "columnName": "estatusJuego",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numPistas",
+            "columnName": "numPistas",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -300,7 +306,7 @@
       },
       {
         "tableName": "PreguntaJuego",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, `contestada` INTEGER NOT NULL, `correcta` INTEGER NOT NULL, `optionsCheated` TEXT NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`, `idPregunta`), FOREIGN KEY(`idJuego`) REFERENCES `Juego`(`idJuego`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, `contestada` INTEGER NOT NULL, `correcta` INTEGER NOT NULL, `ordenEnJuego` INTEGER NOT NULL, `ordenOpciones` INTEGER NOT NULL, `optionsCheated` TEXT NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`, `idPregunta`), FOREIGN KEY(`idJuego`) REFERENCES `Juego`(`idJuego`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idJuego",
@@ -323,6 +329,18 @@
           {
             "fieldPath": "correcta",
             "columnName": "correcta",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordenEnJuego",
+            "columnName": "ordenEnJuego",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordenOpciones",
+            "columnName": "ordenOpciones",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -391,7 +409,7 @@
       },
       {
         "tableName": "PuntuacionEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPuntuacion` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `puntuacion` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, `idAplicacion` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, FOREIGN KEY(`idAplicacion`) REFERENCES `Aplicacion`(`idAplicacion`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPuntuacion` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `puntuacion` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, `idAplicacion` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, FOREIGN KEY(`idAplicacion`) REFERENCES `Aplicacion`(`idAplicacion`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idPuntuacion",
@@ -438,6 +456,14 @@
               "idAplicacion"
             ],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_PuntuacionEntity_idAplicacion` ON `${TABLE_NAME}` (`idAplicacion`)"
+          },
+          {
+            "name": "index_PuntuacionEntity_idUsuario",
+            "unique": false,
+            "columnNames": [
+              "idUsuario"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_PuntuacionEntity_idUsuario` ON `${TABLE_NAME}` (`idUsuario`)"
           }
         ],
         "foreignKeys": [
@@ -450,6 +476,17 @@
             ],
             "referencedColumns": [
               "idAplicacion"
+            ]
+          },
+          {
+            "table": "Usuario",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idUsuario"
+            ],
+            "referencedColumns": [
+              "idUsuario"
             ]
           }
         ]
@@ -548,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9fc58f329b7165c3d56c3fbd00e723f1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '294d615b30f8b50daa2fdc988a07e7ee')"
     ]
   }
 }
