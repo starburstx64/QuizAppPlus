@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
-import com.example.quizappplus.Modelos.Jugador
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PuntuacionesVM
 

@@ -1,5 +1,6 @@
 package com.example.quizappplus.Modelos
 
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.R
 import java.io.Serializable
 

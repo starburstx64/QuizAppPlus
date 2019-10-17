@@ -1,8 +1,6 @@
 package com.example.quizappplus.Vistas
 
-import android.app.Activity
 import android.app.AlertDialog
-import com.example.quizappplus.Modelos.Configuraciones
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,10 +8,8 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.*
 import com.example.quizappplus.DB.AppDatabase
-import com.example.quizappplus.Modelos.Jugador
 import com.example.quizappplus.VistaModelos.MenuPrincipalVM
 import com.facebook.stetho.Stetho
-import kotlin.math.log
 
 class MenuPrincipalAcrivity : AppCompatActivity() {
 

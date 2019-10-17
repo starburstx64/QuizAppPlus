@@ -3,8 +3,6 @@ package com.example.quizappplus.VistaModelos
 import androidx.lifecycle.ViewModel
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Jugador
-import android.content.Context
-import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.VistaModelos.ConfiguracionesVM
 
 class MenuPrincipalVM:ViewModel(){

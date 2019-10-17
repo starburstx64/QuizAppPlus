@@ -1,24 +1,24 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
-import com.example.quizappplus.Modelos.Jugador
+import com.example.quizappplus.Modelos.Usuario
 
 class PuntuacionFinalVM:ViewModel() {
-    private var listaJugadores:List<Jugador> = listOf()
+    private var listaJugadores:List<Usuario> = listOf()
     private var flagVentanaAbierta=false
-    private lateinit var jugadorActual: Jugador
+    private lateinit var usuarioActual: Usuario
 
     val ListaJugadores get() = listaJugadores
-    val JugadorActual get() = jugadorActual
+    val JugadorActual get() = usuarioActual
 
-    fun SetJugadores(listaJugadores:List<Jugador>){
+    fun SetJugadores(listaJugadores:List<Usuario>){
         if (!flagVentanaAbierta) {
             this.listaJugadores = listaJugadores
             VentanaAbierta()
         }
     }
-    fun SetJugadorActual(jugador: Jugador){
-        jugadorActual=jugador
+    fun SetJugadorActual(usuario: Usuario){
+        usuarioActual=usuario
     }
 
     fun VentanaAbierta() {flagVentanaAbierta=true}

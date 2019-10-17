@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 class PreguntasVM : ViewModel() {
     lateinit var configuraciones:Configuraciones    //Son las configuraciones que tiene el juego
-    lateinit var listaPuntuaciones:MutableList<Jugador> //Son las puntuaciones maximas que hay, vienen aqui para pasarse a la activity final
+    lateinit var listaPuntuaciones:MutableList<Usuario> //Son las puntuaciones maximas que hay, vienen aqui para pasarse a la activity final
     private var flagJuegoIniciado = false   //Sirve para hacer las configuraciones la primera vez que se abre la activity
     private var flagUsoPista = false    //Marca si en todo el juego se uso una pista, sirve para saber si mostrar un joker
     var juegoTerminado = false  //Marca si ya se termino el juego, si se vuelve a la activity y el juego ya termino, te permite navegar
@@ -49,7 +49,7 @@ class PreguntasVM : ViewModel() {
         questions[currentQuestion].usoPista = true  //Marca que en la pregunta actual se uso una pista
     }
 
-    fun InicializarJuego(configuraciones:Configuraciones,listaPuntuaciones:ArrayList<Jugador>){
+    fun InicializarJuego(configuraciones:Configuraciones,listaPuntuaciones:ArrayList<Usuario>){
         if (!FlagJuegoIniciado) {
             //Marcamos que el juego ya comenzo
             flagJuegoIniciado=true
