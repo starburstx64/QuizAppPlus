@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d92ed70998c142c257f6629a815410ab",
+    "identityHash": "9fc58f329b7165c3d56c3fbd00e723f1",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -53,7 +53,7 @@
       },
       {
         "tableName": "Categoria",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCategoria` INTEGER NOT NULL, `nombre` TEXT NOT NULL, PRIMARY KEY(`idCategoria`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCategoria` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nombre` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "idCategoria",
@@ -72,7 +72,7 @@
           "columnNames": [
             "idCategoria"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -187,7 +187,7 @@
         ]
       },
       {
-        "tableName": "OpcionEntity",
+        "tableName": "Opcion",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idOpcion` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `texto` TEXT NOT NULL, `isCorrect` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
@@ -223,12 +223,12 @@
         },
         "indices": [
           {
-            "name": "index_OpcionEntity_idPregunta",
+            "name": "index_Opcion_idPregunta",
             "unique": false,
             "columnNames": [
               "idPregunta"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_OpcionEntity_idPregunta` ON `${TABLE_NAME}` (`idPregunta`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Opcion_idPregunta` ON `${TABLE_NAME}` (`idPregunta`)"
           }
         ],
         "foreignKeys": [
@@ -548,7 +548,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd92ed70998c142c257f6629a815410ab')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9fc58f329b7165c3d56c3fbd00e723f1')"
     ]
   }
 }

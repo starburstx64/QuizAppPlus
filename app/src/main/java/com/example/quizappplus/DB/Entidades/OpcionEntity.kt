@@ -1,21 +1,19 @@
 package com.example.quizappplus.DB.Entidades
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Entity(foreignKeys = arrayOf(
+@Entity(tableName = "Opcion",
+    foreignKeys = arrayOf(
                         ForeignKey(
                             entity = PreguntaEntity::class,
                             parentColumns = arrayOf("idPregunta"),
                             childColumns = arrayOf("idPregunta"),
                             onDelete = ForeignKey.NO_ACTION)),
-                            indices = [Index("idPregunta")]
+    indices = [Index("idPregunta")]
 )
 data class OpcionEntity (
-    @PrimaryKey(autoGenerate = true) val idOpcion : Int,
-    val texto : String,
-    val isCorrect : Boolean,
-    val idPregunta : Int
+    @PrimaryKey(autoGenerate = true)@ColumnInfo(name="idOpcion") val idOpcion : Int,
+    @ColumnInfo(name = "texto") val texto : String,
+    @ColumnInfo(name = "isCorrect") val isCorrect : Boolean,
+    @ColumnInfo(name = "idPregunta")val idPregunta : Int
 )

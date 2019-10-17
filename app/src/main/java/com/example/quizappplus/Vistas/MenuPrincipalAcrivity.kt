@@ -40,7 +40,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         Stetho.initializeWithDefaults(this)
 
         val db = AppDatabase.getAppDatabase(this)
-
+        val aplicacion =db.getAplicacionDao().getAll()
 
         //Cuanso se le da click al boton de jugar
         btnJuego.setOnClickListener {
