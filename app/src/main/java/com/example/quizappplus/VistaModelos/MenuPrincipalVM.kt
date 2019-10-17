@@ -48,4 +48,18 @@ class MenuPrincipalVM:ViewModel(){
             )
         }
     }
+
+    /**
+     * @brief Returna true si hay algun juego guardado
+     */
+    fun existeJuegoGuardado() : Boolean {
+        return true
+    }
+
+    /**
+     * @brief Elimina el juego guardado anteriormente si existe
+     */
+    fun eliminarJuegoGuardado() {
+
+    }
 }

@@ -101,10 +101,7 @@ class PuntuacionActivity : AppCompatActivity() {
         )
         //endregion
 
-        menuPrincipalButton.isVisible=false
-
-        val listaPuntuaciones = intent.getSerializableExtra(EXTRA_MEJORES_PUNTUACIONES) as ArrayList<Jugador>
-        model.SetJugadores(listaPuntuaciones)
+        model.Inicializar()
         InicializarTodo()
     }
 
