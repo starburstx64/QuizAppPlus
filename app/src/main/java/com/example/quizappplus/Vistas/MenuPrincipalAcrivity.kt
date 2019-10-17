@@ -37,17 +37,33 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnPuntuacion = findViewById(R.id.puntuacion_button)
         //endregion
 
-        //Cuando inicia la actividad se inicializan las variables importantes
-        model.InicializarJuego()
         Stetho.initializeWithDefaults(this)
 
         val db = AppDatabase.getAppDatabase(this)
-        val aplicacion =db.getAplicacionDao().getAll()
+        val aplicacion = db.getAplicacionDao()
+
+        // Obtener el id del usuario logeado
+        val idUsuarioActivo = aplicacion.getIdUsuarioActivo()
+        if (idUsuarioActivo == null) {
+            // Abrir login Activity
+            aplicacion.setIdUsuarioActivo(0)
+
+            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
+            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
+        }
+
+        else {
+            model.setIdUsuarioActivo(idUsuarioActivo)
+        }
+
+        //Cuando inicia la actividad se inicializan las variables importantes
+        model.InicializarJuego()
 
         //Cuando se le da click al boton de jugar
         btnJuego.setOnClickListener {
 
             val intent = Intent(this, PreguntasActivity::class.java)
+            intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())
 
             if (model.existeJuegoGuardado()) {
 
@@ -84,6 +100,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnOpciones.setOnClickListener {
 
             val intent = Intent(this, ConfiguracionesActivity::class.java)
+            intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())
 
             if (model.existeJuegoGuardado()) {
 

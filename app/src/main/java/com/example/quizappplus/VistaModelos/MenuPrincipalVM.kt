@@ -3,6 +3,8 @@ package com.example.quizappplus.VistaModelos
 import androidx.lifecycle.ViewModel
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Jugador
+import android.content.Context
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.VistaModelos.ConfiguracionesVM
 
 class MenuPrincipalVM:ViewModel(){
@@ -16,6 +18,8 @@ class MenuPrincipalVM:ViewModel(){
     //Esta bandera se cambia a true cuando el juego comienza
     //con eso no reiniciamos las configuraciones ni los puntajes cada que se gira la pantalla o algo asi
     private var flagInicioJuego:Boolean = false
+
+    private var idUsuarioActivo : Int? = null
 
     //propiedad para obtener el valor de la bandera
     val FlagInicio get() = flagInicioJuego
@@ -61,5 +65,13 @@ class MenuPrincipalVM:ViewModel(){
      */
     fun eliminarJuegoGuardado() {
 
+    }
+
+    fun setIdUsuarioActivo(id : Int) {
+        idUsuarioActivo = id
+    }
+
+    fun getIdUsurioActivo() : Int {
+        return idUsuarioActivo!!
     }
 }
