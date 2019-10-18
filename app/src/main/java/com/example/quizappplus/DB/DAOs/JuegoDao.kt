@@ -10,6 +10,6 @@ interface JuegoDao {
     @Query("SELECT * FROM Juego WHERE idUsuario=:idUsuario")
     fun GetJuegoByUserId(idUsuario: Int):JuegoEntity
 
-    @Query("DELETE * FROM Juego WHERE idUsuario=:idUsuario")
+    @Query("DELETE FROM Juego WHERE idUsuario=:idUsuario")
     fun DeleteJuegoByUserId(idUsuario: Int)
 }
