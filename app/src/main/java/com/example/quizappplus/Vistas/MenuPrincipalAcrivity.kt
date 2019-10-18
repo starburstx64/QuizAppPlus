@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.*
 import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.Modelos.Configuraciones
+import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.VistaModelos.MenuPrincipalVM
 import com.facebook.stetho.Stetho
 
@@ -38,7 +40,8 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         Stetho.initializeWithDefaults(this)
 
         val db = AppDatabase.getAppDatabase(this)
-        val aplicacion =db.getAplicacionDao().getAll()
+        //val aplicacion =db.getAplicacionDao().getAll()
+
 
         //Cuando se le da click al boton de jugar
         btnJuego.setOnClickListener {
