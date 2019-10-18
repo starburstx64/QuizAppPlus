@@ -137,7 +137,7 @@ class PreguntasActivity : AppCompatActivity() {
         //Ponemos la pregunta
         preguntaTextView.setText(model.getCurrentQuestion().id)
 //        //ahora vamos a poner las opciones
-//        SetOpciones(Configuraciones.dificultad)
+        SetOpciones(Configuraciones.dificultad)
         //Con esto sabemos si la pregunta fue contestada o no
         val flagContestada: Boolean = (model.getCurrentQuestion().contestada)
         //Ponemos el contador de preguntas en el valor que corresponde

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "294d615b30f8b50daa2fdc988a07e7ee",
+    "identityHash": "63fc67a0a4e802f7f8e48842d68fbfb7",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -79,7 +79,7 @@
       },
       {
         "tableName": "Configuracion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idConfiguracion` INTEGER NOT NULL, `categoriasUsadas` TEXT NOT NULL, `numeroPreguntas` INTEGER NOT NULL, `dificultad` TEXT NOT NULL, `pistasEnabled` INTEGER NOT NULL, `numeroPistas` INTEGER NOT NULL, PRIMARY KEY(`idConfiguracion`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idConfiguracion` INTEGER NOT NULL, `categoriasUsadas` TEXT NOT NULL, `numeroPreguntas` INTEGER NOT NULL, `dificultad` INTEGER NOT NULL, `pistasEnabled` INTEGER NOT NULL, `numeroPistas` INTEGER NOT NULL, PRIMARY KEY(`idConfiguracion`))",
         "fields": [
           {
             "fieldPath": "idConfiguracion",
@@ -102,7 +102,7 @@
           {
             "fieldPath": "dificultad",
             "columnName": "dificultad",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '294d615b30f8b50daa2fdc988a07e7ee')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '63fc67a0a4e802f7f8e48842d68fbfb7')"
     ]
   }
 }
