@@ -8,5 +8,8 @@ import com.example.quizappplus.DB.Entidades.JuegoEntity
 interface JuegoDao {
 
     @Query("SELECT * FROM Juego WHERE idUsuario=:idUsuario")
-    fun GetJuego(idUsuario: Int):JuegoEntity
+    fun GetJuegoByUserId(idUsuario: Int):JuegoEntity
+
+    @Query("DELETE * FROM Juego WHERE idUsuario=:idUsuario")
+    fun DeleteJuegoByUserId(idUsuario: Int)
 }

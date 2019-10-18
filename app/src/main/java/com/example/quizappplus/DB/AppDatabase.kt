@@ -334,7 +334,7 @@ abstract class AppDatabase:RoomDatabase(){
             //endregion
 
             //region Juego
-            db.execSQL("INSERT INTO Juego (idJuego, idUsuario, estatusJuego, numPistas, cheated) VALUES (0, 0, 'Terminado',0,0)")
+            db.execSQL("INSERT INTO Juego (idJuego, idUsuario, estatusJuego, numPistas, cheated) VALUES (0, 0, 0,0,0)")
             //endregion
 
             db.setTransactionSuccessful();

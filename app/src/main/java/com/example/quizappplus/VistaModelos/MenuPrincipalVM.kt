@@ -1,9 +1,9 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Configuraciones
-import com.example.quizappplus.Modelos.Jugador
-import com.example.quizappplus.VistaModelos.ConfiguracionesVM
+import com.example.quizappplus.Modelos.Usuario
 
 class MenuPrincipalVM:ViewModel(){
     //Inicializamos las configuraciones con sus valores base
@@ -11,13 +11,15 @@ class MenuPrincipalVM:ViewModel(){
         Configuraciones()
 
     //Inicializamos los puntajes para pasarlos por toda la aplicación
-    var mejoresPuntajes:ArrayList<Jugador> = arrayListOf()
+    var mejoresPuntajes:ArrayList<Usuario> = arrayListOf()
 
     //Esta bandera se cambia a true cuando el juego comienza
     //con eso no reiniciamos las configuraciones ni los puntajes cada que se gira la pantalla o algo asi
     private var flagInicioJuego:Boolean = false
 
     private var idUsuarioActivo : Int? = null
+
+    private lateinit var database : AppDatabase
 
     //propiedad para obtener el valor de la bandera
     val FlagInicio get() = flagInicioJuego
@@ -28,12 +30,12 @@ class MenuPrincipalVM:ViewModel(){
         flagInicioJuego = true
     }
 
-    fun InicializarJuego()
+    fun InicializarJuego(database : AppDatabase)
     {
         if (FlagInicio == false){
             SetFlagInicioJuego()
             mejoresPuntajes.add(
-                Jugador(
+                Usuario(
                     "Jose",
                     1000,
                     false,
@@ -41,7 +43,7 @@ class MenuPrincipalVM:ViewModel(){
                 )
             )
             mejoresPuntajes.add(
-                Jugador(
+                Usuario(
                     "Pedro",
                     950,
                     true,
@@ -49,20 +51,23 @@ class MenuPrincipalVM:ViewModel(){
                 )
             )
         }
+
+        this.database = database
     }
 
     /**
      * @brief Returna true si hay algun juego guardado
      */
     fun existeJuegoGuardado() : Boolean {
-        return true
+        val juegoActual = database.getJuegoDao().GetJuegoByUserId(getIdUsurioActivo())
+        return juegoActual.estatusJuego == 1
     }
 
     /**
      * @brief Elimina el juego guardado anteriormente si existe
      */
     fun eliminarJuegoGuardado() {
-
+        database.getJuegoDao().DeleteJuegoByUserId(getIdUsurioActivo())
     }
 
     fun setIdUsuarioActivo(id : Int) {
