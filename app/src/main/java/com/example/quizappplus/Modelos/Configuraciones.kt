@@ -40,6 +40,31 @@ class Configuraciones:Serializable {
         return usedCategories
     }
 
+    private fun SetUsedCategoriesIds():String
+    {
+        var categoriasUsadas:String = ""
+        for(i in 0 until usedCategoriesIds.size)
+        {
+            categoriasUsadas += usedCategoriesIds[i]
+            categoriasUsadas+= '/'
+        }
+        return categoriasUsadas
+    }
+
+    fun UpdateConfiguraciones(db:AppDatabase,idUsuario: Int)
+    {
+        val idConfiguraciones = db.getUsuarioDao().GetIdConfiguraciones(idUsuario)
+        val configs = db.getConfiguracionDao().GetConfiguraciones(idConfiguraciones)
+
+        configs.categoriasUsadas= SetUsedCategoriesIds()
+        configs.numeroPreguntas=numPregunta
+        configs.dificultad=dificultad
+        configs.pistasEnabled=pistas
+        configs.numeroPistas=numPistas
+
+        db.getConfiguracionDao().UpdateConfiguraciones(configs)
+    }
+
     companion object{
 
         fun GetConfiguraciones(db:AppDatabase,idUsuario:Int):Configuraciones
