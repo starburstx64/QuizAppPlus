@@ -59,7 +59,7 @@ class MenuPrincipalVM:ViewModel(){
      * @brief Returna true si hay algun juego guardado
      */
     fun existeJuegoGuardado() : Boolean {
-        val juegoActual = database.getJuegoDao().GetJuegoByUserId(getIdUsurioActivo())
+        val juegoActual = database.getJuegoDao().GetJuego(getIdUsurioActivo())
         return juegoActual.estatusJuego == 1
     }
 
@@ -67,7 +67,7 @@ class MenuPrincipalVM:ViewModel(){
      * @brief Elimina el juego guardado anteriormente si existe
      */
     fun eliminarJuegoGuardado() {
-        database.getJuegoDao().DeleteJuegoByUserId(getIdUsurioActivo())
+        Usuario.EraseSavedGame(database, getIdUsurioActivo())
     }
 
     fun setIdUsuarioActivo(id : Int) {
