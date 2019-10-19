@@ -93,7 +93,7 @@ class ConfiguracionesActivity : AppCompatActivity() {
         val configuraciones = model.configuraciones
 
         //Actualizamos los controles con las configuraciones que nos pasaron
-        SetConfiguraciones(configuraciones)
+        //SetConfiguraciones(configuraciones)
 
         //region Modificaciones
         //region checkboxes

@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.*
 import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.Modelos.Configuraciones
+import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.VistaModelos.MenuPrincipalVM
 import com.facebook.stetho.Stetho
 

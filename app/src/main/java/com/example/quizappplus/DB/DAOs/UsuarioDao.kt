@@ -9,4 +9,8 @@ interface UsuarioDao {
 
     @Query("SELECT * FROM Usuario WHERE idUsuario = :id")
     fun getUsuarioById(id : Int) : UsuarioEntity
+
+    @Query("SELECT idConfiguracion FROM usuario WHERE idUsuario=:idUsuario")
+    fun GetIdConfiguraciones(idUsuario:Int):Int
+
 }
