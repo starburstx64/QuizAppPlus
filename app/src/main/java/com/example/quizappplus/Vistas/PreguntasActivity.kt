@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.R
@@ -68,10 +69,9 @@ class PreguntasActivity : AppCompatActivity() {
         //endregion
 
         //Cargamos las configuraciones iniciales del juego
-        model.InicializarJuego(
-            intent.getSerializableExtra(EXTRA_CONFIGURACIONES_FOR_QUESTIONS) as Configuraciones,
-            intent.getSerializableExtra(EXTRA_PUNTUACIONES_LIST_FORQUESTIONS) as ArrayList<Usuario>
-        )
+        var database = AppDatabase.getAppDatabase(this)
+        var juegoIniciado = intent.getBooleanExtra("existeJuegoGuardado",true)
+        model.InicializarJuego(database,juegoIniciado)
         //Asignamos las configuraciones a esta variable para poder llamarlas directamente
         Configuraciones=model.configuraciones
 
@@ -135,7 +135,7 @@ class PreguntasActivity : AppCompatActivity() {
 
     private fun updateQuestion() {
         //Ponemos la pregunta
-        preguntaTextView.setText(model.getCurrentQuestion().id)
+        preguntaTextView.setText(model.getCurrentQuestion().)
 //        //ahora vamos a poner las opciones
      //   SetOpciones(Configuraciones.dificultad)
         //Con esto sabemos si la pregunta fue contestada o no

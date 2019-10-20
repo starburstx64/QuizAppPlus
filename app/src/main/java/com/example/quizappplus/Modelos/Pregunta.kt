@@ -94,7 +94,7 @@ data class Pregunta (val id:Int, val opciones:List<Opcion>, var contestada:Boole
             var numDisponibles: MutableList<Int> = mutableListOf(0,1, 2, 3)
 
             var ordenOpciones: MutableList<Int> = mutableListOf()   //Con esta lista sabremos en que orden estaran las opciones
-            for (j in 0..4) { //En facil se hara 2 veces, en medio 3 y en dificil 4
+            for (j in 0 until numDisponibles.size) { //En facil se hara 2 veces, en medio 3 y en dificil 4
                 var selectedIndex = Random.nextInt(0, numDisponibles.size)  //se selecciona un indice de los numeros disponibles
                 ordenOpciones.add(numDisponibles[selectedIndex])    //Ese numero escogido al azar sera puesto en el orden de las opciones
                 //Por ejemplo, si los disponibles eran el 0 y el 3, si se selecciona el 3 primero, significa que al boton 1
