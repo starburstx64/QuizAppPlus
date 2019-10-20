@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:background="@color/ligh_gray"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Registro_ResgistroUsuario"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp">
+
+                <TextView
+                    android:id="@+id/Usuario_textView_registrarUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Usuario_RegistroUsuario"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
+
+                <EditText
+                    android:id="@+id/Usuario_editView_registrarUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="50sp">
+
+                <TextView
+                    android:id="@+id/password_textView_registrarUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Password_RegistroUsuario"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
+
+                <EditText
+                    android:id="@+id/password_editView_registrarUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="50sp">
+
+                <TextView
+                    android:id="@+id/elige_textView_registrarUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/EligeImage_Registro"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="50sp">
+
+
+                <ImageButton
+                    android:id="@+id/imgselect1_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/Kurisutina" />
+
+
+                <ImageButton
+                    android:id="@+id/imgselect2_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/KuroNeko" />
+
+                <ImageButton
+                    android:id="@+id/imgselect3_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/kanna" />
+
+
+                <ImageButton
+                    android:id="@+id/imgselect4_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/Gears" />
+
+                <ImageButton
+                    android:id="@+id/imgselect5_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/noRespawn" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp"
+                android:layout_marginTop="50sp">
+
+                <Button
+                    android:id="@+id/terminarRegistro_button_registrarUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TerminarRegistro_RegistroUsuario"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+</LinearLayout>
