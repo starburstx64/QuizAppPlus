@@ -10,4 +10,7 @@ interface PreguntaDao {
     @Query("SELECT * FROM pregunta WHERE idCategoria IN (:categorias)")
     fun SelectQuestionsFromCategories(categorias: List<Int>):List<PreguntaEntity>
 
+    @Query("SELECT texto FROM pregunta WHERE idPregunta=:idPregunta")
+    fun SelectTextFromQuestion(idPregunta:Int):String
+
 }

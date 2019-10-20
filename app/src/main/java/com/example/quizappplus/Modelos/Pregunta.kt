@@ -6,7 +6,7 @@ import com.example.quizappplus.Modelos.Opcion
 import java.io.Serializable
 import kotlin.random.Random
 
-data class Pregunta (val id:Int, val opciones:List<Opcion>, var contestada:Boolean=false, var correcta:Boolean=false, var ordenOpciones:List<Int> = listOf(), var usoPista:Boolean= false):
+data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var contestada:Boolean=false, var correcta:Boolean=false, var ordenOpciones:List<Int> = listOf(), var usoPista:Boolean= false):
     Serializable
 {
 
@@ -22,6 +22,7 @@ data class Pregunta (val id:Int, val opciones:List<Opcion>, var contestada:Boole
                 preguntasDisponibles.add(
                     Pregunta(
                         pregunta.idPregunta,
+                        pregunta.texto,
                         Opcion.GetQuestionOptions(db,pregunta.idPregunta)
                     )
                 )
@@ -57,12 +58,14 @@ data class Pregunta (val id:Int, val opciones:List<Opcion>, var contestada:Boole
             {
                 var opcionesPregunta = Opcion.GetQuestionOptions(db,pregunta.idPregunta)
 
+                var textoPregunta = db.getPreguntaDao().SelectTextFromQuestion(pregunta.idPregunta)
+
                 if (pregunta.optionsCheated!="")
                 {
                     setOptionsCheatedProperty(pregunta.optionsCheated,opcionesPregunta)
                 }
 
-                preguntas.add(Pregunta(pregunta.idPregunta,opcionesPregunta,pregunta.contestada,pregunta.correcta,
+                preguntas.add(Pregunta(pregunta.idPregunta,textoPregunta,opcionesPregunta,pregunta.contestada,pregunta.correcta,
                     getQuestionOptionsOrder(pregunta.ordenOpciones),pregunta.cheated))
             }
 
