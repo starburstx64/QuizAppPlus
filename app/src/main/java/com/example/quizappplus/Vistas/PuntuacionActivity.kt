@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
-import com.example.quizappplus.Modelos.Jugador
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PuntuacionesVM
 
@@ -101,10 +100,7 @@ class PuntuacionActivity : AppCompatActivity() {
         )
         //endregion
 
-        menuPrincipalButton.isVisible=false
-
-        val listaPuntuaciones = intent.getSerializableExtra(EXTRA_MEJORES_PUNTUACIONES) as ArrayList<Jugador>
-        model.SetJugadores(listaPuntuaciones)
+        model.Inicializar()
         InicializarTodo()
     }
 

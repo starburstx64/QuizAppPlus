@@ -1,7 +1,6 @@
 package com.example.quizappplus.Vistas
 
-import android.app.Activity
-import com.example.quizappplus.Modelos.Configuraciones
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +8,10 @@ import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.*
 import com.example.quizappplus.DB.AppDatabase
-import com.example.quizappplus.Modelos.Jugador
+import com.example.quizappplus.Modelos.Configuraciones
+import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.VistaModelos.MenuPrincipalVM
 import com.facebook.stetho.Stetho
-import kotlin.math.log
 
 class MenuPrincipalAcrivity : AppCompatActivity() {
 
@@ -29,84 +28,107 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_principal)
+
         //region inicializarControles
         btnJuego = findViewById(R.id.juego_button)
         btnOpciones = findViewById(R.id.opciones_button)
         btnPuntuacion = findViewById(R.id.puntuacion_button)
         //endregion
 
-        //Cuando inicia la actividad se inicializan las variables importantes
-        model.InicializarJuego()
         Stetho.initializeWithDefaults(this)
 
         val db = AppDatabase.getAppDatabase(this)
-        val aplicacion =db.getAplicacionDao().getAll()
+        val aplicacion = db.getAplicacionDao()
 
-        //Cuanso se le da click al boton de jugar
-        btnJuego.setOnClickListener {
-            val intent: Intent =
-                Intent(this, PreguntasActivity::class.java)         //Creamos el intent
-            intent.putExtra(
-                EXTRA_CONFIGURACIONES_FOR_QUESTIONS,
-                model.configuraciones
-            )           //Le metemos un objeto tipo configuraciones
-            intent.putExtra(
-                EXTRA_PUNTUACIONES_LIST_FORQUESTIONS,
-                model.mejoresPuntajes
-            )  //Le metemos la lista de los mejores puntajes
-            startActivityForResult(
-                intent,
-                PREGUNTAS_REQUEST_CODE
-            )    //Esperamos su respuesta, que en este caso es la lista modificada
+        //Cuando inicia la actividad se inicializan las variables importantes
+        model.InicializarJuego(db)
+
+        // Obtener el id del usuario logeado
+        val idUsuarioActivo = aplicacion.getIdUsuarioActivo()
+        if (idUsuarioActivo == null) {
+            // Abrir login Activity
+            aplicacion.setIdUsuarioActivo(0)
+
+            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
+            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
         }
+
+        else {
+            model.setIdUsuarioActivo(idUsuarioActivo)
+        }
+
+        //Cuando se le da click al boton de jugar
+        btnJuego.setOnClickListener {
+
+            val existeJuegoGuardado = model.existeJuegoGuardado()
+
+            val intent = Intent(this, PreguntasActivity::class.java)
+            intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())
+
+            if (existeJuegoGuardado) {
+
+                // Mostramos un alert dialog
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Confirmar")
+                builder.setMessage("¿Desea Continuar con el juego anterior?")
+
+                builder.setPositiveButton("Si") { _, _ ->
+                    // Iniciamos el activity sin eliminar el juego
+                    intent.putExtra("existeJuegoGuardado", true)
+                    startActivity(intent)
+                }
+
+                builder.setNegativeButton("No") {_, _ ->
+                    model.eliminarJuegoGuardado()
+                    intent.putExtra("existeJuegoGuardado", false)
+                    startActivity(intent)
+                }
+
+                builder.show()
+            }
+
+            else {
+                intent.putExtra("existeJuegoGuardado", false)
+                startActivity(intent)
+            }
+        }
+
         //Cuando se le da click al boton de puntuaciones
         btnPuntuacion.setOnClickListener {
-            val intent: Intent =
-                Intent(this, PuntuacionActivity::class.java)     //Se crea el intent
-            intent.putExtra(
-                EXTRA_MEJORES_PUNTUACIONES,
-                model.mejoresPuntajes
-            )               //Se le pasa el arreglo de las mejores puntuaciones
-            startActivity(intent)  //Iniciamos el activity, como solo muestra las puntuaciones, no esperamos nada de vuelta
+            val intent = Intent(this, PuntuacionActivity::class.java)
+            startActivity(intent)
         }
+
         //Cuando se le da click al boton de configuraciones
         btnOpciones.setOnClickListener {
-            val intent: Intent =
-                Intent(this, ConfiguracionesActivity::class.java) //Se crea el intent
-            intent.putExtra(
-                EXTRA_CONFIGURACINES,
-                model.configuraciones
-            ) //Se mete en el intent las configuraciones del juego
-            startActivityForResult(
-                intent,      //Se inicia la activity de configuraciones
-                CONFIGURACIONES_REQUEST_CODE    //La activity nos tiene que devolver un objeto de configuraciones con las configuraciones del juego
-            )
-        }
 
-    }
+            val intent = Intent(this, ConfiguracionesActivity::class.java)
+            intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+            if (model.existeJuegoGuardado()) {
 
-        when (requestCode) {
-            CONFIGURACIONES_REQUEST_CODE -> {   //Cuando nos devuelven las configuraciones
-                when (resultCode) {
-                    //Si todo salio bien
-                    Activity.RESULT_OK -> model.configuraciones =   //A nuestro modelo que tiene las configuraciones se le asigna el resultado
-                        data?.getSerializableExtra(EXTRA_RESULT_CONFIUGRACIONES) //El resultado es un objeto tipo serializable
-                                as Configuraciones //Que casteamos a un objeto tipo Configuraciones
-                    Activity.RESULT_CANCELED -> {}
-                }
-            }
-            PREGUNTAS_REQUEST_CODE -> {
-                when (resultCode) {
-                    Activity.RESULT_OK -> model.mejoresPuntajes = data?.getSerializableExtra( //Sacamos la lista actualizada de mejores puntajes y se la metemos al modelo
-                        EXTRA_RESULT_LISTA_ORDENADA_NUEVA
-                    ) as ArrayList<Jugador>
+                // Mostramos un alert dialog
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Confirmar")
+                builder.setMessage("Modificar las configuraciones hará que los juegos guardados sean eliminados. ¿Desea continuar?")
+
+                builder.setPositiveButton("Si") { _,_ ->
+                    model.eliminarJuegoGuardado()
+                    startActivity(intent)
                 }
 
+                builder.setNegativeButton("No") { _, _ ->
+                    // nothing
+                }
+
+                builder.show()
+            }
+
+            else {
+                startActivity(intent)
             }
         }
+
     }
     //endregion
 }

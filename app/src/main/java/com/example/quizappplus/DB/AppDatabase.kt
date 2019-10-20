@@ -72,6 +72,8 @@ abstract class AppDatabase:RoomDatabase(){
         fun initializeData(db: SupportSQLiteDatabase) {
             db.beginTransaction()
 
+            // Insertar la aplicacion
+            db.execSQL("INSERT INTO Aplicacion (idAplicacion, idUsuarioActivo) VALUES (0, null)")
 
             //Insertar Datos en la Tabla Cateforia
             db.execSQL("INSERT INTO Categoria (idCategoria, nombre) VALUES (0, 'Cine')")
@@ -324,7 +326,7 @@ abstract class AppDatabase:RoomDatabase(){
             //endregion
 
             //region Configuracion
-            db.execSQL("INSERT INTO Configuracion (idConfiguracion, categoriasUsadas, numeroPreguntas, dificultad, pistasEnabled, numeroPistas) VALUES (0, 1, 5, 0, 0, 3)")
+            db.execSQL("INSERT INTO Configuracion (idConfiguracion, categoriasUsadas, numeroPreguntas, dificultad, pistasEnabled, numeroPistas) VALUES (0, '1/3/2/', 5, 2, 0, 3)")
             //endregion
 
             //region Usuario
@@ -332,7 +334,7 @@ abstract class AppDatabase:RoomDatabase(){
             //endregion
 
             //region Juego
-            db.execSQL("INSERT INTO Juego (idJuego, idUsuario, estatusJuego, numPistas, cheated) VALUES (0, 0, 'Terminado',0,0)")
+            db.execSQL("INSERT INTO Juego (idJuego, idUsuario, estatusJuego, numPistas, cheated) VALUES (0, 0, 1,0,0)")
             //endregion
 
             db.setTransactionSuccessful();

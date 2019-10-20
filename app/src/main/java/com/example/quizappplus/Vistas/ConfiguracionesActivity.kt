@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.ConfiguracionesVM
@@ -86,8 +87,9 @@ class ConfiguracionesActivity : AppCompatActivity() {
             variosCheckBox
         )
 
-        //Asignar las configuraciones al modelo, que fueron pasadas por el activity main
-        model.Inicializar(intent.getSerializableExtra(EXTRA_CONFIGURACINES) as Configuraciones)
+        //Asignar las configuraciones al modelo obteniendolas de la base de datos
+        model.Inicializar(AppDatabase.getAppDatabase(this), intent.getIntExtra("idUsuarioActivo", 0))
+
         //Esta variable sirve solo como shortcut para no escribir mas
         val configuraciones = model.configuraciones
 
@@ -178,8 +180,8 @@ class ConfiguracionesActivity : AppCompatActivity() {
     private fun SetConfiguraciones(configuraciones: Configuraciones) {
         //Este ciclo pasa por la lista de configuraciones y pone los checkboxes correspondientes
         //a esa categoria activados si esa categoria esta seleccionada para su uso
-        for (i in 0 until configuraciones.categorias.size) {
-            if (configuraciones.categorias[i].seleccionada == true) {
+        for (i in 0 until configuraciones.getCategoriesCount()) {
+            if (configuraciones.usedCategoriesIds.contains(i)) {
                 checkBoxes[i].isChecked = true
             }
         }
@@ -195,9 +197,11 @@ class ConfiguracionesActivity : AppCompatActivity() {
     private fun ActivateAllCheckBoxes() {
         for (i in 0 until checkBoxes.size) {
             checkBoxes[i].isChecked = true
-            model.configuraciones.categorias[i].seleccionada = true
         }
+
         model.numCategoriesSelected = 6
+        model.configuraciones.usedCategoriesIds = mutableListOf(0, 1, 2, 3, 4, 5)
+
         ActualizarConfiguraciones()
     }
 
@@ -222,16 +226,25 @@ class ConfiguracionesActivity : AppCompatActivity() {
         //maximo de preguntas
         ValidatorSpinnerPreguntas()
         //aqui cambiamos el estado de la categoria en las configuraciones
-        model.configuraciones.categorias[idCheckBox].seleccionada = activado
+        if (activado) {
+            if (!model.configuraciones.usedCategoriesIds.contains(idCheckBox)) {
+                model.configuraciones.usedCategoriesIds.add(idCheckBox)
+            }
+        }
+
+        else {
+            if (model.configuraciones.usedCategoriesIds.contains(idCheckBox)) {
+                model.configuraciones.usedCategoriesIds.remove(idCheckBox)
+            }
+        }
+
         ActualizarConfiguraciones()
     }
 
     //Esta funcion sirve para que cuando cambias algo, el modelo se actualiza para mandarlo de nuevo
-    //Al activity main
+    // a la base de datos
     private fun ActualizarConfiguraciones() {
-        val intent: Intent = Intent()
-        intent.putExtra(EXTRA_RESULT_CONFIUGRACIONES, model.configuraciones)
-        setResult(Activity.RESULT_OK, intent)
+        model.guardarConfiguraciones()
     }
 
     //Activa el radio button dependiendo de la dificultad seleccionada
