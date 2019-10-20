@@ -18,18 +18,13 @@ class ConfiguracionesVM : ViewModel(), Serializable {
 
     val FlagActivityStarted get() = flagActivityStarted
 
-    fun Inicializar(configuraciones: Configuraciones) {
-        this.configuraciones =
-            if (FlagActivityStarted == false)
-            {
-                flagActivityStarted=true
-                configuraciones
-            }
-            else
-            {
-                this.configuraciones
-            }
-        numCategoriesSelected=GetCategoriasActivas()
+    /**
+     * @brief Obtiene las configuraciones de la base de datos y establece la propiedad configuraciones
+     */
+    fun Inicializar() {
+        configuraciones = Configuraciones()
+
+        // acceder a la bd y saldnalsdkn
     }
 
     fun GetCategoriasActivas():Int
@@ -44,5 +39,12 @@ class ConfiguracionesVM : ViewModel(), Serializable {
                     contCategorias
         }
         return contCategorias
+    }
+
+    /**
+     * @brief Guarda las configuraciones en la base de datos
+     */
+    fun guardarConfiguraciones() {
+
     }
 }

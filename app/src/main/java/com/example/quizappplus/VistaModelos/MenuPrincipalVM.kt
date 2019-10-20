@@ -2,8 +2,7 @@ package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
 import com.example.quizappplus.Modelos.Configuraciones
-import com.example.quizappplus.Modelos.Jugador
-import com.example.quizappplus.VistaModelos.ConfiguracionesVM
+import com.example.quizappplus.Modelos.Usuario
 
 class MenuPrincipalVM:ViewModel(){
     //Inicializamos las configuraciones con sus valores base
@@ -11,7 +10,7 @@ class MenuPrincipalVM:ViewModel(){
         Configuraciones()
 
     //Inicializamos los puntajes para pasarlos por toda la aplicación
-    var mejoresPuntajes:ArrayList<Jugador> = arrayListOf()
+    var mejoresPuntajes:ArrayList<Usuario> = arrayListOf()
 
     //Esta bandera se cambia a true cuando el juego comienza
     //con eso no reiniciamos las configuraciones ni los puntajes cada que se gira la pantalla o algo asi
@@ -31,7 +30,7 @@ class MenuPrincipalVM:ViewModel(){
         if (FlagInicio == false){
             SetFlagInicioJuego()
             mejoresPuntajes.add(
-                Jugador(
+                Usuario(
                     "Jose",
                     1000,
                     false,
@@ -39,7 +38,7 @@ class MenuPrincipalVM:ViewModel(){
                 )
             )
             mejoresPuntajes.add(
-                Jugador(
+                Usuario(
                     "Pedro",
                     950,
                     true,
@@ -47,5 +46,19 @@ class MenuPrincipalVM:ViewModel(){
                 )
             )
         }
+    }
+
+    /**
+     * @brief Returna true si hay algun juego guardado
+     */
+    fun existeJuegoGuardado() : Boolean {
+        return true
+    }
+
+    /**
+     * @brief Elimina el juego guardado anteriormente si existe
+     */
+    fun eliminarJuegoGuardado() {
+
     }
 }

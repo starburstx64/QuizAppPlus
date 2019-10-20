@@ -9,11 +9,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
-import com.example.quizappplus.Modelos.Categoria
 import com.example.quizappplus.Modelos.Configuraciones
-import com.example.quizappplus.Modelos.Jugador
+import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.R
-import com.example.quizappplus.VistaModelos.ConfiguracionesVM
 import com.example.quizappplus.VistaModelos.PreguntasVM
 import kotlinx.android.synthetic.main.activity_preguntas.*
 import kotlin.random.Random
@@ -48,7 +46,7 @@ class PreguntasActivity : AppCompatActivity() {
     private lateinit var Configuraciones: Configuraciones
     private val model by lazy { ViewModelProviders.of(this)[PreguntasVM::class.java] }
 
-    private lateinit var arregloPuntuaciones: MutableList<Jugador>
+    private lateinit var arregloPuntuaciones: MutableList<Usuario>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +70,7 @@ class PreguntasActivity : AppCompatActivity() {
         //Cargamos las configuraciones iniciales del juego
         model.InicializarJuego(
             intent.getSerializableExtra(EXTRA_CONFIGURACIONES_FOR_QUESTIONS) as Configuraciones,
-            intent.getSerializableExtra(EXTRA_PUNTUACIONES_LIST_FORQUESTIONS) as ArrayList<Jugador>
+            intent.getSerializableExtra(EXTRA_PUNTUACIONES_LIST_FORQUESTIONS) as ArrayList<Usuario>
         )
         //Asignamos las configuraciones a esta variable para poder llamarlas directamente
         Configuraciones=model.configuraciones
@@ -139,7 +137,7 @@ class PreguntasActivity : AppCompatActivity() {
         //Ponemos la pregunta
         preguntaTextView.setText(model.getCurrentQuestion().id)
 //        //ahora vamos a poner las opciones
-//        SetOpciones(Configuraciones.dificultad)
+        SetOpciones(Configuraciones.dificultad)
         //Con esto sabemos si la pregunta fue contestada o no
         val flagContestada: Boolean = (model.getCurrentQuestion().contestada)
         //Ponemos el contador de preguntas en el valor que corresponde
@@ -273,7 +271,7 @@ class PreguntasActivity : AppCompatActivity() {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)  //Ponemos el nombre obtenido en nuestro modelo
-                        var jugadorActual = Jugador(    //Creamos el objeto de jugador actual
+                        var jugadorActual = Usuario(    //Creamos el objeto de jugador actual
                             model.NombreJugador,
                             model.GetPuntajeFinal(),
                             model.FlagUsoPista,
@@ -289,7 +287,7 @@ class PreguntasActivity : AppCompatActivity() {
                         )
                         otroIntent.putExtra(
                             EXTRA_LISTA_PUNTUACIONES,
-                            arregloPuntuaciones as ArrayList<Jugador>
+                            arregloPuntuaciones as ArrayList<Usuario>
                         )
                         otroIntent.putExtra(EXTRA_JUGADOR_ACTUAL, jugadorActual)
                         startActivity(otroIntent)
@@ -308,7 +306,7 @@ class PreguntasActivity : AppCompatActivity() {
         arregloPuntuaciones.reverse()   //Lo invertimos por que esto lo de en orden ascendente cuando lo correcto es descendente
         //Si hay mas de 6 puntuaciones vamos a obtener solo las primeras 6
         if (arregloPuntuaciones.size > 6) {
-            var arregloPuntuacionesAuxiliar: MutableList<Jugador> = mutableListOf()
+            var arregloPuntuacionesAuxiliar: MutableList<Usuario> = mutableListOf()
             for (i in 0..5) {
                 arregloPuntuacionesAuxiliar.add(arregloPuntuaciones[i])
             }
@@ -320,7 +318,7 @@ class PreguntasActivity : AppCompatActivity() {
         }
         //Guardamos la lista para que se devuelva al activity principal para todo lo que tenga que hacer
         val intent: Intent = Intent()
-        intent.putExtra(EXTRA_RESULT_LISTA_ORDENADA_NUEVA, arregloPuntuaciones as ArrayList<Jugador>)
+        intent.putExtra(EXTRA_RESULT_LISTA_ORDENADA_NUEVA, arregloPuntuaciones as ArrayList<Usuario>)
         setResult(Activity.RESULT_OK, intent)
     }
 
