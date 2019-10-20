@@ -9,12 +9,16 @@
         android:roundIcon="@mipmap/quizicono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".PuntuacionFinalActivity"></activity>
-        <activity android:name=".PuntuacionActivity" />
-        <activity android:name=".ConfiguracionesActivity" />
-        <activity android:name=".PreguntasActivity" />
-        <activity android:name=".NombreJugadorActivity"/>
-        <activity android:name=".MenuPrincipalAcrivity">
+        <activity android:name=".RegistrarUsuario"></activity>
+        <activity android:name=".IniciarSesionActivity" />
+        <activity android:name=".Vistas.PuntuacionFinalActivity" />
+        <activity android:name=".Vistas.PuntuacionActivity" />
+        <activity android:name=".Vistas.ConfiguracionesActivity" />
+        <activity android:name=".Vistas.PreguntasActivity" />
+        <activity android:name=".Vistas.NombreJugadorActivity" />
+        <activity
+            android:name=".Vistas.MenuPrincipalAcrivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

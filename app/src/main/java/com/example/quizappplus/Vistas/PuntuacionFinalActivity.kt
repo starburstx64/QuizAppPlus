@@ -1,12 +1,17 @@
-package com.example.quizappplus
+package com.example.quizappplus.Vistas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.Modelos.Usuario
+import com.example.quizappplus.R
+import com.example.quizappplus.VistaModelos.PuntuacionFinalVM
 
 const val PUNTUACION_FINAL_ACTIVITY_RESULT=1200
+const val EXTRA_JUGADOR_ACTUAL="com.example.quizappPlus.EXTRA_JUGADOR_ACTUAL"
+const val EXTRA_LISTA_PUNTUACIONES="com.example.quizappPlus.EXTRA_LISTA_PUNTUACIONES"
 
 class PuntuacionFinalActivity : AppCompatActivity() {
 
@@ -26,6 +31,13 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     private lateinit var tvPuntuacion4:TextView
     private lateinit var tvPuntuacion5:TextView
     private lateinit var tvPuntuacion6:TextView
+
+    private lateinit var imagen1:ImageView
+    private lateinit var imagen2:ImageView
+    private lateinit var imagen3:ImageView
+    private lateinit var imagen4:ImageView
+    private lateinit var imagen5:ImageView
+    private lateinit var imagen6:ImageView
     //imageViews
     private lateinit var imagenFinalImageView:ImageView
     //Buttons
@@ -34,6 +46,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     private val model by lazy { ViewModelProviders.of(this)[PuntuacionFinalVM::class.java] }
     private lateinit var jugadoresTvs:List<TextView>
     private lateinit var puntuacionesTvs:List<TextView>
+    private lateinit var imagenes:List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +69,13 @@ class PuntuacionFinalActivity : AppCompatActivity() {
         tvPuntuacion5 = findViewById(R.id.puntiacion5)
         tvPuntuacion6 = findViewById(R.id.puntiacion6)
 
+        imagen1=findViewById(R.id.imagen1)
+        imagen2=findViewById(R.id.imagen2)
+        imagen3=findViewById(R.id.imagen3)
+        imagen4=findViewById(R.id.imagen4)
+        imagen5=findViewById(R.id.imagen5)
+        imagen6=findViewById(R.id.imagen6)
+
         jugadoresTvs = listOf(
             tvJugador1,
             tvJugador2,
@@ -72,14 +92,24 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             tvPuntuacion5,
             tvPuntuacion6
         )
+        imagenes = listOf(
+            imagen1,
+            imagen2,
+            imagen3,
+            imagen4,
+            imagen5,
+            imagen6
+        )
 
         imagenFinalImageView=findViewById(R.id.imagenFinal)
 
         menuPrincipalButton=findViewById(R.id.menu_button)
         //endregion
 
-        val listaPuntuaciones = intent.getSerializableExtra("EXTRA_LISTA_PUNTUACIONES") as ArrayList<Jugador>
+        menuPrincipalButton.isVisible=false
+        val listaPuntuaciones = intent.getSerializableExtra(EXTRA_LISTA_PUNTUACIONES) as ArrayList<Usuario>
         model.SetJugadores(listaPuntuaciones)
+        model.SetJugadorActual(intent.getSerializableExtra(EXTRA_JUGADOR_ACTUAL) as Usuario)
         InicializarTodo()
 
     }
@@ -92,13 +122,31 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             jugadoresTvs[i].isVisible=true
             puntuacionesTvs[i].text = model.ListaJugadores[i].puntuacion.toString()
             puntuacionesTvs[i].isVisible=true
+            if (model.ListaJugadores[i].usoCheats)
+            {
+                imagenes[i].setImageResource(R.mipmap.bufon)
+            }
         }
+        puntajeFinalTextView.text="${model.JugadorActual.puntuacion.toString()},${model.JugadorActual.porsentaje.toString()}%"
+        SetImagenFinal()
     }
 
     private fun InvisibilizarTvJugadores(){
         for (i in 0 until jugadoresTvs.size){
             jugadoresTvs[i].isVisible=false
             puntuacionesTvs[i].isVisible=false
+        }
+    }
+    private fun SetImagenFinal(){
+        var porcentaje= model.JugadorActual.porsentaje
+        if (model.JugadorActual.usoCheats){
+            imagenFinalImageView.setImageResource(R.mipmap.bufon)
+        }
+        else
+        {
+            if(porcentaje==100.0){imagenFinalImageView.setImageResource(R.mipmap.copa)}
+            if(porcentaje<=90.0 && porcentaje>=50.00){imagenFinalImageView.setImageResource(R.mipmap.manita_arriba)}
+            if(porcentaje<50.00){imagenFinalImageView.setImageResource(R.mipmap.nice_try)}
         }
     }
 }

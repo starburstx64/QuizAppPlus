@@ -83,6 +83,25 @@
     <string name="varios4">El termino "Cubreme las espaldas" se usa para</string>
     <string name="varios5">En el juego UNO cuando se tiene una carta se debe decir</string>
 
+
+    <string name="Usuario_InicioSesion">Usuario</string>
+    <string name="Password_InicioSesion">Contraseña</string>
+    <string name="crearCuenta_InicioSesion">¿No tienes una cuenta? crea una</string>
+    <string name="clickAqui_InicioSesion">Aqui</string>
+
+
+
+    <string name="Registro_ResgistroUsuario">Crea tu cuenta</string>
+    <string name="Usuario_RegistroUsuario">Nombre de Usuario</string>
+    <string name="Password_RegistroUsuario">Contraseña</string>
+    <string name="EligeImage_Registro">Elije una imagen para tu perfil</string>
+    <string name="TerminarRegistro_RegistroUsuario">Listo!</string>
+
+
+
+
+
+
     <string-array name="numPreguntas">
         <item>5</item>
         <item>6</item>
