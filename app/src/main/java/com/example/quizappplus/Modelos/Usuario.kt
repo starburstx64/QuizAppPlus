@@ -19,7 +19,7 @@ data class Usuario(var nombre:String, var puntuacion:Int, var usoCheats:Boolean 
             juegoActual.numPistas = 0
             juegoActual.cheated = false
             db.getJuegoDao().UpdateJuego(juegoActual)
-            db.getPreguntaJuegoDao().DeleteGameQuestions(juegoActual.idJuego)
+            db.getPreguntaJuegoDao().DeleteGameQuestions(juegoActual.idJuego!!)
         }
     }
 }
