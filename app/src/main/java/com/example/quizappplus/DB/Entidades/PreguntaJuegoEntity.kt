@@ -25,7 +25,7 @@ data class PreguntaJuegoEntity (
     @ColumnInfo(name = "contestada",typeAffinity = ColumnInfo.INTEGER) var contestada:Boolean = false,
     @ColumnInfo(name = "correcta",typeAffinity = ColumnInfo.INTEGER) var correcta:Boolean = false,
     @ColumnInfo(name = "ordenEnJuego") val ordenEnJuego:Int,
-    @ColumnInfo(name = "ordenOpciones") val ordenOpciones:Int,
+    @ColumnInfo(name = "ordenOpciones") val ordenOpciones:String,
     @ColumnInfo(name = "optionsCheated") var optionsCheated:String,
     @ColumnInfo(name = "cheated", typeAffinity = ColumnInfo.INTEGER) var cheated:Boolean
 )
