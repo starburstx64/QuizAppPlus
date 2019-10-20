@@ -15,7 +15,7 @@ data class Opcion(val idOpcion:Int ,val texto:String ,val answer:Boolean,var use
 
             for (entidadOpcion in entidadesOpciones)
             {
-                opcionesPregunta.add(Opcion(entidadOpcion.idOpcion,entidadOpcion.texto,entidadOpcion.isCorrect))
+                opcionesPregunta.add(Opcion(entidadOpcion.idOpcion!!,entidadOpcion.texto,entidadOpcion.isCorrect))
             }
 
             return opcionesPregunta
