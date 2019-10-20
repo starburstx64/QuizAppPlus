@@ -131,7 +131,7 @@
                     android:layout_width="130sp"
                     android:layout_height="130sp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/Kurisutina" />
+                    android:src="@drawable/kurisutina" />
 
 
                 <ImageButton
@@ -140,7 +140,7 @@
                     android:layout_height="130sp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/KuroNeko" />
+                    android:src="@drawable/kuroneko" />
 
                 <ImageButton
                     android:id="@+id/imgselect3_imageButton_registrarUsuiario"
@@ -148,7 +148,7 @@
                     android:layout_height="130sp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/kanna" />
+                    android:src="@drawable/kanna" />
 
 
                 <ImageButton
@@ -158,7 +158,7 @@
                     android:adjustViewBounds="true"
                     android:background="@color/white"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/Gears" />
+                    android:src="@drawable/gears" />
 
                 <ImageButton
                     android:id="@+id/imgselect5_imageButton_registrarUsuiario"
@@ -167,7 +167,7 @@
                     android:adjustViewBounds="true"
                     android:background="@color/white"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/noRespawn" />
+                    android:src="@drawable/norespawn" />
 
             </LinearLayout>
 
