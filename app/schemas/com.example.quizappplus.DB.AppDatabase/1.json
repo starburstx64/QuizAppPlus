@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "63fc67a0a4e802f7f8e48842d68fbfb7",
+    "identityHash": "de338ef9466319755bfa1886bf6c6657",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -408,14 +408,14 @@
         ]
       },
       {
-        "tableName": "PuntuacionEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPuntuacion` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `puntuacion` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, `idAplicacion` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, FOREIGN KEY(`idAplicacion`) REFERENCES `Aplicacion`(`idAplicacion`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "Puntuacion",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idPuntuacion` INTEGER PRIMARY KEY AUTOINCREMENT, `puntuacion` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, `idAplicacion` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, FOREIGN KEY(`idAplicacion`) REFERENCES `Aplicacion`(`idAplicacion`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idPuntuacion",
             "columnName": "idPuntuacion",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "puntuacion",
@@ -450,20 +450,20 @@
         },
         "indices": [
           {
-            "name": "index_PuntuacionEntity_idAplicacion",
+            "name": "index_Puntuacion_idAplicacion",
             "unique": false,
             "columnNames": [
               "idAplicacion"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_PuntuacionEntity_idAplicacion` ON `${TABLE_NAME}` (`idAplicacion`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Puntuacion_idAplicacion` ON `${TABLE_NAME}` (`idAplicacion`)"
           },
           {
-            "name": "index_PuntuacionEntity_idUsuario",
+            "name": "index_Puntuacion_idUsuario",
             "unique": false,
             "columnNames": [
               "idUsuario"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_PuntuacionEntity_idUsuario` ON `${TABLE_NAME}` (`idUsuario`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Puntuacion_idUsuario` ON `${TABLE_NAME}` (`idUsuario`)"
           }
         ],
         "foreignKeys": [
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '63fc67a0a4e802f7f8e48842d68fbfb7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'de338ef9466319755bfa1886bf6c6657')"
     ]
   }
 }

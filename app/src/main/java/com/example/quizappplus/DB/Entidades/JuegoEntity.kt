@@ -15,7 +15,7 @@ import androidx.room.*
     indices = [Index("idUsuario")]
 )
 data class JuegoEntity(
-    @PrimaryKey @ColumnInfo(name = "idJuego") val idJuego: Int,
+    @PrimaryKey @ColumnInfo(name = "idJuego") val idJuego: Int? = null,
     @ColumnInfo(name = "idUsuario") val idUsuario: Int,
     @ColumnInfo(name = "estatusJuego") var estatusJuego: Int,
     @ColumnInfo(name = "numPistas") var numPistas: Int,

@@ -57,9 +57,9 @@ class PreguntasVM : ViewModel() {
             this.configuraciones=configuraciones
             this.listaPuntuaciones=listaPuntuaciones //Guardamos la lista de puntuaciones
             //Sacamos la lista con las categorias que usaremos
-            val CategoriasUsadas = configuraciones.GetCategoriasUsadas()
+    //        val CategoriasUsadas = configuraciones.GetCategoriasUsadas()
             //y la usamos para escoger las preguntas al azar
-            SetQuestions(CategoriasUsadas, configuraciones.numPregunta)
+    //        SetQuestions(CategoriasUsadas, configuraciones.numPregunta)
             //Ponemos las cosas a la dificultad adecuada
             SetQuestionsOptions(configuraciones.dificultad)
         }
