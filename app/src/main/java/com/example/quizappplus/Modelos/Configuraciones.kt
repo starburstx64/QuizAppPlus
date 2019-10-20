@@ -7,7 +7,7 @@ import java.io.Serializable
 class Configuraciones:Serializable {
 
     //son las categorias que existen en la aplicación
-    lateinit var usedCategoriesIds:List<Int>
+    lateinit var usedCategoriesIds:MutableList<Int>
 
     //El numero de preguntas que esta seleccionado
     var numPregunta:Int = 5
@@ -21,7 +21,14 @@ class Configuraciones:Serializable {
     //Variable que indica el numero de pistas seleccionadas
     var numPistas:Int = 2
 
-    fun GetUsedCategoriesIds(categoriasUsadas:String):List<Int>
+    /**
+     * @brief Retorna el numero de categorias que exiten en la base de datos
+     */
+    fun getCategoriesCount() : Int {
+        return 6
+    }
+
+    fun GetUsedCategoriesIds(categoriasUsadas:String):MutableList<Int>
     {
         var usedCategories = mutableListOf<Int>()
         var number=""
