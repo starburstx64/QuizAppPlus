@@ -11,6 +11,11 @@ interface PreguntaJuegoDao {
     @Query("DELETE FROM PreguntaJuego WHERE idJuego=:idJuego")
     fun DeleteGameQuestions(idJuego:Int)
 
+    @Query("SELECT * FROM preguntajuego WHERE idJuego=:idJuego")
+    fun GetPreguntasUsadas(idJuego:Int):List<PreguntaJuegoEntity>
+
     @Insert
     fun InsertarPreguntaJuego(preguntaJuego: PreguntaJuegoEntity)
+
+
 }
