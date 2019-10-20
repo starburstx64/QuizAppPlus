@@ -3,7 +3,8 @@ package com.example.quizappplus.DB.Entidades
 import androidx.room.*
 
 // Copiado de https://medium.com/@tonyowen/room-entity-annotations-379150e1ca82
-@Entity(foreignKeys = arrayOf(
+@Entity(tableName = "Puntuacion",
+    foreignKeys = arrayOf(
     ForeignKey(
         entity = AplicacionEntity::class,
         parentColumns = arrayOf("idAplicacion"),
@@ -21,7 +22,7 @@ import androidx.room.*
     ]
 )
 data class PuntuacionEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "idPuntuacion") val idPuntuacion : Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "idPuntuacion") val idPuntuacion : Int? = null,
     @ColumnInfo(name = "puntuacion") val puntuacion : Int,
     @ColumnInfo(name = "cheated",typeAffinity = ColumnInfo.INTEGER ) val cheated : Boolean,
     @ColumnInfo(name = "idAplicacion") val idAplicacion : Int,
