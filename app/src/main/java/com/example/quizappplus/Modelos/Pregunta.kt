@@ -44,6 +44,51 @@ data class Pregunta (val id:Int, val opciones:List<Opcion>, var contestada:Boole
             }
         }
 
+        fun GetPreguntasUsadas(db:AppDatabase):List<Pregunta>
+        {
+            var preguntas = mutableListOf<Pregunta>()
+
+            var idUsuario = Usuario.GetActiveUserId(db)
+            var idJuego = db.getJuegoDao().GetJuego(idUsuario).idJuego
+
+            var preguntasUsadas = db.getPreguntaJuegoDao().GetPreguntasUsadas(idJuego!!)
+
+            for(pregunta in preguntasUsadas)
+            {
+                var opcionesPregunta = Opcion.GetQuestionOptions(db,pregunta.idPregunta)
+
+                if (pregunta.optionsCheated!="")
+                {
+                    setOptionsCheatedProperty(pregunta.optionsCheated,opcionesPregunta)
+                }
+
+                preguntas.add(Pregunta(pregunta.idPregunta,opcionesPregunta,pregunta.contestada,pregunta.correcta,
+                    getQuestionOptionsOrder(pregunta.ordenOpciones),pregunta.cheated))
+            }
+
+            return preguntas
+        }
+
+        private fun setOptionsCheatedProperty(StringCheateds:String,opciones:List<Opcion>)
+        {
+            var opcionesTrampa = mutableListOf<Int>()
+
+            var number=""
+            for (i in 0 until StringCheateds.length) {
+                if (StringCheateds[i] == '/') {
+                    opcionesTrampa.add(number.toInt())
+                    number = ""
+                } else {
+                    number += opciones[i]
+                }
+            }
+
+            for (index in opcionesTrampa)
+            {
+                opciones[index].usedCheat=true
+            }
+        }
+
         private fun setQuestionOptions():String
         {
             var numDisponibles: MutableList<Int> = mutableListOf(0,1, 2, 3)
@@ -65,7 +110,7 @@ data class Pregunta (val id:Int, val opciones:List<Opcion>, var contestada:Boole
             return ordenConvertido
         }
 
-        private fun getQuestionOptions(opciones:String):List<Int>
+        private fun getQuestionOptionsOrder(opciones:String):List<Int>
         {
             var ordenOpciones = mutableListOf<Int>()
 
