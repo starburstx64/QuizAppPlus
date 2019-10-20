@@ -72,6 +72,8 @@ abstract class AppDatabase:RoomDatabase(){
         fun initializeData(db: SupportSQLiteDatabase) {
             db.beginTransaction()
 
+            // Insertar la aplicacion
+            db.execSQL("INSERT INTO Aplicacion (idAplicacion, idUsuarioActivo) VALUES (0, null)")
 
             //Insertar Datos en la Tabla Cateforia
             db.execSQL("INSERT INTO Categoria (idCategoria, nombre) VALUES (0, 'Cine')")

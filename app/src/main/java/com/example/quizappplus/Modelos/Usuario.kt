@@ -6,7 +6,6 @@ import java.io.Serializable
 
 data class Usuario(var nombre:String, var puntuacion:Int, var usoCheats:Boolean = false, var posicion:Int, var porsentaje:Double = 0.0):Serializable{
 
-
     companion object{
         fun GetGameStatus(db:AppDatabase,idUsuario:Int):Boolean{
             val juegoActual:JuegoEntity = db.getJuegoDao().GetJuego(idUsuario)
@@ -23,5 +22,4 @@ data class Usuario(var nombre:String, var puntuacion:Int, var usoCheats:Boolean 
             db.getPreguntaJuegoDao().DeleteGameQuestions(juegoActual.idJuego)
         }
     }
-
 }

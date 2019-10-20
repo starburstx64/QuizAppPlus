@@ -35,20 +35,37 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnPuntuacion = findViewById(R.id.puntuacion_button)
         //endregion
 
-        //Cuando inicia la actividad se inicializan las variables importantes
-        model.InicializarJuego()
         Stetho.initializeWithDefaults(this)
 
         val db = AppDatabase.getAppDatabase(this)
-        //val aplicacion =db.getAplicacionDao().getAll()
+        val aplicacion = db.getAplicacionDao()
 
+        //Cuando inicia la actividad se inicializan las variables importantes
+        model.InicializarJuego(db)
+
+        // Obtener el id del usuario logeado
+        val idUsuarioActivo = aplicacion.getIdUsuarioActivo()
+        if (idUsuarioActivo == null) {
+            // Abrir login Activity
+            aplicacion.setIdUsuarioActivo(0)
+
+            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
+            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
+        }
+
+        else {
+            model.setIdUsuarioActivo(idUsuarioActivo)
+        }
 
         //Cuando se le da click al boton de jugar
         btnJuego.setOnClickListener {
 
-            val intent = Intent(this, PreguntasActivity::class.java)
+            val existeJuegoGuardado = model.existeJuegoGuardado()
 
-            if (model.existeJuegoGuardado()) {
+            val intent = Intent(this, PreguntasActivity::class.java)
+            intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())
+
+            if (existeJuegoGuardado) {
 
                 // Mostramos un alert dialog
                 val builder = AlertDialog.Builder(this)
@@ -57,11 +74,13 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
                 builder.setPositiveButton("Si") { _, _ ->
                     // Iniciamos el activity sin eliminar el juego
+                    intent.putExtra("existeJuegoGuardado", true)
                     startActivity(intent)
                 }
 
                 builder.setNegativeButton("No") {_, _ ->
                     model.eliminarJuegoGuardado()
+                    intent.putExtra("existeJuegoGuardado", false)
                     startActivity(intent)
                 }
 
@@ -69,6 +88,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
             }
 
             else {
+                intent.putExtra("existeJuegoGuardado", false)
                 startActivity(intent)
             }
         }
@@ -83,6 +103,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnOpciones.setOnClickListener {
 
             val intent = Intent(this, ConfiguracionesActivity::class.java)
+            intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())
 
             if (model.existeJuegoGuardado()) {
 

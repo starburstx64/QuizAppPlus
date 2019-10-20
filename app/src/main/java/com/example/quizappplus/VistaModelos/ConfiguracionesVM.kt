@@ -1,6 +1,7 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Categoria
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Opcion
@@ -18,33 +19,30 @@ class ConfiguracionesVM : ViewModel(), Serializable {
 
     val FlagActivityStarted get() = flagActivityStarted
 
+    private lateinit var database: AppDatabase
+    private var idUsuarioActivo: Int = 0
+
     /**
      * @brief Obtiene las configuraciones de la base de datos y establece la propiedad configuraciones
      */
-    fun Inicializar() {
-        configuraciones = Configuraciones()
+    fun Inicializar(database : AppDatabase, idUsuarioActivo : Int) {
 
-        // acceder a la bd y saldnalsdkn
+        this.database = database
+        this.idUsuarioActivo = idUsuarioActivo
+
+        configuraciones = Configuraciones.GetConfiguraciones(database, idUsuarioActivo)
+        numCategoriesSelected = configuraciones.usedCategoriesIds.size
     }
 
     fun GetCategoriasActivas():Int
     {
-        var contCategorias = 0
-        for (i in configuraciones.categorias)
-        {
-            contCategorias=
-                if (i.seleccionada)
-                    contCategorias+1
-                else
-                    contCategorias
-        }
-        return contCategorias
+        return configuraciones.usedCategoriesIds.size
     }
 
     /**
      * @brief Guarda las configuraciones en la base de datos
      */
     fun guardarConfiguraciones() {
-
+        configuraciones.UpdateConfiguraciones(database, idUsuarioActivo)
     }
 }

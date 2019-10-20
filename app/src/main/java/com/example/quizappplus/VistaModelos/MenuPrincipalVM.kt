@@ -1,6 +1,7 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Usuario
 
@@ -16,6 +17,10 @@ class MenuPrincipalVM:ViewModel(){
     //con eso no reiniciamos las configuraciones ni los puntajes cada que se gira la pantalla o algo asi
     private var flagInicioJuego:Boolean = false
 
+    private var idUsuarioActivo : Int? = null
+
+    private lateinit var database : AppDatabase
+
     //propiedad para obtener el valor de la bandera
     val FlagInicio get() = flagInicioJuego
 
@@ -25,7 +30,7 @@ class MenuPrincipalVM:ViewModel(){
         flagInicioJuego = true
     }
 
-    fun InicializarJuego()
+    fun InicializarJuego(database : AppDatabase)
     {
         if (FlagInicio == false){
             SetFlagInicioJuego()
@@ -46,19 +51,30 @@ class MenuPrincipalVM:ViewModel(){
                 )
             )
         }
+
+        this.database = database
     }
 
     /**
      * @brief Returna true si hay algun juego guardado
      */
     fun existeJuegoGuardado() : Boolean {
-        return true
+        val juegoActual = database.getJuegoDao().GetJuego(getIdUsurioActivo())
+        return juegoActual.estatusJuego == 1
     }
 
     /**
      * @brief Elimina el juego guardado anteriormente si existe
      */
     fun eliminarJuegoGuardado() {
+        Usuario.EraseSavedGame(database, getIdUsurioActivo())
+    }
 
+    fun setIdUsuarioActivo(id : Int) {
+        idUsuarioActivo = id
+    }
+
+    fun getIdUsurioActivo() : Int {
+        return idUsuarioActivo!!
     }
 }
