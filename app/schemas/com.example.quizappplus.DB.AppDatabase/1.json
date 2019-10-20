@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "de338ef9466319755bfa1886bf6c6657",
+    "identityHash": "5f2346ec2c65e0c3ea84b77a5f163951",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -53,13 +53,13 @@
       },
       {
         "tableName": "Categoria",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCategoria` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nombre` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCategoria` INTEGER PRIMARY KEY AUTOINCREMENT, `nombre` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "idCategoria",
             "columnName": "idCategoria",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "nombre",
@@ -129,13 +129,13 @@
       },
       {
         "tableName": "Juego",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idUsuario` INTEGER NOT NULL, `estatusJuego` INTEGER NOT NULL, `numPistas` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`), FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER, `idUsuario` INTEGER NOT NULL, `estatusJuego` INTEGER NOT NULL, `numPistas` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`), FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idJuego",
             "columnName": "idJuego",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "idUsuario",
@@ -194,13 +194,13 @@
       },
       {
         "tableName": "Opcion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idOpcion` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `texto` TEXT NOT NULL, `isCorrect` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idOpcion` INTEGER PRIMARY KEY AUTOINCREMENT, `texto` TEXT NOT NULL, `isCorrect` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idOpcion",
             "columnName": "idOpcion",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "texto",
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'de338ef9466319755bfa1886bf6c6657')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f2346ec2c65e0c3ea84b77a5f163951')"
     ]
   }
 }
