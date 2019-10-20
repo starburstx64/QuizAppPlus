@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/quizicono"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".RegistrarUsuario"></activity>
+        <activity android:name=".PerfilJugador"></activity>
+        <activity android:name=".RegistrarUsuario" />
         <activity android:name=".IniciarSesionActivity" />
         <activity android:name=".Vistas.PuntuacionFinalActivity" />
         <activity android:name=".Vistas.PuntuacionActivity" />
