@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.RegistrarUsuarioVM
@@ -105,6 +106,9 @@ class RegistrarUsuario : AppCompatActivity() {
 
         terminarRegistro_button_registrarUsuario.setOnClickListener {
             if (validarInputs()) {
+
+                Toast.makeText(this, "Registro Exitoso!", Toast.LENGTH_SHORT).show()
+
                 val toLoginIntent = Intent(this, IniciarSesionActivity::class.java)
                 startActivity(toLoginIntent)
             }
