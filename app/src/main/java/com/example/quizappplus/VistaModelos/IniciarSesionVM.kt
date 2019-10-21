@@ -18,9 +18,9 @@ class IniciarSesionVM : ViewModel() {
     /**
      * @brief Retorna true si userName y userPassword son validos
      */
-    fun tryLogin(userName : String, userPassword : String) : Boolean {
+    fun tryLogin() : Boolean {
 
-        val usuario = database.getUsuarioDao().getUsuario(userName, userPassword)
+        val usuario = database.getUsuarioDao().getUsuario(userNameText, userPasswordText)
 
         if (usuario != null) {
             idUsuarioActivo = usuario.idUsuario

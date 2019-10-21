@@ -92,6 +92,6 @@ class IniciarSesionActivity : AppCompatActivity() {
             return false
         }
 
-        return model.tryLogin(usuario_edtiText_inicioSesion.text.toString(), password_textView_InicioSesion.text.toString())
+        return model.tryLogin()
     }
 }
