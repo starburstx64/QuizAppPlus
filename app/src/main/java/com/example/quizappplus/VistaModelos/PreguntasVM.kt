@@ -7,24 +7,22 @@ import kotlin.random.Random
 
 class PreguntasVM : ViewModel() {
     lateinit var configuraciones:Configuraciones    //Son las configuraciones que tiene el juego
-    lateinit var listaPuntuaciones:MutableList<Usuario> //Son las puntuaciones maximas que hay, vienen aqui para pasarse a la activity final
     private var flagJuegoIniciado = false   //Sirve para hacer las configuraciones la primera vez que se abre la activity
     private var flagUsoPista = false    //Marca si en todo el juego se uso una pista, sirve para saber si mostrar un joker
     var juegoTerminado = false  //Marca si ya se termino el juego, si se vuelve a la activity y el juego ya termino, te permite navegar
     var idUsuario = 0
+    var idJuego = 0
                                 //por las preguntas sin que se abra la pantalla de puntuacion final
     private lateinit var questions: List<Pregunta>  //las preguntas que se usaran en el juego, seleccinadas aleatoriamente segun las categorias seleccionadas
     private lateinit var flagQuestions: MutableList<Boolean>    //Esto sirve para saber si ya se paso por la pregunta mas de una vez
                                                                 //Si es la primera vez, la bandera esta en false y no se muestra el TV de estado
     private var currentQuestion: Int = 0    //Para saber la pregunta actual
-    private lateinit var nombreJugador: String  //Para guardar el nombre del jugador, se obtiene cuando el juego termina, devuelto por otra activity
     private var preguntasContestadas = 0    //Guarda el contador de las preguntas contestadas
     private var pistasUsadas: Int = 0       //Guarda el contador de cuantas pístas se han usado
     private var JuegoIniciado: Boolean = false  //Guarda el dato para que saber si el juego esta inicializado o no
     //propiedades
     val FlagJuegoIniciado get() = flagJuegoIniciado
     val PreguntasContestadas get() = preguntasContestadas
-    val NombreJugador get() = nombreJugador
     val numOfQuestions get() = questions.size
     val numQuestion get() = currentQuestion
     val flagQuestion get() = flagQuestions[currentQuestion]
@@ -36,10 +34,6 @@ class PreguntasVM : ViewModel() {
 
     fun ActualizaFlag() {
         flagQuestions[currentQuestion] = true
-    }
-
-    fun SetNombre(nombre: String) {
-        nombreJugador = nombre
     }
 
     fun getPistasUsadas() = pistasUsadas
@@ -58,8 +52,7 @@ class PreguntasVM : ViewModel() {
             JuegoIniciado=juegoIniciado
             //Guardamos las configuraciones
             this.configuraciones= Configuraciones.GetConfiguraciones(db,0)
-            //Sacamos la lista con las categorias que usaremos
-    //      val CategoriasUsadas = configuraciones.usedCategoriesIds
+            var datosJuego = Usuario.GetGameData(db,idUsuario)
             //y la usamos para escoger las preguntas al azar
             if(JuegoIniciado==false) {
                 Usuario.StartGame(db,idUsuario)
@@ -67,6 +60,7 @@ class PreguntasVM : ViewModel() {
             }
             else {
                 questions = Pregunta.GetPreguntasUsadas(db)
+
                 setFlags()
             }
         }
