@@ -11,7 +11,7 @@ interface AplicacionDao {
     fun getAll():List<AplicacionEntity>
 
     @Query("UPDATE Aplicacion SET idUsuarioActivo = :id WHERE idAplicacion = 0")
-    fun setIdUsuarioActivo(id : Int)
+    fun setIdUsuarioActivo(id : Int?)
 
     @Query("SELECT idUsuarioActivo FROM Aplicacion WHERE idAplicacion = 0")
     fun getIdUsuarioActivo() : Int?
