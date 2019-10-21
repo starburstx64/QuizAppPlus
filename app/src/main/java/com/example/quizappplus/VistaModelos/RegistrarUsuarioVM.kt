@@ -24,7 +24,7 @@ class RegistrarUsuarioVM : ViewModel() {
         }
 
         val toInsert = Usuario(-1, "WTF?", selectedWaifu, userNameText, userPasswordText, 0, 0)
-        Usuario.AgregarUsuario(database, toInsert)
+        //Usuario.AgregarUsuario(database, toInsert)
 
         return true
     }

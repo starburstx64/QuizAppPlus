@@ -36,8 +36,6 @@ class IniciarSesionActivity : AppCompatActivity() {
         iniciarSesion_button_IniciarSesion.setOnClickListener {
             if (validarInputs()) {
                 val mainIntent = Intent(this, MenuPrincipalAcrivity::class.java)
-                mainIntent.putExtra("loginComplete", true)
-                setResult(MAIN_LOGIN_REQUEST_CODE, mainIntent)
                 finish()
             }
 
@@ -62,11 +60,11 @@ class IniciarSesionActivity : AppCompatActivity() {
 
         password_textView_InicioSesion.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                model.userNameText = p0?.toString() ?: ""
+                model.userPasswordText = p0?.toString() ?: ""
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                model.userNameText = p0?.toString() ?: ""
+                model.userPasswordText = p0?.toString() ?: ""
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -95,5 +93,11 @@ class IniciarSesionActivity : AppCompatActivity() {
         }
 
         return model.tryLogin()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        finishAffinity()
     }
 }

@@ -330,7 +330,7 @@ abstract class AppDatabase:RoomDatabase(){
             //endregion
 
             //region Usuario
-            db.execSQL("INSERT INTO Usuario (idUsuario, idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (0, 0, 0, null, 'alfa', 'notiene')")
+            db.execSQL("INSERT INTO Usuario (idUsuario, idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (0, 0, 0, 2131165274, 'alfa', 'notiene')")
             //endregion
 
             //region Juego

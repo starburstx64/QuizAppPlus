@@ -23,6 +23,9 @@ class RegistrarUsuario : AppCompatActivity() {
     private lateinit var imgselect3_imageButton_registrarUsuiario : ImageButton
     private lateinit var imgselect4_imageButton_registrarUsuiario : ImageButton
     private lateinit var imgselect5_imageButton_registrarUsuiario : ImageButton
+    private lateinit var imgselect6_imageButton_registrarUsuiario : ImageButton
+    private lateinit var imgselect7_imageButton_registrarUsuiario : ImageButton
+    private lateinit var imgselect8_imageButton_registrarUsuiario : ImageButton
 
     private lateinit var Usuario_editView_registrarUsuario : EditText
     private lateinit var password_editView_registrarUsuario : EditText
@@ -42,12 +45,16 @@ class RegistrarUsuario : AppCompatActivity() {
         imgselect3_imageButton_registrarUsuiario = findViewById(R.id.imgselect3_imageButton_registrarUsuiario)
         imgselect4_imageButton_registrarUsuiario = findViewById(R.id.imgselect4_imageButton_registrarUsuiario)
         imgselect5_imageButton_registrarUsuiario = findViewById(R.id.imgselect5_imageButton_registrarUsuiario)
+        imgselect6_imageButton_registrarUsuiario = findViewById(R.id.imgselect6_imageButton_registrarUsuiario)
+        imgselect7_imageButton_registrarUsuiario = findViewById(R.id.imgselect7_imageButton_registrarUsuiario)
+        imgselect8_imageButton_registrarUsuiario = findViewById(R.id.imgselect8_imageButton_registrarUsuiario)
 
         Usuario_editView_registrarUsuario = findViewById(R.id.Usuario_editView_registrarUsuario)
         password_editView_registrarUsuario = findViewById(R.id.password_editView_registrarUsuario)
 
         waifuList = mutableListOf(imgselect1_imageButton_registrarUsuiario, imgselect2_imageButton_registrarUsuiario,
-                imgselect3_imageButton_registrarUsuiario, imgselect4_imageButton_registrarUsuiario, imgselect5_imageButton_registrarUsuiario)
+                imgselect3_imageButton_registrarUsuiario, imgselect4_imageButton_registrarUsuiario, imgselect5_imageButton_registrarUsuiario,
+                imgselect6_imageButton_registrarUsuiario, imgselect7_imageButton_registrarUsuiario, imgselect8_imageButton_registrarUsuiario)
 
         terminarRegistro_button_registrarUsuario = findViewById(R.id.terminarRegistro_button_registrarUsuario)
 
