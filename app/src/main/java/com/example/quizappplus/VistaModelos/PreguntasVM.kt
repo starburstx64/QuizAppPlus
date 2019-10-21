@@ -60,7 +60,7 @@ class PreguntasVM : ViewModel() {
             var datosJuego = Usuario.GetGameData(db,idUsuario)
             idJuego = datosJuego.idJuego!!
             //Guardamos las configuraciones
-            this.configuraciones= Configuraciones.GetConfiguraciones(db,0)
+            this.configuraciones= Configuraciones.GetConfiguraciones(db,idUsuario)
             this.database = db
             //y la usamos para escoger las preguntas al azar
             if(JuegoIniciado==false) {
