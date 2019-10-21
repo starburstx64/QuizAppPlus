@@ -256,72 +256,9 @@ class PreguntasActivity : AppCompatActivity() {
             "Pista ${model.getPistasUsadas()}/${Configuraciones.numPistas}"
     }
 
-    private fun TerminarJuego() {
-        val intent: Intent = Intent(this, NombreJugadorActivity::class.java)
-        startActivityForResult(
-            intent,
-            NOMBREJUGADOR_ACTIVITY_REQUEST_CODE
-        )
+    fun TerminarJuego()
+    {
+        var database = AppDatabase.getAppDatabase(this)
+        model.TerminarJuego(database)
     }
-
-    //Aqui recibimos el nombre del jugador
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            NOMBREJUGADOR_ACTIVITY_REQUEST_CODE -> {
-                when (resultCode) {
-                    Activity.RESULT_OK -> {
-                        model.SetNombre(data?.getStringExtra(EXTRA_RESULT_TEXT) as String)  //Ponemos el nombre obtenido en nuestro modelo
-                        var jugadorActual = Usuario(    //Creamos el objeto de jugador actual
-                            model.NombreJugador,
-                            model.GetPuntajeFinal(),
-                            model.FlagUsoPista,
-                            0,
-                            model.GetAcuracy()
-                        )
-                        arregloPuntuaciones.add(jugadorActual)  //Agregamos el jugador actual al arreglo de jugadores
-                        ordenarPuntajes()                       //Y ordenamos los puntajes
-                        //Todo esto es para llamar a la activity con las puntuaciones finales
-                        val otroIntent: Intent = Intent(
-                            this,
-                            PuntuacionFinalActivity::class.java
-                        )
-                        otroIntent.putExtra(
-                            EXTRA_LISTA_PUNTUACIONES,
-                            arregloPuntuaciones as ArrayList<Usuario>
-                        )
-                        otroIntent.putExtra(EXTRA_JUGADOR_ACTUAL, jugadorActual)
-                        startActivity(otroIntent)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun ordenarPuntajes() {
-        //Ordena el arreglo
-        arregloPuntuaciones.sortWith(compareBy(     //lo ordena segun los siguientes criterios, en orden
-            { it.puntuacion },          //Primero por su puntuacion
-            { !(it.usoCheats) },        //Despues por si uso cheats o no
-            { it.posicion }))           //Y por ultimo por la fecha en que jugo
-        arregloPuntuaciones.reverse()   //Lo invertimos por que esto lo de en orden ascendente cuando lo correcto es descendente
-        //Si hay mas de 6 puntuaciones vamos a obtener solo las primeras 6
-        if (arregloPuntuaciones.size > 6) {
-            var arregloPuntuacionesAuxiliar: MutableList<Usuario> = mutableListOf()
-            for (i in 0..5) {
-                arregloPuntuacionesAuxiliar.add(arregloPuntuaciones[i])
-            }
-            arregloPuntuaciones = arregloPuntuacionesAuxiliar
-        }
-        //Les ponemos las posiciones que ocupan en el arreglo
-        for (i in 0 until arregloPuntuaciones.size) {
-            arregloPuntuaciones[i].posicion = (6 - i)
-        }
-        //Guardamos la lista para que se devuelva al activity principal para todo lo que tenga que hacer
-        val intent: Intent = Intent()
-        intent.putExtra(EXTRA_RESULT_LISTA_ORDENADA_NUEVA, arregloPuntuaciones as ArrayList<Usuario>)
-        setResult(Activity.RESULT_OK, intent)
-    }
-
-
 }

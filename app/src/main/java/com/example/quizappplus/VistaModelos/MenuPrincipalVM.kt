@@ -34,22 +34,6 @@ class MenuPrincipalVM:ViewModel(){
     {
         if (FlagInicio == false){
             SetFlagInicioJuego()
-            mejoresPuntajes.add(
-                Usuario(
-                    "Jose",
-                    1000,
-                    false,
-                    6
-                )
-            )
-            mejoresPuntajes.add(
-                Usuario(
-                    "Pedro",
-                    950,
-                    true,
-                    5
-                )
-            )
         }
 
         this.database = database
@@ -67,7 +51,7 @@ class MenuPrincipalVM:ViewModel(){
      * @brief Elimina el juego guardado anteriormente si existe
      */
     fun eliminarJuegoGuardado() {
-        Usuario.EraseSavedGame(database, getIdUsurioActivo())
+        Usuario.FinishGame(database, getIdUsurioActivo())
     }
 
     fun setIdUsuarioActivo(id : Int) {

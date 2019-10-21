@@ -105,7 +105,7 @@ class PuntuacionActivity : AppCompatActivity() {
     }
 
     private fun InicializarTodo(){
-        InvisibilizarTvJugadores()
+        /*InvisibilizarTvJugadores()
         for (i in 0 until model.ListaJugadores.size)
         {
             jugadoresTvs[i].text = model.ListaJugadores[i].nombre
@@ -116,7 +116,7 @@ class PuntuacionActivity : AppCompatActivity() {
             {
                 imagenes[i].setImageResource(R.mipmap.bufon)
             }
-        }
+        }*/
     }
 
     private fun InvisibilizarTvJugadores(){

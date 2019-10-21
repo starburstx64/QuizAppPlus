@@ -30,6 +30,11 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
             return preguntasDisponibles
         }
 
+        fun GetNumAnsweredQuestions(db:AppDatabase,idJuego:Int):Int
+        {
+            return db.getPreguntaJuegoDao().GetNumberAnsweredQuestions(idJuego)
+        }
+
         fun SetPreguntasUsadas(db:AppDatabase,PreguntasUsadas:List<Pregunta>)
         {
             var idUsuario = Usuario.GetActiveUserId(db)

@@ -12,22 +12,23 @@ data class Usuario(var id:Int,var nombre:String,var idImagenAvatar:Int,var userN
             return juegoActual.estatusJuego==1
         }
 
-        fun GetGameData(db:AppDatabase,idUsuario: Int)
+        fun GetGameData(db:AppDatabase,idUsuario: Int):JuegoEntity
         {
-
+            var datosJuego:JuegoEntity = db.getJuegoDao().GetJuego(idUsuario)
+            return datosJuego
         }
 
-        fun AgregarUsuario(db:AppDatabase,usuario:Usuario)
-        {
-
-        }
+//        fun AgregarUsuario(db:AppDatabase,usuario:Usuario)
+//        {
+//
+//        }
 
         fun GetActiveUserId(db:AppDatabase):Int
         {
             return db.getAplicacionDao().getIdUsuarioActivo()!!
         }
 
-        fun EraseSavedGame(db: AppDatabase,idUsuario: Int)
+        fun FinishGame(db: AppDatabase,idUsuario: Int)
         {
             val juegoActual:JuegoEntity = db.getJuegoDao().GetJuego(idUsuario)
             juegoActual.estatusJuego = 0

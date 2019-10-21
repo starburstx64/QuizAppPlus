@@ -115,7 +115,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     }
 
     private fun InicializarTodo(){
-        InvisibilizarTvJugadores()
+        /*InvisibilizarTvJugadores()
         for (i in 0 until model.ListaJugadores.size)
         {
             jugadoresTvs[i].text = model.ListaJugadores[i].nombre
@@ -128,25 +128,13 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             }
         }
         puntajeFinalTextView.text="${model.JugadorActual.puntuacion.toString()},${model.JugadorActual.porsentaje.toString()}%"
-        SetImagenFinal()
+        SetImagenFinal()*/
     }
 
     private fun InvisibilizarTvJugadores(){
         for (i in 0 until jugadoresTvs.size){
             jugadoresTvs[i].isVisible=false
             puntuacionesTvs[i].isVisible=false
-        }
-    }
-    private fun SetImagenFinal(){
-        var porcentaje= model.JugadorActual.porsentaje
-        if (model.JugadorActual.usoCheats){
-            imagenFinalImageView.setImageResource(R.mipmap.bufon)
-        }
-        else
-        {
-            if(porcentaje==100.0){imagenFinalImageView.setImageResource(R.mipmap.copa)}
-            if(porcentaje<=90.0 && porcentaje>=50.00){imagenFinalImageView.setImageResource(R.mipmap.manita_arriba)}
-            if(porcentaje<50.00){imagenFinalImageView.setImageResource(R.mipmap.nice_try)}
         }
     }
 }

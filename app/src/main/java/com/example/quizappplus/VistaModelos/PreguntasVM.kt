@@ -50,17 +50,22 @@ class PreguntasVM : ViewModel() {
             //Marcamos que el juego ya comenzo
             flagJuegoIniciado=true
             JuegoIniciado=juegoIniciado
+            idUsuario = Usuario.GetActiveUserId(db)
+            var datosJuego = Usuario.GetGameData(db,idUsuario)
+            idJuego = datosJuego.idJuego!!
             //Guardamos las configuraciones
             this.configuraciones= Configuraciones.GetConfiguraciones(db,0)
-            var datosJuego = Usuario.GetGameData(db,idUsuario)
             //y la usamos para escoger las preguntas al azar
             if(JuegoIniciado==false) {
                 Usuario.StartGame(db,idUsuario)
                 SetQuestions(db, configuraciones.numPregunta)
             }
             else {
-                questions = Pregunta.GetPreguntasUsadas(db)
 
+                questions = Pregunta.GetPreguntasUsadas(db)
+                pistasUsadas = datosJuego.numPistas
+                flagUsoPista=datosJuego.cheated
+                preguntasContestadas = Pregunta.GetNumAnsweredQuestions(db,idJuego)
                 setFlags()
             }
         }
@@ -155,6 +160,11 @@ class PreguntasVM : ViewModel() {
         //orden opciones[index] saca el indice de la opcion de la pregunta correspondia al boton apretado
         //Ese indice que se obtuvo es la posición en el arreglo de opciones de la opcion correspondiente al boton que se apreto
         return opciones[ordenOpciones[index]]
+    }
+
+    fun TerminarJuego(db:AppDatabase)
+    {
+        Usuario.FinishGame(db,idUsuario)
     }
 
 }

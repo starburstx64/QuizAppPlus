@@ -73,7 +73,7 @@ abstract class AppDatabase:RoomDatabase(){
             db.beginTransaction()
 
             // Insertar la aplicacion
-            db.execSQL("INSERT INTO Aplicacion (idAplicacion, idUsuarioActivo) VALUES (0, null)")
+            db.execSQL("INSERT INTO Aplicacion (idAplicacion, idUsuarioActivo) VALUES (0, 0)")
 
             //Insertar Datos en la Tabla Cateforia
             db.execSQL("INSERT INTO Categoria (idCategoria, nombre) VALUES (0, 'Cine')")

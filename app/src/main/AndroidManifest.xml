@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".PerfilJugador"></activity>
-        <activity android:name=".RegistrarUsuario" />
-        <activity android:name=".IniciarSesionActivity" />
+        <activity android:name=".Vistas.RegistrarUsuario" />
+        <activity android:name=".Vistas.IniciarSesionActivity" />
         <activity android:name=".Vistas.PuntuacionFinalActivity" />
         <activity android:name=".Vistas.PuntuacionActivity" />
         <activity android:name=".Vistas.ConfiguracionesActivity" />
