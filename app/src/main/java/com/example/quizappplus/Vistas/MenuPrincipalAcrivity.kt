@@ -40,7 +40,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
         val db = AppDatabase.getAppDatabase(this)
         val aplicacion = db.getAplicacionDao()
-        
+
         //Cuando inicia la actividad se inicializan las variables importantes
         model.InicializarJuego(db)
 

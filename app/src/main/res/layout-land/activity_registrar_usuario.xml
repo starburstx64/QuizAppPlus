@@ -133,7 +133,6 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/kurisutina" />
 
-
                 <ImageButton
                     android:id="@+id/imgselect2_imageButton_registrarUsuiario"
                     android:layout_width="130sp"
