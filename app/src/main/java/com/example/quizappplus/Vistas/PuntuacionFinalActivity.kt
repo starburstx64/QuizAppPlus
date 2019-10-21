@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PuntuacionFinalVM
@@ -106,10 +107,10 @@ class PuntuacionFinalActivity : AppCompatActivity() {
         menuPrincipalButton=findViewById(R.id.menu_button)
         //endregion
 
+        var dataBase = AppDatabase.getAppDatabase(this)
+
         menuPrincipalButton.isVisible=false
-        val listaPuntuaciones = intent.getSerializableExtra(EXTRA_LISTA_PUNTUACIONES) as ArrayList<Usuario>
-        model.SetJugadores(listaPuntuaciones)
-        model.SetJugadorActual(intent.getSerializableExtra(EXTRA_JUGADOR_ACTUAL) as Usuario)
+        model.SetJugadores(dataBase)
         InicializarTodo()
 
     }

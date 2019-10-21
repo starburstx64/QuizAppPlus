@@ -1,19 +1,21 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.DB.DAOs.PuntuacionDao
 import com.example.quizappplus.Modelos.Usuario
 
 class PuntuacionFinalVM:ViewModel() {
-    private var listaJugadores:List<Usuario> = listOf()
+    private var listaPuntuaciones:List<PuntuacionDao.PuntuacionReport> = listOf()
     private var flagVentanaAbierta=false
     private lateinit var usuarioActual: Usuario
 
-    val ListaJugadores get() = listaJugadores
+    val ListaPuntuaciones get() = listaPuntuaciones
     val JugadorActual get() = usuarioActual
 
-    fun SetJugadores(listaJugadores:List<Usuario>){
+    fun SetJugadores(db:AppDatabase){
         if (!flagVentanaAbierta) {
-            this.listaJugadores = listaJugadores
+            this.listaPuntuaciones = db.getPuntuacionDao().GetPuntuacionesReport()
             VentanaAbierta()
         }
     }

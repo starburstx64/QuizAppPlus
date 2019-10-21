@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PuntuacionesVM
 
@@ -100,23 +101,25 @@ class PuntuacionActivity : AppCompatActivity() {
         )
         //endregion
 
-        model.Inicializar()
+        var dataBase = AppDatabase.getAppDatabase(this)
+
+        model.SetJugadores(dataBase)
         InicializarTodo()
     }
 
     private fun InicializarTodo(){
-        /*InvisibilizarTvJugadores()
-        for (i in 0 until model.ListaJugadores.size)
+        InvisibilizarTvJugadores()
+        for (i in 0 until model.ListaPuntuaciones.size)
         {
-            jugadoresTvs[i].text = model.ListaJugadores[i].nombre
+            jugadoresTvs[i].text = model.ListaPuntuaciones[i].nombreUsuario
             jugadoresTvs[i].isVisible=true
-            puntuacionesTvs[i].text = model.ListaJugadores[i].puntuacion.toString()
+            puntuacionesTvs[i].text = model.ListaPuntuaciones[i].puntuacion.toString()
             puntuacionesTvs[i].isVisible=true
-            if (model.ListaJugadores[i].usoCheats)
+            if (model.ListaPuntuaciones[i].cheated)
             {
                 imagenes[i].setImageResource(R.mipmap.bufon)
             }
-        }*/
+        }
     }
 
     private fun InvisibilizarTvJugadores(){
