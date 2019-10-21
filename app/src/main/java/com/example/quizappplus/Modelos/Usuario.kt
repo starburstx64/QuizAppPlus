@@ -30,7 +30,7 @@ data class Usuario(var id:Int,var nombre:String,var idImagenAvatar:Int,var userN
         }
 
         fun actualizarUsuario(db: AppDatabase, usuario: Usuario) {
-            db.getUsuarioDao().actualizarUsuario(usuario.userName, usuario.contraseña, usuario.idImagenAvatar)
+            db.getUsuarioDao().actualizarUsuario(usuario.id, usuario.userName, usuario.contraseña, usuario.idImagenAvatar)
         }
 
         fun GetActiveUserId(db:AppDatabase):Int

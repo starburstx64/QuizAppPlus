@@ -71,7 +71,7 @@ class PreguntasActivity : AppCompatActivity() {
         //Cargamos las configuraciones iniciales del juego
         var database = AppDatabase.getAppDatabase(this)
         var juegoIniciado = intent.getBooleanExtra("existeJuegoGuardado",false)
-        model.idUsuario = intent.getIntExtra("idUsuarioActivo",0)
+        model.idUsuario = database.getAplicacionDao().getIdUsuarioActivo()!! // sorry x 3
         model.InicializarJuego(database,juegoIniciado)
         //Asignamos las configuraciones a esta variable para poder llamarlas directamente
         Configuraciones=model.configuraciones
