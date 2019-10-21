@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Registro_ResgistroUsuario"
+                    android:text="@string/registro_resgistro_usuario"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
@@ -44,7 +44,7 @@
                     android:id="@+id/Usuario_textView_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Usuario_RegistroUsuario"
+                    android:text="@string/usuario_registro_usuario"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -79,7 +79,7 @@
                     android:id="@+id/password_textView_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Password_RegistroUsuario"
+                    android:text="@string/password_registro_usuario"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -114,7 +114,7 @@
                     android:id="@+id/elige_textView_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/EligeImage_Registro"
+                    android:text="@string/eligeimagen_registro"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -141,6 +141,7 @@
                     android:id="@+id/imgselect2_imageButton_registrarUsuiario"
                     android:layout_width="130sp"
                     android:layout_height="130sp"
+                    android:layout_marginLeft="70sp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/kuroneko" />
@@ -169,6 +170,7 @@
                     android:id="@+id/imgselect4_imageButton_registrarUsuiario"
                     android:layout_width="130sp"
                     android:layout_height="130sp"
+                    android:layout_marginLeft="70sp"
                     android:adjustViewBounds="true"
                     android:background="@color/white"
                     android:scaleType="fitXY"
@@ -194,33 +196,28 @@
                     android:src="@drawable/norespawn" />
 
 
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_marginLeft="20sp"
+                android:layout_marginTop="50sp"
                 android:layout_marginRight="20sp"
-                android:layout_marginTop="50sp">
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/terminarRegistro_button_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/TerminarRegistro_RegistroUsuario"
+                    android:text="@string/terminarregistro_registrousuario"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
             </LinearLayout>
 
 
-
-
         </LinearLayout>
-
-
 
 
     </ScrollView>

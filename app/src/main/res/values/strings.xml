@@ -84,22 +84,25 @@
     <string name="varios5">En el juego UNO cuando se tiene una carta se debe decir</string>
 
 
-    <string name="Usuario_InicioSesion">Usuario</string>
-    <string name="Password_InicioSesion">Contraseña</string>
-    <string name="crearCuenta_InicioSesion">¿No tienes una cuenta? crea una</string>
-    <string name="clickAqui_InicioSesion">Aqui</string>
+    <string name="usuario_iniciosesion">Usuario</string>
+    <string name="password_iniciosesion">Contraseña</string>
+    <string name="crearcuenta_iniciosesion">¿No tienes una cuenta? crea una</string>
+    <string name="clickaqui_iniciosesion">Aqui</string>
+
+
+    <string name="registro_resgistro_usuario">Crea tu cuenta</string>
+    <string name="usuario_registro_usuario">Nombre de Usuario</string>
+    <string name="password_registro_usuario">Contraseña</string>
+    <string name="eligeimagen_registro">Elije una imagen para tu perfil</string>
+    <string name="terminarregistro_registrousuario">Listo!</string>
 
 
 
-    <string name="Registro_ResgistroUsuario">Crea tu cuenta</string>
-    <string name="Usuario_RegistroUsuario">Nombre de Usuario</string>
-    <string name="Password_RegistroUsuario">Contraseña</string>
-    <string name="EligeImage_Registro">Elije una imagen para tu perfil</string>
-    <string name="TerminarRegistro_RegistroUsuario">Listo!</string>
-
-
-
-
+    <string name="encabezado_perfilusuario">Perfil de usuario</string>
+    <string name="usuario_perfilusuario">Usuario: </string>
+    <string name="password_perfilusuario">Contraseña: </string>
+    <string name="editar_perfilusuario">Editar perfil</string>
+    <string name="listo_perfilusuario">Guardar Cambios </string>
 
 
     <string-array name="numPreguntas">

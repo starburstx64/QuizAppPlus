@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Registro_ResgistroUsuario"
+                    android:text="@string/registro_resgistro_usuario"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
@@ -41,7 +41,7 @@
                     android:id="@+id/Usuario_textView_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Usuario_RegistroUsuario"
+                    android:text="@string/usuario_registro_usuario"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -76,7 +76,7 @@
                     android:id="@+id/password_textView_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Password_RegistroUsuario"
+                    android:text="@string/password_registro_usuario"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -111,7 +111,7 @@
                     android:id="@+id/elige_textView_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/EligeImage_Registro"
+                    android:text="@string/eligeimagen_registro"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -183,7 +183,7 @@
                     android:id="@+id/terminarRegistro_button_registrarUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/TerminarRegistro_RegistroUsuario"
+                    android:text="@string/terminarregistro_registrousuario"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
