@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_2"
     android:orientation="vertical"
-    tools:context=".RegistrarUsuario">
+    tools:context=".Vistas.RegistrarUsuario">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                     android:layout_width="130sp"
                     android:layout_height="130sp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/kurisutina" />
+                    android:src="@drawable/kurisutina"/>
 
 
                 <ImageButton
@@ -144,7 +144,7 @@
                     android:layout_marginLeft="70sp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/kuroneko" />
+                    android:src="@drawable/kuroneko" />
 
 
             </LinearLayout>
@@ -153,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginLeft="20sp"
+                android:layout_marginStart="20sp"
                 android:layout_marginTop="20sp">
 
 
@@ -163,7 +163,7 @@
                     android:layout_height="130sp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/kanna" />
+                    android:src="@drawable/kanna" />
 
 
                 <ImageButton
@@ -174,7 +174,7 @@
                     android:adjustViewBounds="true"
                     android:background="@color/white"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/gears" />
+                    android:src="@drawable/gears" />
 
 
             </LinearLayout>
@@ -193,7 +193,7 @@
                     android:adjustViewBounds="true"
                     android:background="@color/white"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/norespawn" />
+                    android:src="@drawable/norespawn" />
 
 
             </LinearLayout>

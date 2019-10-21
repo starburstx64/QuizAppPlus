@@ -12,14 +12,24 @@ data class Usuario(var nombre:String, var puntuacion:Int, var usoCheats:Boolean 
             return juegoActual.estatusJuego==1
         }
 
+        fun GetActiveUserId(db:AppDatabase):Int
+        {
+            return db.getAplicacionDao().getIdUsuarioActivo()!!
+        }
+
         fun EraseSavedGame(db: AppDatabase,idUsuario: Int)
         {
             val juegoActual:JuegoEntity = db.getJuegoDao().GetJuego(idUsuario)
-            juegoActual.estatusJuego = 1
+            juegoActual.estatusJuego = 0
             juegoActual.numPistas = 0
             juegoActual.cheated = false
             db.getJuegoDao().UpdateJuego(juegoActual)
             db.getPreguntaJuegoDao().DeleteGameQuestions(juegoActual.idJuego!!)
+        }
+
+        fun StartGame(db:AppDatabase,idUsuario: Int)
+        {
+            db.getJuegoDao().StartGame(idUsuario)
         }
     }
 }

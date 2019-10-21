@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.R
@@ -68,10 +69,10 @@ class PreguntasActivity : AppCompatActivity() {
         //endregion
 
         //Cargamos las configuraciones iniciales del juego
-        model.InicializarJuego(
-            intent.getSerializableExtra(EXTRA_CONFIGURACIONES_FOR_QUESTIONS) as Configuraciones,
-            intent.getSerializableExtra(EXTRA_PUNTUACIONES_LIST_FORQUESTIONS) as ArrayList<Usuario>
-        )
+        var database = AppDatabase.getAppDatabase(this)
+        var juegoIniciado = intent.getBooleanExtra("existeJuegoGuardado",false)
+        model.idUsuario = intent.getIntExtra("idUsuarioActivo",0)
+        model.InicializarJuego(database,juegoIniciado)
         //Asignamos las configuraciones a esta variable para poder llamarlas directamente
         Configuraciones=model.configuraciones
 
@@ -135,9 +136,9 @@ class PreguntasActivity : AppCompatActivity() {
 
     private fun updateQuestion() {
         //Ponemos la pregunta
-        preguntaTextView.setText(model.getCurrentQuestion().id)
+        preguntaTextView.setText(model.getCurrentQuestion().texto)
 //        //ahora vamos a poner las opciones
-     //   SetOpciones(Configuraciones.dificultad)
+        SetButtons(Configuraciones.dificultad)
         //Con esto sabemos si la pregunta fue contestada o no
         val flagContestada: Boolean = (model.getCurrentQuestion().contestada)
         //Ponemos el contador de preguntas en el valor que corresponde
@@ -184,7 +185,7 @@ class PreguntasActivity : AppCompatActivity() {
         for (i in 0..dificultad) {
             //ordenOpciones[i] me entrega que opcion corresponde segun el boton.
             // este orden cambia de juego a juego para agregar aleatoreidad
-    //        opcionesbtns[i].setText(model.GetOpcionPreguntaActual(i).opcion)
+            opcionesbtns[i].setText(model.GetOpcionPreguntaActual(i).texto)
             //Habilito los botones si es que la pregunta no se ha contestado
             opcionesbtns[i].isEnabled = !(model.getCurrentQuestion().contestada)
             //Si la pregunta no se ha contestado checo si no se habia deshabilitado
