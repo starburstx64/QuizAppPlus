@@ -29,6 +29,17 @@ class PuntuacionActivity : AppCompatActivity() {
     private lateinit var tvJugador9: TextView
     private lateinit var tvJugador10: TextView
 
+    private lateinit var avatar1:ImageView
+    private lateinit var avatar2:ImageView
+    private lateinit var avatar3:ImageView
+    private lateinit var avatar4:ImageView
+    private lateinit var avatar5:ImageView
+    private lateinit var avatar6:ImageView
+    private lateinit var avatar7:ImageView
+    private lateinit var avatar8:ImageView
+    private lateinit var avatar9:ImageView
+    private lateinit var avatar10:ImageView
+
     private lateinit var tvPuntuacion1: TextView
     private lateinit var tvPuntuacion2: TextView
     private lateinit var tvPuntuacion3: TextView
@@ -54,6 +65,7 @@ class PuntuacionActivity : AppCompatActivity() {
     //endregion
     private lateinit var jugadoresTvs:List<TextView>
     private lateinit var puntuacionesTvs:List<TextView>
+    private lateinit var AvataresTvs:List<ImageView>
     private lateinit var imagenes:List<ImageView>
 
     private val model by lazy { ViewModelProviders.of(this)[PuntuacionesVM::class.java] }
@@ -75,6 +87,17 @@ class PuntuacionActivity : AppCompatActivity() {
         tvJugador8 = findViewById(R.id.player8)
         tvJugador9 = findViewById(R.id.player9)
         tvJugador10 = findViewById(R.id.player10)
+
+        avatar1 = findViewById(R.id.puntaciones_p1_imageView)
+        avatar2 = findViewById(R.id.puntaciones_p2_imageView)
+        avatar3 = findViewById(R.id.puntaciones_p3_imageView)
+        avatar4 = findViewById(R.id.puntaciones_p4_imageView)
+        avatar5 = findViewById(R.id.puntaciones_p5_imageView)
+        avatar6 = findViewById(R.id.puntaciones_p6_imageView)
+        avatar7 = findViewById(R.id.puntaciones_p7_imageView)
+        avatar8 = findViewById(R.id.puntaciones_p8_imageView)
+        avatar9 = findViewById(R.id.puntaciones_p9_imageView)
+        avatar1 = findViewById(R.id.puntaciones_p10_imageView)
 
         tvPuntuacion1 = findViewById(R.id.score1)
         tvPuntuacion2 = findViewById(R.id.score2)
@@ -110,6 +133,7 @@ class PuntuacionActivity : AppCompatActivity() {
             tvJugador9,
             tvJugador10
         )
+        AvataresTvs = listOf()
         puntuacionesTvs = listOf(
             tvPuntuacion1,
             tvPuntuacion2,
@@ -147,6 +171,8 @@ class PuntuacionActivity : AppCompatActivity() {
         InvisibilizarTvJugadores()
         for (i in 0 until model.ListaPuntuaciones.size)
         {
+            AvataresTvs[i].setImageResource(model.ListaPuntuaciones[i].imagenAvatar)
+            AvataresTvs[i].isVisible=true
             jugadoresTvs[i].text = model.ListaPuntuaciones[i].nombreUsuario
             jugadoresTvs[i].isVisible=true
             puntuacionesTvs[i].text = model.ListaPuntuaciones[i].puntuacion.toString()
@@ -162,6 +188,7 @@ class PuntuacionActivity : AppCompatActivity() {
         for (i in 0 until jugadoresTvs.size){
             jugadoresTvs[i].isVisible=false
             puntuacionesTvs[i].isVisible=false
+            AvataresTvs[i].isVisible=false
         }
     }
 }
