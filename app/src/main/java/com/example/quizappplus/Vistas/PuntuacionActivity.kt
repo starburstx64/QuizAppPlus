@@ -189,6 +189,7 @@ class PuntuacionActivity : AppCompatActivity() {
             puntuacionesTvs[i].isVisible = true
             if (model.ListaPuntuaciones[i].cheated) {
                 imagenes[i].setImageResource(R.mipmap.bufon)
+                imagenes[i].isVisible=true
            }
         }
     }

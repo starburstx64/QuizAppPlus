@@ -158,6 +158,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             puntuacionesTvs[i].isVisible = true
             if (model.ListaPuntuaciones[i].cheated) {
                 imagenes[i].setImageResource(R.mipmap.bufon)
+                imagenes[i].isVisible=true
             }
         }
         puntajeFinalTextView.text="${model.PuntuacionUsuario.toString()}"
