@@ -36,352 +36,442 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="335dp">
+                android:layout_height="335dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:orientation="vertical">
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p1_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
 
                     <TextView
                         android:id="@+id/player1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 1"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
+
+
+                    <TextView
+                        android:id="@+id/score1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen1"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p2_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
 
                     <TextView
                         android:id="@+id/player2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 2"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
+
+
+                    <TextView
+                        android:id="@+id/score2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen2"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/bufon"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p3_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
 
                     <TextView
                         android:id="@+id/player3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 3"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
+
+
+                    <TextView
+                        android:id="@+id/score3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen3"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p4_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
 
                     <TextView
                         android:id="@+id/player4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 4"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
+
+
+                    <TextView
+                        android:id="@+id/score4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen4"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p5_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
 
                     <TextView
                         android:id="@+id/player5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 5"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
+
+
+                    <TextView
+                        android:id="@+id/score5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen5"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p6_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
 
                     <TextView
                         android:id="@+id/player6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 6"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
 
 
                     <TextView
+                        android:id="@+id/score6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen6"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p7_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
+
+                    <TextView
                         android:id="@+id/player7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 7"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
 
 
                     <TextView
+                        android:id="@+id/score7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen7"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p8_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
+
+                    <TextView
                         android:id="@+id/player8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 8"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
 
 
                     <TextView
+                        android:id="@+id/score8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen8"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <ImageView
+                        android:id="@+id/puntaciones_p9_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
+
+                    <TextView
                         android:id="@+id/player9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Jugador 9"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
 
 
                     <TextView
-                        android:id="@+id/player10"
+                        android:id="@+id/score9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="Jugador 10"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
                         android:textColor="@color/white"
                         android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/cheat_imagen9"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
+
+
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                    android:gravity="left">
 
-                    <LinearLayout
+                    <ImageView
+                        android:id="@+id/puntaciones_p10_imageView"
+                        android:layout_width="70sp"
+                        android:layout_height="70sp"
+                        android:layout_gravity="start"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/mododiablo" />
+
+                    <TextView
+                        android:id="@+id/player10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Jugador 10"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
 
-                        <TextView
-                            android:id="@+id/score1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
 
-                        <ImageView
-                            android:id="@+id/aimagen1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/score10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="50dp"
+                        android:text="1000"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
 
-                        <TextView
-                            android:id="@+id/score2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen4"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen5"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen6"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen7"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen8"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen9"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/score10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="50dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="1000"
-                            android:textColor="@color/white"
-                            android:textSize="30dp" />
-
-                        <ImageView
-                            android:id="@+id/aimagen10"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/cheat_imagen10"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center" />
 
 
                 </LinearLayout>
+
 
 
             </LinearLayout>
