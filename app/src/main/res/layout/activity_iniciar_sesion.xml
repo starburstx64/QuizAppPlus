@@ -28,7 +28,7 @@
             android:id="@+id/usuario_textView_InicioSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Usuario_InicioSesion"
+            android:text="@string/usuario_iniciosesion"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -62,7 +62,7 @@
             android:id="@+id/password_textView_InicioSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Password_InicioSesion"
+            android:text="@string/password_iniciosesion"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -94,7 +94,7 @@
             android:id="@+id/crearUsuario_textView_InicioSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/crearCuenta_InicioSesion"
+            android:text="@string/crearcuenta_iniciosesion"
             android:textColor="@color/black" />
 
         <TextView
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
-            android:text="@string/clickAqui_InicioSesion"
+            android:text="@string/clickaqui_iniciosesion"
             android:textColor="@color/blue" />
 
     </LinearLayout>
