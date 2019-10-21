@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Configuracion")
 data class ConfiguracionEntity (
-    @PrimaryKey @ColumnInfo(name = "idConfiguracion") val idConfiguracion : Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "idConfiguracion") val idConfiguracion : Int? = null,
     @ColumnInfo(name = "categoriasUsadas") var categoriasUsadas : String,
     @ColumnInfo(name = "numeroPreguntas") var numeroPreguntas : Int,
     @ColumnInfo(name = "dificultad") var dificultad : Int,

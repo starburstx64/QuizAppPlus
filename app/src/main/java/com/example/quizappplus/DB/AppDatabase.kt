@@ -43,6 +43,8 @@ abstract class AppDatabase:RoomDatabase(){
 
     abstract fun getUsuarioDao(): UsuarioDao
 
+    abstract fun getReportesDao(): ReportesDao
+
 
     //Objeto singleton
     companion object {
@@ -73,7 +75,7 @@ abstract class AppDatabase:RoomDatabase(){
             db.beginTransaction()
 
             // Insertar la aplicacion
-            db.execSQL("INSERT INTO Aplicacion (idAplicacion, idUsuarioActivo) VALUES (0, null)")
+            db.execSQL("INSERT INTO Aplicacion (idAplicacion, idUsuarioActivo) VALUES (0, 0)")
 
             //Insertar Datos en la Tabla Cateforia
             db.execSQL("INSERT INTO Categoria (idCategoria, nombre) VALUES (0, 'Cine')")
@@ -330,7 +332,7 @@ abstract class AppDatabase:RoomDatabase(){
             //endregion
 
             //region Usuario
-            db.execSQL("INSERT INTO Usuario (idUsuario, idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (0, 0, 0, null, 'alfa', 'notiene')")
+            db.execSQL("INSERT INTO Usuario (idUsuario, idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (0, 0, 0, 2131165274, 'alfa', 'notiene')")
             //endregion
 
             //region Juego

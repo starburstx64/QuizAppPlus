@@ -2,6 +2,7 @@ package com.example.quizappplus.DB.DAOs
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.Query
 import com.example.quizappplus.DB.Entidades.PuntuacionEntity
 
 @Dao

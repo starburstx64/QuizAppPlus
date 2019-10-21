@@ -2,29 +2,31 @@ package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
 import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.DB.Entidades.PuntuacionEntity
 import com.example.quizappplus.Modelos.*
 import kotlin.random.Random
 
 class PreguntasVM : ViewModel() {
     lateinit var configuraciones:Configuraciones    //Son las configuraciones que tiene el juego
-    lateinit var listaPuntuaciones:MutableList<Usuario> //Son las puntuaciones maximas que hay, vienen aqui para pasarse a la activity final
     private var flagJuegoIniciado = false   //Sirve para hacer las configuraciones la primera vez que se abre la activity
     private var flagUsoPista = false    //Marca si en todo el juego se uso una pista, sirve para saber si mostrar un joker
     var juegoTerminado = false  //Marca si ya se termino el juego, si se vuelve a la activity y el juego ya termino, te permite navegar
     var idUsuario = 0
+    var idJuego = 0
+
+    private lateinit var database:AppDatabase
+
                                 //por las preguntas sin que se abra la pantalla de puntuacion final
     private lateinit var questions: List<Pregunta>  //las preguntas que se usaran en el juego, seleccinadas aleatoriamente segun las categorias seleccionadas
     private lateinit var flagQuestions: MutableList<Boolean>    //Esto sirve para saber si ya se paso por la pregunta mas de una vez
                                                                 //Si es la primera vez, la bandera esta en false y no se muestra el TV de estado
     private var currentQuestion: Int = 0    //Para saber la pregunta actual
-    private lateinit var nombreJugador: String  //Para guardar el nombre del jugador, se obtiene cuando el juego termina, devuelto por otra activity
     private var preguntasContestadas = 0    //Guarda el contador de las preguntas contestadas
     private var pistasUsadas: Int = 0       //Guarda el contador de cuantas pístas se han usado
     private var JuegoIniciado: Boolean = false  //Guarda el dato para que saber si el juego esta inicializado o no
     //propiedades
     val FlagJuegoIniciado get() = flagJuegoIniciado
     val PreguntasContestadas get() = preguntasContestadas
-    val NombreJugador get() = nombreJugador
     val numOfQuestions get() = questions.size
     val numQuestion get() = currentQuestion
     val flagQuestion get() = flagQuestions[currentQuestion]
@@ -38,17 +40,15 @@ class PreguntasVM : ViewModel() {
         flagQuestions[currentQuestion] = true
     }
 
-    fun SetNombre(nombre: String) {
-        nombreJugador = nombre
-    }
-
     fun getPistasUsadas() = pistasUsadas
 
     //Actualiza los campos referentes a las pistas
-    fun usarPista() {
+    fun usarPista(idOpcion:Int) {
         pistasUsadas++  //Aumenta el contador de pistas usadas
         UsoPista()      //Marca que uso una pista en el juego , por lo que se mostrara un joker al final
         questions[currentQuestion].usoPista = true  //Marca que en la pregunta actual se uso una pista
+
+        Pregunta.UsarCheat(database,idJuego,getCurrentQuestion().id,idOpcion)
     }
 
     fun InicializarJuego(db: AppDatabase,juegoIniciado:Boolean){
@@ -56,17 +56,23 @@ class PreguntasVM : ViewModel() {
             //Marcamos que el juego ya comenzo
             flagJuegoIniciado=true
             JuegoIniciado=juegoIniciado
+            idUsuario = Usuario.GetActiveUserId(db)
+            var datosJuego = Usuario.GetGameData(db,idUsuario)
+            idJuego = datosJuego.idJuego!!
             //Guardamos las configuraciones
             this.configuraciones= Configuraciones.GetConfiguraciones(db,0)
-            //Sacamos la lista con las categorias que usaremos
-    //      val CategoriasUsadas = configuraciones.usedCategoriesIds
+            this.database = db
             //y la usamos para escoger las preguntas al azar
             if(JuegoIniciado==false) {
                 Usuario.StartGame(db,idUsuario)
                 SetQuestions(db, configuraciones.numPregunta)
             }
             else {
+
                 questions = Pregunta.GetPreguntasUsadas(db)
+                pistasUsadas = datosJuego.numPistas
+                flagUsoPista=datosJuego.cheated
+                preguntasContestadas = Pregunta.GetNumAnsweredQuestions(db,idJuego)
                 setFlags()
             }
         }
@@ -84,7 +90,7 @@ class PreguntasVM : ViewModel() {
             preguntasPotenciales.removeAt(selectedIndex)    //Elimina la pregunta de las preguntas disponibles para que no se pueda repetir la pregunta
         }
 
-        Pregunta.SetPreguntasUsadas(db,preguntasSeleccionadas)
+        Pregunta.SetPreguntasUsadas(db,preguntasSeleccionadas,configuraciones.dificultad)
         questions=Pregunta.GetPreguntasUsadas(db)
 
         setFlags()  //Marca que ninguna pregunta se ha visitado mas de una vez todavia, por lo que no se mostrara el mensaje en la parte de abajo
@@ -146,6 +152,7 @@ class PreguntasVM : ViewModel() {
         pregunta.contestada=true    //la marca como contestada
         pregunta.correcta=GetOpcionPreguntaActual(index).answer //obtiene si la opcion seleccionada
                                                                 // era correcta o incorrecta y se lo asigna a la pregunta
+        Pregunta.ContestarPregunta(database,idJuego,pregunta)
         preguntasContestadas++  //Aumenta el contador de preguntas contestadas
     }
 
@@ -161,6 +168,29 @@ class PreguntasVM : ViewModel() {
         //orden opciones[index] saca el indice de la opcion de la pregunta correspondia al boton apretado
         //Ese indice que se obtuvo es la posición en el arreglo de opciones de la opcion correspondiente al boton que se apreto
         return opciones[ordenOpciones[index]]
+    }
+
+    fun GetIndiceRealOpcion(index:Int):Int
+    {
+        //Sacamos la pregunta del modelo
+        val pregunta = getCurrentQuestion()
+        //Sacamos las opciones de la pregunta
+        val opciones = pregunta.opciones
+        //Sacamos la lista que dice en que orden van las opciones
+        val ordenOpciones = pregunta.ordenOpciones
+        return ordenOpciones[index]
+    }
+
+    fun TerminarJuego(db:AppDatabase)
+    {
+        Usuario.FinishGame(db,idUsuario)
+
+        //Insertamos la puntuacion en puntuaciones
+        var puntajeFinal = GetPuntajeFinal()
+
+        var Puntaje:PuntuacionEntity= PuntuacionEntity(puntuacion = puntajeFinal,cheated = flagUsoPista,idAplicacion = 0,idUsuario = idUsuario)
+
+        database.getPuntuacionDao().InsertarPuntuacion(Puntaje)
     }
 
 }

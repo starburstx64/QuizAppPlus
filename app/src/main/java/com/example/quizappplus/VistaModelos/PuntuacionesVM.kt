@@ -1,14 +1,17 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.DB.DAOs.PuntuacionDao
+import com.example.quizappplus.DB.DAOs.ReportesDao
 import com.example.quizappplus.Modelos.Usuario
 
 class PuntuacionesVM:ViewModel() {
-    private var listaJugadores: List<Usuario> = listOf()
+    private var listaPuntuaciones:List<ReportesDao.PuntuacionReport> = listOf()
 
     private var flagVentanaAbierta = false
 
-    val ListaJugadores get() = listaJugadores
+    val ListaPuntuaciones get() = listaPuntuaciones
 
     /**
      * @brief Obtinene el score de la base de datos y lo asigna en la propiedad listaJugadores
@@ -17,9 +20,9 @@ class PuntuacionesVM:ViewModel() {
 
     }
 
-    fun SetJugadores(listaJugadores:List<Usuario>){
+    fun SetJugadores(db: AppDatabase){
         if (!flagVentanaAbierta) {
-            this.listaJugadores = listaJugadores
+            this.listaPuntuaciones = db.getReportesDao().GetPuntuacionesReport()
             VentanaAbierta()
         }
     }
