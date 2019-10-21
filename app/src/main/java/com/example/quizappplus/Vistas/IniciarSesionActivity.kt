@@ -36,7 +36,9 @@ class IniciarSesionActivity : AppCompatActivity() {
         iniciarSesion_button_IniciarSesion.setOnClickListener {
             if (validarInputs()) {
                 val mainIntent = Intent(this, MenuPrincipalAcrivity::class.java)
-                startActivity(mainIntent)
+                mainIntent.putExtra("loginComplete", true)
+                setResult(MAIN_LOGIN_REQUEST_CODE, mainIntent)
+                finish()
             }
 
             else {
