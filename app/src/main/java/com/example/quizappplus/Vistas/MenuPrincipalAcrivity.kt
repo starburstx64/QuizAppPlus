@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.*
@@ -14,8 +15,6 @@ import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.VistaModelos.MenuPrincipalVM
 import com.facebook.stetho.Stetho
 
-const val MAIN_LOGIN_REQUEST_CODE = 12345
-
 class MenuPrincipalAcrivity : AppCompatActivity() {
 
     //Hacemos referencia a los controles de la vista
@@ -23,6 +22,9 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
     private lateinit var btnJuego: Button
     private lateinit var btnOpciones: Button
     private lateinit var btnPuntuacion: Button
+    private lateinit var perfil_button : Button
+    private lateinit var cambiar_usuario_button : Button
+
     //endregion
     //Este es el ViewModel del menu principal
     private val model by lazy { ViewModelProviders.of(this)[MenuPrincipalVM::class.java] }
@@ -36,6 +38,9 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         btnJuego = findViewById(R.id.juego_button)
         btnOpciones = findViewById(R.id.opciones_button)
         btnPuntuacion = findViewById(R.id.puntuacion_button)
+        perfil_button = findViewById(R.id.perfil_button)
+        cambiar_usuario_button = findViewById(R.id.cambiar_usuario_button)
+
         //endregion
 
         Stetho.initializeWithDefaults(this)
@@ -51,11 +56,32 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         if (idUsuarioActivo == null) {
             // Abrir login Activity
             val loginIntent = Intent(this, IniciarSesionActivity::class.java)
-            startActivityForResult(loginIntent, MAIN_LOGIN_REQUEST_CODE)
+            startActivity(loginIntent)
         }
 
         else {
             model.setIdUsuarioActivo(idUsuarioActivo)
+
+            if (model.preguntarIdentidad) {
+                // Mostramos un alert dialog
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Antes de empezar...")
+
+                val message = "¿Eres " + model.getUserName() + "?"
+
+                builder.setMessage(message)
+                builder.setPositiveButton("Si") { _, _ ->
+                }
+
+                builder.setNegativeButton("No") {_, _ ->
+                    val loginIntent = Intent(this, IniciarSesionActivity::class.java)
+                    startActivity(loginIntent)
+                }
+
+                builder.show()
+
+                model.preguntarIdentidad = false
+            }
         }
 
         //Cuando se le da click al boton de jugar
@@ -139,22 +165,18 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
             }
         }
 
+        perfil_button.setOnClickListener {
+            val perfilIntent = Intent(this, PerfilJugador::class.java)
+            startActivity(perfilIntent)
+        }
+
+        cambiar_usuario_button.setOnClickListener {
+            aplicacion.setIdUsuarioActivo(null)
+
+            val iniciarSesionIntent = Intent(this, IniciarSesionActivity::class.java)
+            startActivity(iniciarSesionIntent)
+        }
+
     }
     //endregion
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (data == null) {
-            finish()
-            return
-        }
-
-        if (requestCode == MAIN_LOGIN_REQUEST_CODE) {
-
-            if (!data.getBooleanExtra("loginComplete", false)) {
-                onBackPressed()
-            }
-        }
-    }
 }

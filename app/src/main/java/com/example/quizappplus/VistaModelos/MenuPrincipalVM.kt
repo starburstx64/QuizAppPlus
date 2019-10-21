@@ -6,6 +6,9 @@ import com.example.quizappplus.Modelos.Configuraciones
 import com.example.quizappplus.Modelos.Usuario
 
 class MenuPrincipalVM:ViewModel(){
+
+    var preguntarIdentidad = true
+
     //Inicializamos las configuraciones con sus valores base
     var configuraciones: Configuraciones =
         Configuraciones()
@@ -60,5 +63,9 @@ class MenuPrincipalVM:ViewModel(){
 
     fun getIdUsurioActivo() : Int {
         return idUsuarioActivo!!
+    }
+
+    fun getUserName() : String {
+        return database.getUsuarioDao().getUsuarioById(getIdUsurioActivo()).userName
     }
 }

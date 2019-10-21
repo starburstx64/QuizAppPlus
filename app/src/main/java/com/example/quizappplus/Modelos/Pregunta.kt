@@ -1,6 +1,7 @@
 package com.example.quizappplus.Modelos
 
 import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.DB.Entidades.PreguntaEntity
 import com.example.quizappplus.DB.Entidades.PreguntaJuegoEntity
 import com.example.quizappplus.Modelos.Opcion
 import java.io.Serializable
@@ -35,7 +36,7 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
             return db.getPreguntaJuegoDao().GetNumberAnsweredQuestions(idJuego)
         }
 
-        fun SetPreguntasUsadas(db:AppDatabase,PreguntasUsadas:List<Pregunta>)
+        fun SetPreguntasUsadas(db:AppDatabase,PreguntasUsadas:List<Pregunta>,dificultad:Int)
         {
             var idUsuario = Usuario.GetActiveUserId(db)
             var idJuego = db.getJuegoDao().GetJuego(idUsuario).idJuego
@@ -43,7 +44,7 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
             var ordenPregunta=1
             for (pregunta in PreguntasUsadas)
             {
-                var ordenOpciones = setQuestionOptions()
+                var ordenOpciones = setQuestionOptions(dificultad)
                 var preguntaJuego = PreguntaJuegoEntity(idJuego!!,pregunta.id,false,false,ordenPregunta,ordenOpciones,"",false)
                 db.getPreguntaJuegoDao().InsertarPreguntaJuego(preguntaJuego)
                 ordenPregunta++
@@ -67,7 +68,7 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
 
                 if (pregunta.optionsCheated!="")
                 {
-                    setOptionsCheatedProperty(pregunta.optionsCheated,opcionesPregunta)
+                    opcionesPregunta = setOptionsCheatedProperty(pregunta.optionsCheated,opcionesPregunta)
                 }
 
                 preguntas.add(Pregunta(pregunta.idPregunta,textoPregunta,opcionesPregunta,pregunta.contestada,pregunta.correcta,
@@ -77,7 +78,33 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
             return preguntas
         }
 
-        private fun setOptionsCheatedProperty(StringCheateds:String,opciones:List<Opcion>)
+        fun ContestarPregunta(db:AppDatabase,idJuego: Int,pregunta: Pregunta)
+        {
+            var entidadPreguntaJuego:PreguntaJuegoEntity = db.getPreguntaJuegoDao().GetPregunta(idJuego,pregunta.id)
+
+            entidadPreguntaJuego.contestada=pregunta.contestada
+            entidadPreguntaJuego.correcta=pregunta.correcta
+
+            db.getPreguntaJuegoDao().ActualizarPregunta(entidadPreguntaJuego)
+        }
+
+        fun UsarCheat(db:AppDatabase,idJuego: Int,idPregunta:Int,OptionCheatedIndex:Int)
+        {
+            var entidadPreguntaJuego:PreguntaJuegoEntity = db.getPreguntaJuegoDao().GetPregunta(idJuego,idPregunta)
+
+            entidadPreguntaJuego.optionsCheated += "${OptionCheatedIndex}/"
+            entidadPreguntaJuego.cheated = true
+
+            db.getPreguntaJuegoDao().ActualizarPregunta(entidadPreguntaJuego)
+
+            var entidadJuego = db.getJuegoDao().GetJuegoById(idJuego)
+            entidadJuego.cheated=true
+            entidadJuego.numPistas++
+
+            db.getJuegoDao().UpdateJuego(entidadJuego)
+        }
+
+        private fun setOptionsCheatedProperty(StringCheateds:String,opciones:List<Opcion>):List<Opcion>
         {
             var opcionesTrampa = mutableListOf<Int>()
 
@@ -87,7 +114,7 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
                     opcionesTrampa.add(number.toInt())
                     number = ""
                 } else {
-                    number += opciones[i]
+                    number +=StringCheateds[i]
                 }
             }
 
@@ -95,11 +122,22 @@ data class Pregunta (val id:Int,val texto:String,val opciones:List<Opcion>, var 
             {
                 opciones[index].usedCheat=true
             }
+
+            return opciones
         }
 
-        private fun setQuestionOptions():String
+        private fun setQuestionOptions(dificultad: Int):String
         {
-            var numDisponibles: MutableList<Int> = mutableListOf(0,1, 2, 3)
+            var numDisponibles: MutableList<Int> = mutableListOf(1, 2, 3)
+            when (dificultad)
+            {
+                1->{
+                    numDisponibles.removeAt(Random.nextInt(0,numDisponibles.size))
+                    numDisponibles.removeAt(Random.nextInt(0,numDisponibles.size))
+                }
+                2->numDisponibles.removeAt(Random.nextInt(0,numDisponibles.size))
+            }
+            numDisponibles.add(0)
 
             var ordenOpciones: MutableList<Int> = mutableListOf()   //Con esta lista sabremos en que orden estaran las opciones
             for (j in 0 until numDisponibles.size) { //En facil se hara 2 veces, en medio 3 y en dificil 4
