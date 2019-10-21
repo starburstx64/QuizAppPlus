@@ -32,6 +32,8 @@ class RegistrarUsuarioVM : ViewModel() {
         val toInsert = Usuario(-1, userNameText, selectedWaifu, userNameText, userPasswordText, 0, 0)
 
         if (editarUsuarioActivity) {
+            // Sorry x 2
+            toInsert.id = database.getAplicacionDao().getIdUsuarioActivo()!!
             Usuario.actualizarUsuario(database, toInsert)
         }
 
