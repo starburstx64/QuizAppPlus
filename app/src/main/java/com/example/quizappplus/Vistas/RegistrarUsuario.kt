@@ -119,8 +119,9 @@ class RegistrarUsuario : AppCompatActivity() {
 
                 Toast.makeText(this, "Registro Exitoso!", Toast.LENGTH_SHORT).show()
 
-                val toLoginIntent = Intent(this, IniciarSesionActivity::class.java)
-                startActivity(toLoginIntent)
+                /*val toLoginIntent = Intent(this, IniciarSesionActivity::class.java)
+                startActivity(toLoginIntent)*/
+                finish()
             }
 
             else {

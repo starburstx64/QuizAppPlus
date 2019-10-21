@@ -261,5 +261,12 @@ class PreguntasActivity : AppCompatActivity() {
     {
         var database = AppDatabase.getAppDatabase(this)
         model.TerminarJuego(database)
+
+        val intent = Intent(this, PuntuacionFinalActivity::class.java)
+        intent.putExtra("PuntuacionUsuario", model.GetPuntajeFinal())
+        intent.putExtra("PorcentajeUsuario",model.GetAcuracy())
+        intent.putExtra("Tramposo",model.FlagUsoPista)
+
+        startActivity(intent)
     }
 }

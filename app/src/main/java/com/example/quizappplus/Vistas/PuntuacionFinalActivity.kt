@@ -9,6 +9,7 @@ import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PuntuacionFinalVM
+import kotlinx.android.synthetic.main.activity_puntuacion_final.*
 
 const val PUNTUACION_FINAL_ACTIVITY_RESULT=1200
 const val EXTRA_JUGADOR_ACTUAL="com.example.quizappPlus.EXTRA_JUGADOR_ACTUAL"
@@ -19,26 +20,38 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     //region controlesVista
     //textViews
     private lateinit var puntajeFinalTextView:TextView
-    private lateinit var tvJugador1:TextView
-    private lateinit var tvJugador2:TextView
-    private lateinit var tvJugador3:TextView
-    private lateinit var tvJugador4:TextView
-    private lateinit var tvJugador5:TextView
-    private lateinit var tvJugador6:TextView
+    private lateinit var tvJugador1: TextView
+    private lateinit var tvJugador2: TextView
+    private lateinit var tvJugador3: TextView
+    private lateinit var tvJugador4: TextView
+    private lateinit var tvJugador5: TextView
+    private lateinit var tvJugador6: TextView
+    private lateinit var tvJugador7: TextView
+    private lateinit var tvJugador8: TextView
+    private lateinit var tvJugador9: TextView
+    private lateinit var tvJugador10: TextView
 
-    private lateinit var tvPuntuacion1:TextView
-    private lateinit var tvPuntuacion2:TextView
-    private lateinit var tvPuntuacion3:TextView
-    private lateinit var tvPuntuacion4:TextView
-    private lateinit var tvPuntuacion5:TextView
-    private lateinit var tvPuntuacion6:TextView
+    private lateinit var tvPuntuacion1: TextView
+    private lateinit var tvPuntuacion2: TextView
+    private lateinit var tvPuntuacion3: TextView
+    private lateinit var tvPuntuacion4: TextView
+    private lateinit var tvPuntuacion5: TextView
+    private lateinit var tvPuntuacion6: TextView
+    private lateinit var tvPuntuacion7: TextView
+    private lateinit var tvPuntuacion8: TextView
+    private lateinit var tvPuntuacion9: TextView
+    private lateinit var tvPuntuacion10: TextView
 
-    private lateinit var imagen1:ImageView
-    private lateinit var imagen2:ImageView
-    private lateinit var imagen3:ImageView
-    private lateinit var imagen4:ImageView
-    private lateinit var imagen5:ImageView
-    private lateinit var imagen6:ImageView
+    private lateinit var imagen1: ImageView
+    private lateinit var imagen2: ImageView
+    private lateinit var imagen3: ImageView
+    private lateinit var imagen4: ImageView
+    private lateinit var imagen5: ImageView
+    private lateinit var imagen6: ImageView
+    private lateinit var imagen7: ImageView
+    private lateinit var imagen8: ImageView
+    private lateinit var imagen9: ImageView
+    private lateinit var imagen10: ImageView
     //imageViews
     private lateinit var imagenFinalImageView:ImageView
     //Buttons
@@ -84,7 +97,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             tvJugador4,
             tvJugador5,
             tvJugador6
-            )
+        )
         puntuacionesTvs = listOf(
             tvPuntuacion1,
             tvPuntuacion2,
@@ -93,6 +106,7 @@ class PuntuacionFinalActivity : AppCompatActivity() {
             tvPuntuacion5,
             tvPuntuacion6
         )
+
         imagenes = listOf(
             imagen1,
             imagen2,
@@ -109,6 +123,9 @@ class PuntuacionFinalActivity : AppCompatActivity() {
 
         var dataBase = AppDatabase.getAppDatabase(this)
 
+        model.PuntuacionUsuario = intent.getIntExtra("PuntuacionUsuario",0)
+        model.Acuracy= intent.getDoubleExtra("PorcentajeUsuario",0.0)
+
         menuPrincipalButton.isVisible=false
         model.SetJugadores(dataBase)
         InicializarTodo()
@@ -116,20 +133,33 @@ class PuntuacionFinalActivity : AppCompatActivity() {
     }
 
     private fun InicializarTodo(){
-        /*InvisibilizarTvJugadores()
-        for (i in 0 until model.ListaJugadores.size)
+        InvisibilizarTvJugadores()
+        for (i in 0 until model.ListaPuntuaciones.size)
         {
-            jugadoresTvs[i].text = model.ListaJugadores[i].nombre
+            jugadoresTvs[i].text = model.ListaPuntuaciones[i].nombreUsuario
             jugadoresTvs[i].isVisible=true
-            puntuacionesTvs[i].text = model.ListaJugadores[i].puntuacion.toString()
+            puntuacionesTvs[i].text = model.ListaPuntuaciones[i].puntuacion.toString()
             puntuacionesTvs[i].isVisible=true
-            if (model.ListaJugadores[i].usoCheats)
+            if (model.ListaPuntuaciones[i].cheated)
             {
                 imagenes[i].setImageResource(R.mipmap.bufon)
             }
         }
-        puntajeFinalTextView.text="${model.JugadorActual.puntuacion.toString()},${model.JugadorActual.porsentaje.toString()}%"
-        SetImagenFinal()*/
+        puntajeFinalTextView.text="${model.PuntuacionUsuario.toString()}"
+        SetImagenFinal()
+    }
+
+    private fun SetImagenFinal()
+    {
+        var usoPista = intent.getBooleanExtra("Tramposo",false)
+        if(usoPista)
+        {
+            imagenFinalImageView.setImageResource(R.mipmap.bufon)
+        }
+        else
+        {
+            imagenFinalImageView.setImageResource(R.mipmap.manita_arriba)
+        }
     }
 
     private fun InvisibilizarTvJugadores(){
