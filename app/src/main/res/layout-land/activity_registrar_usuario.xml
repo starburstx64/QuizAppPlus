@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_2">
+    android:background="@color/white_2"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -117,7 +117,9 @@
 
             </LinearLayout>
 
-
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,16 +170,45 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/norespawn" />
 
+                <ImageButton
+                    android:id="@+id/imgselect6_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/albedo" />
+
+                <ImageButton
+                    android:id="@+id/imgselect7_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/raphtalia" />
+
+
+                <ImageButton
+                    android:id="@+id/imgselect8_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/mododiablo" />
+
             </LinearLayout>
+            </HorizontalScrollView>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_marginLeft="20sp"
+                android:layout_marginTop="50sp"
                 android:layout_marginRight="20sp"
-                android:layout_marginTop="50sp">
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/terminarRegistro_button_registrarUsuario"
@@ -190,11 +221,7 @@
             </LinearLayout>
 
 
-
-
         </LinearLayout>
-
-
 
 
     </ScrollView>

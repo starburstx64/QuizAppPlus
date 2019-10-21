@@ -195,8 +195,52 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/norespawn" />
 
+                <ImageButton
+                    android:id="@+id/imgselect6_imageButton_registrarUsuiario"
+                    android:layout_width="130sp"
+                    android:layout_height="130sp"
+                    android:adjustViewBounds="true"
+                    android:layout_marginLeft="70sp"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/albedo" />
+
+
+
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp">
+
+            <ImageButton
+                android:id="@+id/imgselect7_imageButton_registrarUsuiario"
+                android:layout_width="130sp"
+                android:layout_height="130sp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:scaleType="fitXY"
+                android:src="@drawable/raphtalia" />
+
+            <ImageButton
+                android:id="@+id/imgselect8_imageButton_registrarUsuiario"
+                android:layout_width="130sp"
+                android:layout_height="130sp"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="70sp"
+                android:background="@color/white"
+                android:scaleType="fitXY"
+                android:src="@drawable/mododiablo" />
+
+
+
+
+        </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
