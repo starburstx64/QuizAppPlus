@@ -18,10 +18,16 @@ data class Usuario(var id:Int,var nombre:String,var idImagenAvatar:Int,var userN
             return datosJuego
         }
 
-//        fun AgregarUsuario(db:AppDatabase,usuario:Usuario)
-//        {
-//
-//        }
+        fun AgregarUsuario(db:AppDatabase,usuario:Usuario)
+        {
+            var idConfiguracion = Configuraciones.InsertarConfiguracion(db)
+            var idUsuario = db.getUsuarioDao().insertUsuario(idConfiguracion,usuario.idImagenAvatar,usuario.userName,usuario.contraseña)
+
+            var juegotoToInsert = JuegoEntity(idUsuario = idUsuario.toInt(),estatusJuego = 0,numPistas = 0,cheated = false)
+            db.getJuegoDao().CreateGameForUser(juegotoToInsert)
+
+
+        }
 
         fun GetActiveUserId(db:AppDatabase):Int
         {

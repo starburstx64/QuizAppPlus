@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5f2346ec2c65e0c3ea84b77a5f163951",
+    "identityHash": "09da796290d559900f7cf4658d8d0297",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -79,13 +79,13 @@
       },
       {
         "tableName": "Configuracion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idConfiguracion` INTEGER NOT NULL, `categoriasUsadas` TEXT NOT NULL, `numeroPreguntas` INTEGER NOT NULL, `dificultad` INTEGER NOT NULL, `pistasEnabled` INTEGER NOT NULL, `numeroPistas` INTEGER NOT NULL, PRIMARY KEY(`idConfiguracion`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idConfiguracion` INTEGER PRIMARY KEY AUTOINCREMENT, `categoriasUsadas` TEXT NOT NULL, `numeroPreguntas` INTEGER NOT NULL, `dificultad` INTEGER NOT NULL, `pistasEnabled` INTEGER NOT NULL, `numeroPistas` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "idConfiguracion",
             "columnName": "idConfiguracion",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "categoriasUsadas",
@@ -122,14 +122,14 @@
           "columnNames": [
             "idConfiguracion"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "Juego",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER, `idUsuario` INTEGER NOT NULL, `estatusJuego` INTEGER NOT NULL, `numPistas` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`), FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER PRIMARY KEY AUTOINCREMENT, `idUsuario` INTEGER NOT NULL, `estatusJuego` INTEGER NOT NULL, `numPistas` INTEGER NOT NULL, `cheated` INTEGER NOT NULL, FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idJuego",
@@ -166,7 +166,7 @@
           "columnNames": [
             "idJuego"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [
           {
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f2346ec2c65e0c3ea84b77a5f163951')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '09da796290d559900f7cf4658d8d0297')"
     ]
   }
 }

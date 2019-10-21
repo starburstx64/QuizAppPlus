@@ -30,7 +30,9 @@ class PerfilJugador : AppCompatActivity() {
 
         model.inicializar(AppDatabase.getAppDatabase(this))
 
-        perfil_photo.setImageDrawable(getDrawable(model.photoid))
+        if(model.photoid != null) {
+            perfil_photo.setImageDrawable(getDrawable(model.photoid as Int))
+        }
         perfil_username.setText(model.userName)
         perfil_userpassword.setText(model.userPassword)
     }

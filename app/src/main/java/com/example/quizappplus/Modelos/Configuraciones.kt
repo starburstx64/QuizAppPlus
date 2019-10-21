@@ -1,6 +1,7 @@
 package com.example.quizappplus.Modelos
 
 import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.DB.Entidades.ConfiguracionEntity
 import com.example.quizappplus.R
 import java.io.Serializable
 
@@ -73,6 +74,13 @@ class Configuraciones:Serializable {
     }
 
     companion object{
+
+        fun InsertarConfiguracion(db:AppDatabase):Int
+        {
+            var toInsert = ConfiguracionEntity(categoriasUsadas = "1/2/3/",numeroPreguntas = 5,dificultad = 2,pistasEnabled = false,numeroPistas = 2)
+            var idConfig = db.getConfiguracionDao().CrearNuevaConfiguracion(toInsert)
+            return idConfig.toInt()
+        }
 
         fun GetConfiguraciones(db:AppDatabase,idUsuario:Int):Configuraciones
         {

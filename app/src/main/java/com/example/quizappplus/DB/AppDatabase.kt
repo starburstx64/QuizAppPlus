@@ -43,6 +43,8 @@ abstract class AppDatabase:RoomDatabase(){
 
     abstract fun getUsuarioDao(): UsuarioDao
 
+    abstract fun getReportesDao(): ReportesDao
+
 
     //Objeto singleton
     companion object {

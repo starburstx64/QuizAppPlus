@@ -21,5 +21,5 @@ interface UsuarioDao {
     fun getUsuarioByName(userName : String) : UsuarioEntity?
 
     @Query("INSERT INTO Usuario (idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (:idConfiguracion, 0, :imagenAvatar, :userName, :userPassword)")
-    fun insertUsuario(idConfiguracion: Int, imagenAvatar : Int, userName: String, userPassword: String)
+    fun insertUsuario(idConfiguracion: Int, imagenAvatar : Int, userName: String, userPassword: String):Long
 }

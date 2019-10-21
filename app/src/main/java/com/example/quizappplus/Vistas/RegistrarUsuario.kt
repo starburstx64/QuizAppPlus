@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.RegistrarUsuarioVM
 import kotlinx.android.synthetic.main.activity_iniciar_sesion.*
@@ -57,6 +58,8 @@ class RegistrarUsuario : AppCompatActivity() {
                 imgselect6_imageButton_registrarUsuiario, imgselect7_imageButton_registrarUsuiario, imgselect8_imageButton_registrarUsuiario)
 
         terminarRegistro_button_registrarUsuario = findViewById(R.id.terminarRegistro_button_registrarUsuario)
+
+        model.inicializar(AppDatabase.getAppDatabase(this))
 
         val waifuOnClickEvent = View.OnClickListener {
 

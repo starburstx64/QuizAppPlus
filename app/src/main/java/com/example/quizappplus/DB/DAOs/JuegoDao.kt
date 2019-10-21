@@ -1,12 +1,16 @@
 package com.example.quizappplus.DB.DAOs
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.quizappplus.DB.Entidades.JuegoEntity
 
 @Dao
 interface JuegoDao {
+
+    @Insert
+    fun CreateGameForUser(juego:JuegoEntity)
 
     @Query("SELECT * FROM juego WHERE idUsuario=:idUsuario")
     fun GetJuego(idUsuario: Int):JuegoEntity

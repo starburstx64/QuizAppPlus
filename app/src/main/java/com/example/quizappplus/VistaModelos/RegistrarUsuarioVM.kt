@@ -19,13 +19,12 @@ class RegistrarUsuarioVM : ViewModel() {
     fun tryRegistrarUsuario() : Boolean {
         val usuarioRepetido = database.getUsuarioDao().getUsuarioByName(userNameText)
 
-        if (usuarioRepetido == null) {
+        if (usuarioRepetido != null) {
             return false
         }
 
-        val toInsert = Usuario(-1, "WTF?", selectedWaifu, userNameText, userPasswordText, 0, 0)
-        //Usuario.AgregarUsuario(database, toInsert)
-
+        val toInsert = Usuario(-1, userNameText, selectedWaifu, userNameText, userPasswordText, 0, 0)
+        Usuario.AgregarUsuario(database, toInsert)
         return true
     }
 }

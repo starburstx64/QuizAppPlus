@@ -5,7 +5,7 @@ import com.example.quizappplus.DB.AppDatabase
 
 class PerfilUsuarioVM : ViewModel() {
 
-    var photoid : Int = 0
+    var photoid : Int? = null
     lateinit var userName : String
     lateinit var userPassword : String
 
@@ -18,7 +18,7 @@ class PerfilUsuarioVM : ViewModel() {
         val idUsuarioActivo = appDatabase.getAplicacionDao().getIdUsuarioActivo()!!
         val usuario = database.getUsuarioDao().getUsuarioById(idUsuarioActivo)
 
-        photoid = usuario.imagenAvatar!!
+        photoid = usuario.imagenAvatar
         userName = usuario.userName
         userPassword = usuario.contraseña
     }
