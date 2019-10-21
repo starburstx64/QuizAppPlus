@@ -22,4 +22,7 @@ interface UsuarioDao {
 
     @Query("INSERT INTO Usuario (idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (:idConfiguracion, 0, :imagenAvatar, :userName, :userPassword)")
     fun insertUsuario(idConfiguracion: Int, imagenAvatar : Int, userName: String, userPassword: String):Long
+
+    @Query("UPDATE Usuario SET userName = :userName, contraseña = :userPassword, imagenAvatar = :photoid")
+    fun actualizarUsuario(userName : String, userPassword : String, photoid : Int)
 }

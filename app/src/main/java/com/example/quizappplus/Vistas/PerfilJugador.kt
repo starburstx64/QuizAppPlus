@@ -1,5 +1,6 @@
 package com.example.quizappplus.Vistas
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PerfilUsuarioVM
+
+const val PERFIL_EDITAR_USUARIO = 123
 
 class PerfilJugador : AppCompatActivity() {
 
@@ -35,5 +38,22 @@ class PerfilJugador : AppCompatActivity() {
         }
         perfil_username.setText(model.userName)
         perfil_userpassword.setText(model.userPassword)
+
+        perfil_editarperfil.setOnClickListener {
+            val toCrarUsuarioIntent = Intent(this, RegistrarUsuario::class.java)
+            toCrarUsuarioIntent.putExtra("editarJugador", true)
+            startActivityForResult(toCrarUsuarioIntent, PERFIL_EDITAR_USUARIO)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PERFIL_EDITAR_USUARIO) {
+            model.inicializar(AppDatabase.getAppDatabase(this))
+            perfil_username.setText(model.userName)
+            perfil_userpassword.setText(model.userPassword)
+            perfil_photo.setImageDrawable(getDrawable(model.photoid as Int))
+        }
     }
 }
