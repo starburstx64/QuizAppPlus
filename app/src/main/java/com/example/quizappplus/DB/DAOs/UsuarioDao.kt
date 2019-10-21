@@ -19,4 +19,7 @@ interface UsuarioDao {
 
     @Query("SELECT * FROM Usuario WHERE userName = :userName")
     fun getUsuarioByName(userName : String) : UsuarioEntity?
+
+    @Query("INSERT INTO Usuario (idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (:idConfiguracion, 0, :imagenAvatar, :userName, :userPassword)")
+    fun insertUsuario(idConfiguracion: Int, imagenAvatar : Int, userName: String, userPassword: String)
 }
