@@ -11,13 +11,13 @@ import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PuntuacionesVM
 
-const val EXTRA_MEJORES_PUNTUACIONES="com.example.quizappPlus.EXTRA_MEJORES_PUNTUACIONES"
+const val EXTRA_MEJORES_PUNTUACIONES = "com.example.quizappPlus.EXTRA_MEJORES_PUNTUACIONES"
 
 class PuntuacionActivity : AppCompatActivity() {
 
     //region objetosVista
 
-    private lateinit var menuPrincipalButton:Button
+    private lateinit var menuPrincipalButton: Button
     private lateinit var tvJugador1: TextView
     private lateinit var tvJugador2: TextView
     private lateinit var tvJugador3: TextView
@@ -29,16 +29,16 @@ class PuntuacionActivity : AppCompatActivity() {
     private lateinit var tvJugador9: TextView
     private lateinit var tvJugador10: TextView
 
-    private lateinit var avatar1:ImageView
-    private lateinit var avatar2:ImageView
-    private lateinit var avatar3:ImageView
-    private lateinit var avatar4:ImageView
-    private lateinit var avatar5:ImageView
-    private lateinit var avatar6:ImageView
-    private lateinit var avatar7:ImageView
-    private lateinit var avatar8:ImageView
-    private lateinit var avatar9:ImageView
-    private lateinit var avatar10:ImageView
+    private lateinit var avatar1: ImageView
+    private lateinit var avatar2: ImageView
+    private lateinit var avatar3: ImageView
+    private lateinit var avatar4: ImageView
+    private lateinit var avatar5: ImageView
+    private lateinit var avatar6: ImageView
+    private lateinit var avatar7: ImageView
+    private lateinit var avatar8: ImageView
+    private lateinit var avatar9: ImageView
+    private lateinit var avatar10: ImageView
 
     private lateinit var tvPuntuacion1: TextView
     private lateinit var tvPuntuacion2: TextView
@@ -63,10 +63,10 @@ class PuntuacionActivity : AppCompatActivity() {
     private lateinit var imagen10: ImageView
 
     //endregion
-    private lateinit var jugadoresTvs:List<TextView>
-    private lateinit var puntuacionesTvs:List<TextView>
-    private lateinit var AvataresTvs:List<ImageView>
-    private lateinit var imagenes:List<ImageView>
+    private lateinit var jugadoresTvs: List<TextView>
+    private lateinit var puntuacionesTvs: List<TextView>
+    private lateinit var AvataresTvs: List<ImageView>
+    private lateinit var imagenes: List<ImageView>
 
     private val model by lazy { ViewModelProviders.of(this)[PuntuacionesVM::class.java] }
 
@@ -75,7 +75,7 @@ class PuntuacionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_puntuacion)
 
         //region InicializarControles
-        menuPrincipalButton=findViewById(R.id.menu_puntuaciones_button)
+        menuPrincipalButton = findViewById(R.id.menu_puntuaciones_button)
 
         tvJugador1 = findViewById(R.id.player1)
         tvJugador2 = findViewById(R.id.player2)
@@ -97,7 +97,7 @@ class PuntuacionActivity : AppCompatActivity() {
         avatar7 = findViewById(R.id.puntaciones_p7_imageView)
         avatar8 = findViewById(R.id.puntaciones_p8_imageView)
         avatar9 = findViewById(R.id.puntaciones_p9_imageView)
-        avatar1 = findViewById(R.id.puntaciones_p10_imageView)
+        avatar10 = findViewById(R.id.puntaciones_p10_imageView)
 
         tvPuntuacion1 = findViewById(R.id.score1)
         tvPuntuacion2 = findViewById(R.id.score2)
@@ -110,16 +110,16 @@ class PuntuacionActivity : AppCompatActivity() {
         tvPuntuacion9 = findViewById(R.id.score9)
         tvPuntuacion10 = findViewById(R.id.score10)
 
-        imagen1=findViewById(R.id.score1)
-        imagen2=findViewById(R.id.score2)
-        imagen3=findViewById(R.id.score3)
-        imagen4=findViewById(R.id.score4)
-        imagen5=findViewById(R.id.score5)
-        imagen6=findViewById(R.id.score6)
-        imagen7=findViewById(R.id.score7)
-        imagen8=findViewById(R.id.score8)
-        imagen9=findViewById(R.id.score9)
-        imagen10=findViewById(R.id.score10)
+        imagen1 = findViewById(R.id.cheat_imagen1)
+        imagen2 = findViewById(R.id.cheat_imagen2)
+        imagen3 = findViewById(R.id.cheat_imagen3)
+        imagen4 = findViewById(R.id.cheat_imagen4)
+        imagen5 = findViewById(R.id.cheat_imagen5)
+        imagen6 = findViewById(R.id.cheat_imagen6)
+        imagen7 = findViewById(R.id.cheat_imagen7)
+        imagen8 = findViewById(R.id.cheat_imagen8)
+        imagen9 = findViewById(R.id.cheat_imagen9)
+        imagen10 = findViewById(R.id.cheat_imagen10)
 
         jugadoresTvs = listOf(
             tvJugador1,
@@ -133,7 +133,18 @@ class PuntuacionActivity : AppCompatActivity() {
             tvJugador9,
             tvJugador10
         )
-        AvataresTvs = listOf()
+        AvataresTvs = listOf(
+            avatar1,
+            avatar2,
+            avatar3,
+            avatar4,
+            avatar5,
+            avatar6,
+            avatar7,
+            avatar8,
+            avatar9,
+            avatar10
+        )
         puntuacionesTvs = listOf(
             tvPuntuacion1,
             tvPuntuacion2,
@@ -167,28 +178,27 @@ class PuntuacionActivity : AppCompatActivity() {
         InicializarTodo()
     }
 
-    private fun InicializarTodo(){
+    private fun InicializarTodo() {
         InvisibilizarTvJugadores()
-        for (i in 0 until model.ListaPuntuaciones.size)
-        {
+        for (i in 0 until model.ListaPuntuaciones.size) {
             AvataresTvs[i].setImageResource(model.ListaPuntuaciones[i].imagenAvatar)
-            AvataresTvs[i].isVisible=true
+            AvataresTvs[i].isVisible = true
             jugadoresTvs[i].text = model.ListaPuntuaciones[i].nombreUsuario
-            jugadoresTvs[i].isVisible=true
+            jugadoresTvs[i].isVisible = true
             puntuacionesTvs[i].text = model.ListaPuntuaciones[i].puntuacion.toString()
-            puntuacionesTvs[i].isVisible=true
-            if (model.ListaPuntuaciones[i].cheated)
-            {
+            puntuacionesTvs[i].isVisible = true
+            if (model.ListaPuntuaciones[i].cheated) {
                 imagenes[i].setImageResource(R.mipmap.bufon)
-            }
+           }
         }
     }
 
-    private fun InvisibilizarTvJugadores(){
-        for (i in 0 until jugadoresTvs.size){
-            jugadoresTvs[i].isVisible=false
-            puntuacionesTvs[i].isVisible=false
-            AvataresTvs[i].isVisible=false
+    private fun InvisibilizarTvJugadores() {
+        for (i in 0 until jugadoresTvs.size) {
+            jugadoresTvs[i].isVisible = false
+            puntuacionesTvs[i].isVisible = false
+            AvataresTvs[i].isVisible = false
+            imagenes[i].isVisible = false
         }
     }
 }
