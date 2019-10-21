@@ -14,6 +14,8 @@ import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.VistaModelos.MenuPrincipalVM
 import com.facebook.stetho.Stetho
 
+const val MAIN_LOGIN_REQUEST_CODE = 12345
+
 class MenuPrincipalAcrivity : AppCompatActivity() {
 
     //Hacemos referencia a los controles de la vista
@@ -49,7 +51,7 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         if (idUsuarioActivo == null) {
             // Abrir login Activity
             val loginIntent = Intent(this, IniciarSesionActivity::class.java)
-            startActivity(loginIntent)
+            startActivityForResult(loginIntent, MAIN_LOGIN_REQUEST_CODE)
         }
 
         else {
@@ -139,4 +141,20 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
     }
     //endregion
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (data == null) {
+            finish()
+            return
+        }
+
+        if (requestCode == MAIN_LOGIN_REQUEST_CODE) {
+
+            if (!data.getBooleanExtra("loginComplete", false)) {
+                onBackPressed()
+            }
+        }
+    }
 }

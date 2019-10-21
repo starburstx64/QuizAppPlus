@@ -36,7 +36,9 @@ class IniciarSesionActivity : AppCompatActivity() {
         iniciarSesion_button_IniciarSesion.setOnClickListener {
             if (validarInputs()) {
                 val mainIntent = Intent(this, MenuPrincipalAcrivity::class.java)
-                startActivity(mainIntent)
+                mainIntent.putExtra("loginComplete", true)
+                setResult(MAIN_LOGIN_REQUEST_CODE, mainIntent)
+                finish()
             }
 
             else {
@@ -92,6 +94,6 @@ class IniciarSesionActivity : AppCompatActivity() {
             return false
         }
 
-        return model.tryLogin(usuario_edtiText_inicioSesion.text.toString(), password_textView_InicioSesion.text.toString())
+        return model.tryLogin()
     }
 }

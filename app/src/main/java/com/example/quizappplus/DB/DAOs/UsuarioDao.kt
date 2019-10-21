@@ -1,6 +1,7 @@
 package com.example.quizappplus.DB.DAOs
 
 import androidx.room.Dao
+import androidx.room.DatabaseConfiguration
 import androidx.room.Query
 import com.example.quizappplus.DB.Entidades.UsuarioEntity
 
@@ -15,4 +16,10 @@ interface UsuarioDao {
 
     @Query("SELECT * FROM Usuario WHERE userName = :userName and contraseña = :userPassword")
     fun getUsuario(userName : String, userPassword : String) : UsuarioEntity?
+
+    @Query("SELECT * FROM Usuario WHERE userName = :userName")
+    fun getUsuarioByName(userName : String) : UsuarioEntity?
+
+    @Query("INSERT INTO Usuario (idConfiguracion, idAplicacion, imagenAvatar, userName, contraseña) VALUES (:idConfiguracion, 0, :imagenAvatar, :userName, :userPassword)")
+    fun insertUsuario(idConfiguracion: Int, imagenAvatar : Int, userName: String, userPassword: String)
 }
