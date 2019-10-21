@@ -48,10 +48,8 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
         val idUsuarioActivo = aplicacion.getIdUsuarioActivo()
         if (idUsuarioActivo == null) {
             // Abrir login Activity
-            aplicacion.setIdUsuarioActivo(0)
-
-            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
-            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
+            val loginIntent = Intent(this, IniciarSesionActivity::class.java)
+            startActivity(loginIntent)
         }
 
         else {
@@ -60,6 +58,9 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
         //Cuando se le da click al boton de jugar
         btnJuego.setOnClickListener {
+
+            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
+            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
 
             val existeJuegoGuardado = model.existeJuegoGuardado()
 
@@ -96,12 +97,18 @@ class MenuPrincipalAcrivity : AppCompatActivity() {
 
         //Cuando se le da click al boton de puntuaciones
         btnPuntuacion.setOnClickListener {
+            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
+            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
+
             val intent = Intent(this, PuntuacionActivity::class.java)
             startActivity(intent)
         }
 
         //Cuando se le da click al boton de configuraciones
         btnOpciones.setOnClickListener {
+
+            // Confiamos en que Login Activity guarde el id del usuario activo en la bd
+            model.setIdUsuarioActivo(aplicacion.getIdUsuarioActivo()!!)
 
             val intent = Intent(this, ConfiguracionesActivity::class.java)
             intent.putExtra("idUsuarioActivo", model.getIdUsurioActivo())

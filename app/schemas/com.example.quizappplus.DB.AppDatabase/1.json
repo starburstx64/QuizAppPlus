@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "50ad24146ffa5b494199593408238d97",
+    "identityHash": "5f2346ec2c65e0c3ea84b77a5f163951",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '50ad24146ffa5b494199593408238d97')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f2346ec2c65e0c3ea84b77a5f163951')"
     ]
   }
 }

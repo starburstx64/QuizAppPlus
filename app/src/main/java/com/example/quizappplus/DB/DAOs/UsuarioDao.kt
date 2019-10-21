@@ -13,4 +13,6 @@ interface UsuarioDao {
     @Query("SELECT idConfiguracion FROM usuario WHERE idUsuario=:idUsuario")
     fun GetIdConfiguraciones(idUsuario:Int):Int
 
+    @Query("SELECT * FROM Usuario WHERE userName = :userName and contraseña = :userPassword")
+    fun getUsuario(userName : String, userPassword : String) : UsuarioEntity?
 }
