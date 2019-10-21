@@ -1,6 +1,7 @@
 package com.example.quizappplus.VistaModelos
 
 import androidx.lifecycle.ViewModel
+import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.Modelos.*
 import kotlin.random.Random
 
@@ -18,7 +19,7 @@ class PreguntasVM : ViewModel() {
     private lateinit var nombreJugador: String  //Para guardar el nombre del jugador, se obtiene cuando el juego termina, devuelto por otra activity
     private var preguntasContestadas = 0    //Guarda el contador de las preguntas contestadas
     private var pistasUsadas: Int = 0       //Guarda el contador de cuantas pístas se han usado
-
+    private var JuegoIniciado: Boolean = false  //Guarda el dato para que saber si el juego esta inicializado o no
     //propiedades
     val FlagJuegoIniciado get() = flagJuegoIniciado
     val PreguntasContestadas get() = preguntasContestadas
@@ -49,28 +50,34 @@ class PreguntasVM : ViewModel() {
         questions[currentQuestion].usoPista = true  //Marca que en la pregunta actual se uso una pista
     }
 
-    fun InicializarJuego(configuraciones:Configuraciones,listaPuntuaciones:ArrayList<Usuario>){
+    fun InicializarJuego(db: AppDatabase,juegoIniciado:Boolean){
         if (!FlagJuegoIniciado) {
             //Marcamos que el juego ya comenzo
             flagJuegoIniciado=true
+            JuegoIniciado=juegoIniciado
             //Guardamos las configuraciones
             this.configuraciones=configuraciones
             this.listaPuntuaciones=listaPuntuaciones //Guardamos la lista de puntuaciones
             //Sacamos la lista con las categorias que usaremos
-    //        val CategoriasUsadas = configuraciones.GetCategoriasUsadas()
+    //      val CategoriasUsadas = configuraciones.usedCategoriesIds
             //y la usamos para escoger las preguntas al azar
-    //        SetQuestions(CategoriasUsadas, configuraciones.numPregunta)
+            if(JuegoIniciado==false) {
+                SetQuestions(db, configuraciones.numPregunta)
+            }
+            else {
+                questions = Pregunta.GetPreguntasUsadas(db)
+                setFlags()
+            }
+
             //Ponemos las cosas a la dificultad adecuada
             SetQuestionsOptions(configuraciones.dificultad)
         }
     }
 
-    fun SetQuestions(categorias: List<Categoria>, numPreguntas: Int) {
+    fun SetQuestions(db: AppDatabase, numPreguntas: Int) {
         //Sacar todas las preguntas de las categorias seleccionadas
         var preguntasPotenciales: MutableList<Pregunta> = mutableListOf()
-        for (i in 0 until categorias.size) {
-            preguntasPotenciales.addAll(categorias[i].preguntas)
-        }
+        preguntasPotenciales.addAll(0,Pregunta.GetPreguntasDisponibles(db,configuraciones.usedCategoriesIds))
         //Escoge aleatoriamente las preguntas
         var preguntasSeleccionadas: MutableList<Pregunta> = mutableListOf()
         for (i in 0 until numPreguntas) {
@@ -78,7 +85,10 @@ class PreguntasVM : ViewModel() {
             preguntasSeleccionadas.add(preguntasPotenciales[selectedIndex]) //agrega la pregunta correspondiente a ese numero a las preguntas que se usaran
             preguntasPotenciales.removeAt(selectedIndex)    //Elimina la pregunta de las preguntas disponibles para que no se pueda repetir la pregunta
         }
-        questions = preguntasSeleccionadas  //Asigna las preguntas a la variable questions
+
+        Pregunta.SetPreguntasUsadas(db,preguntasSeleccionadas)
+        questions=Pregunta.GetPreguntasUsadas(db)
+
         setFlags()  //Marca que ninguna pregunta se ha visitado mas de una vez todavia, por lo que no se mostrara el mensaje en la parte de abajo
     }
 
