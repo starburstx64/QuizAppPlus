@@ -56,8 +56,7 @@ class PreguntasVM : ViewModel() {
             flagJuegoIniciado=true
             JuegoIniciado=juegoIniciado
             //Guardamos las configuraciones
-            this.configuraciones=configuraciones
-            this.listaPuntuaciones=listaPuntuaciones //Guardamos la lista de puntuaciones
+            this.configuraciones= Configuraciones.GetConfiguraciones(db,0)
             //Sacamos la lista con las categorias que usaremos
     //      val CategoriasUsadas = configuraciones.usedCategoriesIds
             //y la usamos para escoger las preguntas al azar

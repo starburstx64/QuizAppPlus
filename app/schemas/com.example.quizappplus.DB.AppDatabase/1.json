@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5f2346ec2c65e0c3ea84b77a5f163951",
+    "identityHash": "50ad24146ffa5b494199593408238d97",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -306,7 +306,7 @@
       },
       {
         "tableName": "PreguntaJuego",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, `contestada` INTEGER NOT NULL, `correcta` INTEGER NOT NULL, `ordenEnJuego` INTEGER NOT NULL, `ordenOpciones` INTEGER NOT NULL, `optionsCheated` TEXT NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`, `idPregunta`), FOREIGN KEY(`idJuego`) REFERENCES `Juego`(`idJuego`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idJuego` INTEGER NOT NULL, `idPregunta` INTEGER NOT NULL, `contestada` INTEGER NOT NULL, `correcta` INTEGER NOT NULL, `ordenEnJuego` INTEGER NOT NULL, `ordenOpciones` TEXT NOT NULL, `optionsCheated` TEXT NOT NULL, `cheated` INTEGER NOT NULL, PRIMARY KEY(`idJuego`, `idPregunta`), FOREIGN KEY(`idJuego`) REFERENCES `Juego`(`idJuego`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idPregunta`) REFERENCES `Pregunta`(`idPregunta`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idJuego",
@@ -341,7 +341,7 @@
           {
             "fieldPath": "ordenOpciones",
             "columnName": "ordenOpciones",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f2346ec2c65e0c3ea84b77a5f163951')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '50ad24146ffa5b494199593408238d97')"
     ]
   }
 }

@@ -135,7 +135,7 @@ class PreguntasActivity : AppCompatActivity() {
 
     private fun updateQuestion() {
         //Ponemos la pregunta
-        preguntaTextView.setText(model.getCurrentQuestion().id)
+        preguntaTextView.setText(model.getCurrentQuestion().)
 //        //ahora vamos a poner las opciones
      //   SetOpciones(Configuraciones.dificultad)
         //Con esto sabemos si la pregunta fue contestada o no
