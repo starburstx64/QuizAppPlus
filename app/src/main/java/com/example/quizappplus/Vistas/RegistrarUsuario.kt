@@ -42,13 +42,28 @@ class RegistrarUsuario : AppCompatActivity() {
         setContentView(R.layout.activity_registrar_usuario)
 
         imgselect1_imageButton_registrarUsuiario = findViewById(R.id.imgselect1_imageButton_registrarUsuiario)
+        imgselect1_imageButton_registrarUsuiario.tag = R.drawable.kurisutina
+
         imgselect2_imageButton_registrarUsuiario = findViewById(R.id.imgselect2_imageButton_registrarUsuiario)
+        imgselect2_imageButton_registrarUsuiario.tag = R.drawable.kuroneko
+
         imgselect3_imageButton_registrarUsuiario = findViewById(R.id.imgselect3_imageButton_registrarUsuiario)
+        imgselect3_imageButton_registrarUsuiario.tag = R.drawable.kanna
+
         imgselect4_imageButton_registrarUsuiario = findViewById(R.id.imgselect4_imageButton_registrarUsuiario)
+        imgselect4_imageButton_registrarUsuiario.tag = R.drawable.gears
+
         imgselect5_imageButton_registrarUsuiario = findViewById(R.id.imgselect5_imageButton_registrarUsuiario)
+        imgselect5_imageButton_registrarUsuiario.tag = R.drawable.norespawn
+
         imgselect6_imageButton_registrarUsuiario = findViewById(R.id.imgselect6_imageButton_registrarUsuiario)
+        imgselect6_imageButton_registrarUsuiario.tag = R.drawable.albedo
+
         imgselect7_imageButton_registrarUsuiario = findViewById(R.id.imgselect7_imageButton_registrarUsuiario)
+        imgselect7_imageButton_registrarUsuiario.tag = R.drawable.raphtalia
+
         imgselect8_imageButton_registrarUsuiario = findViewById(R.id.imgselect8_imageButton_registrarUsuiario)
+        imgselect8_imageButton_registrarUsuiario.tag = R.drawable.mododiablo
 
         Usuario_editView_registrarUsuario = findViewById(R.id.Usuario_editView_registrarUsuario)
         password_editView_registrarUsuario = findViewById(R.id.password_editView_registrarUsuario)
@@ -71,7 +86,9 @@ class RegistrarUsuario : AppCompatActivity() {
             it.isEnabled = false
             it.alpha = 0.5f
 
-            model.selectedWaifu = it.id
+            val imageButton = it as ImageButton
+
+            model.selectedWaifu = imageButton.tag as Int
         }
 
         for (waffle in waifuList) {
