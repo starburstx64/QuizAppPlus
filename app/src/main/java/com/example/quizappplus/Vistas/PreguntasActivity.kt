@@ -232,6 +232,7 @@ class PreguntasActivity : AppCompatActivity() {
         //A la opcion correspondiente a ese boton que deshabilitamos, la vamos a marcar como que fue
         //contestada con un cheat
         model.GetOpcionPreguntaActual(indiceBoton).usedCheat=true
+        var indiceOpcion = model.GetIndiceRealOpcion(indiceBoton)
 
         //Aveririguamos cuantos botones disponibles nos quedan y la cual de los botones es este
         var contEnables = 0
@@ -250,7 +251,7 @@ class PreguntasActivity : AppCompatActivity() {
             updateQuestion()
         }
         //Ponemos que usamos la pista
-        model.usarPista()
+        model.usarPista(indiceOpcion)
         //Modificamos el contador de pistas
         contPistasTextView.text =
             "Pista ${model.getPistasUsadas()}/${Configuraciones.numPistas}"
