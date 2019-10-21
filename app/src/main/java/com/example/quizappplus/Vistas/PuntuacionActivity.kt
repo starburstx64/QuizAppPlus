@@ -110,16 +110,16 @@ class PuntuacionActivity : AppCompatActivity() {
         tvPuntuacion9 = findViewById(R.id.score9)
         tvPuntuacion10 = findViewById(R.id.score10)
 
-        imagen1=findViewById(R.id.aimagen1)
-        imagen2=findViewById(R.id.aimagen2)
-        imagen3=findViewById(R.id.aimagen3)
-        imagen4=findViewById(R.id.aimagen4)
-        imagen5=findViewById(R.id.aimagen5)
-        imagen6=findViewById(R.id.aimagen6)
-        imagen7=findViewById(R.id.aimagen7)
-        imagen8=findViewById(R.id.aimagen8)
-        imagen9=findViewById(R.id.aimagen9)
-        imagen10=findViewById(R.id.aimagen10)
+        imagen1=findViewById(R.id.score1)
+        imagen2=findViewById(R.id.score2)
+        imagen3=findViewById(R.id.score3)
+        imagen4=findViewById(R.id.score4)
+        imagen5=findViewById(R.id.score5)
+        imagen6=findViewById(R.id.score6)
+        imagen7=findViewById(R.id.score7)
+        imagen8=findViewById(R.id.score8)
+        imagen9=findViewById(R.id.score9)
+        imagen10=findViewById(R.id.score10)
 
         jugadoresTvs = listOf(
             tvJugador1,
