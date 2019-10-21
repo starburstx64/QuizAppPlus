@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.DB.AppDatabase
 import com.example.quizappplus.R
@@ -28,6 +25,8 @@ class RegistrarUsuario : AppCompatActivity() {
     private lateinit var imgselect7_imageButton_registrarUsuiario : ImageButton
     private lateinit var imgselect8_imageButton_registrarUsuiario : ImageButton
 
+    private lateinit var crearcuenta_title : TextView
+
     private lateinit var Usuario_editView_registrarUsuario : EditText
     private lateinit var password_editView_registrarUsuario : EditText
 
@@ -40,6 +39,8 @@ class RegistrarUsuario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar_usuario)
+
+        crearcuenta_title = findViewById(R.id.crearcuenta_title)
 
         imgselect1_imageButton_registrarUsuiario = findViewById(R.id.imgselect1_imageButton_registrarUsuiario)
         imgselect1_imageButton_registrarUsuiario.tag = R.drawable.kurisutina
@@ -76,6 +77,13 @@ class RegistrarUsuario : AppCompatActivity() {
 
         model.inicializar(AppDatabase.getAppDatabase(this))
 
+        // Recibir Intent
+        if (intent.getBooleanExtra("editarJugador", false)) {
+            crearcuenta_title.text = "Editar Perfil"
+
+            model.actualizarDatosUsuarioActivo()
+        }
+
         val waifuOnClickEvent = View.OnClickListener {
 
             for (waffle in waifuList) {
@@ -94,7 +102,7 @@ class RegistrarUsuario : AppCompatActivity() {
         for (waffle in waifuList) {
             waffle.setOnClickListener(waifuOnClickEvent)
 
-            if (waffle.id == model.selectedWaifu) {
+            if (waffle.tag == model.selectedWaifu) {
                 waffle.alpha = 0.5f
             }
 
@@ -134,10 +142,13 @@ class RegistrarUsuario : AppCompatActivity() {
         terminarRegistro_button_registrarUsuario.setOnClickListener {
             if (validarInputs()) {
 
-                Toast.makeText(this, "Registro Exitoso!", Toast.LENGTH_SHORT).show()
+                val toastMessage = if (model.editarUsuarioActivity) "Datos Actualizados" else "Registro Exitoso!"
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
 
-                /*val toLoginIntent = Intent(this, IniciarSesionActivity::class.java)
-                startActivity(toLoginIntent)*/
+                if (model.editarUsuarioActivity) {
+                    setResult(PERFIL_EDITAR_USUARIO)
+                }
+
                 finish()
             }
 
