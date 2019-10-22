@@ -61,10 +61,14 @@ data class Usuario(var id:Int,var nombre:String,var idImagenAvatar:Int,var userN
             db.getPreguntaJuegoDao().DeleteGameQuestions(juego.idJuego!!)
             db.getJuegoDao().DeleteJuego(juego)
 
-            db.getConfiguracionDao().DeleteConfiguracion(usuario.idConfiguracion)
             db.getPuntuacionDao().DeletePuntuaciones(usuario.idUsuario)
 
+            var idConfiguracion = usuario.idConfiguracion
+
+            db.getAplicacionDao().setIdUsuarioActivo(null)
+
             db.getUsuarioDao().DeleteUsuario(usuario)
+            db.getConfiguracionDao().DeleteConfiguracion(idConfiguracion!!)
         }
     }
 }

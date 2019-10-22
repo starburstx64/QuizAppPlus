@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "09da796290d559900f7cf4658d8d0297",
+    "identityHash": "e79d28227be57d14922674e55c2436d3",
     "entities": [
       {
         "tableName": "Aplicacion",
@@ -493,7 +493,7 @@
       },
       {
         "tableName": "Usuario",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idUsuario` INTEGER NOT NULL, `idConfiguracion` INTEGER NOT NULL, `idAplicacion` INTEGER NOT NULL, `imagenAvatar` INTEGER, `userName` TEXT NOT NULL, `contraseña` TEXT NOT NULL, PRIMARY KEY(`idUsuario`), FOREIGN KEY(`idConfiguracion`) REFERENCES `Configuracion`(`idConfiguracion`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idAplicacion`) REFERENCES `Aplicacion`(`idAplicacion`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idUsuario` INTEGER NOT NULL, `idConfiguracion` INTEGER, `idAplicacion` INTEGER NOT NULL, `imagenAvatar` INTEGER, `userName` TEXT NOT NULL, `contraseña` TEXT NOT NULL, PRIMARY KEY(`idUsuario`), FOREIGN KEY(`idConfiguracion`) REFERENCES `Configuracion`(`idConfiguracion`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`idAplicacion`) REFERENCES `Aplicacion`(`idAplicacion`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idUsuario",
@@ -505,7 +505,7 @@
             "fieldPath": "idConfiguracion",
             "columnName": "idConfiguracion",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "idAplicacion",
@@ -585,7 +585,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '09da796290d559900f7cf4658d8d0297')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e79d28227be57d14922674e55c2436d3')"
     ]
   }
 }

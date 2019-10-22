@@ -1,9 +1,6 @@
 package com.example.quizappplus.DB.DAOs
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.quizappplus.DB.Entidades.ConfiguracionEntity
 
 @Dao
@@ -20,6 +17,9 @@ interface ConfiguracionDao {
 
     @Query("DELETE FROM configuracion WHERE idConfiguracion=:idConfiguracion")
     fun DeleteConfiguracion(idConfiguracion: Int)
+
+    @Delete
+    fun DeleteConfiguracion(configuracion: ConfiguracionEntity)
 
 
 }

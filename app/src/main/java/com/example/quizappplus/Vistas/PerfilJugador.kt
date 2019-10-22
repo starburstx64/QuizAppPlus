@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProviders
 import com.example.quizappplus.DB.AppDatabase
+import com.example.quizappplus.Modelos.Usuario
 import com.example.quizappplus.R
 import com.example.quizappplus.VistaModelos.PerfilUsuarioVM
 
@@ -55,9 +56,12 @@ class PerfilJugador : AppCompatActivity() {
             builder.setMessage("¿Estas seguro de eliminar este perfil?")
             builder.setPositiveButton("Si") { _, _ ->
                 /** Eliminar Perfil... **/
+                val database = AppDatabase.getAppDatabase(this)
+                Usuario.BorrarUsuario(database, database.getAplicacionDao().getIdUsuarioActivo()!!)
 
                 val toLoginIntent = Intent(this, IniciarSesionActivity::class.java)
                 startActivity(toLoginIntent)
+                finish()
             }
 
             builder.setNegativeButton("No") {_, _ ->
