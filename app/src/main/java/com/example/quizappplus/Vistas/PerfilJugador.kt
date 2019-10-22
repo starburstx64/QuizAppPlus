@@ -1,5 +1,6 @@
 package com.example.quizappplus.Vistas
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,7 @@ class PerfilJugador : AppCompatActivity() {
     private lateinit var perfil_username : EditText
     private lateinit var perfil_userpassword : EditText
     private lateinit var perfil_editarperfil : Button
+    private lateinit var perfil_borrarperfil : Button
 
     private val model by lazy { ViewModelProviders.of(this)[PerfilUsuarioVM::class.java] }
 
@@ -30,6 +32,7 @@ class PerfilJugador : AppCompatActivity() {
         perfil_username = findViewById(R.id.perfil_username)
         perfil_userpassword = findViewById(R.id.perfil_userpassword)
         perfil_editarperfil = findViewById(R.id.perfil_editarperfil)
+        perfil_borrarperfil = findViewById(R.id.perfil_borrarperfil)
 
         model.inicializar(AppDatabase.getAppDatabase(this))
 
@@ -43,6 +46,25 @@ class PerfilJugador : AppCompatActivity() {
             val toCrarUsuarioIntent = Intent(this, RegistrarUsuario::class.java)
             toCrarUsuarioIntent.putExtra("editarJugador", true)
             startActivityForResult(toCrarUsuarioIntent, PERFIL_EDITAR_USUARIO)
+        }
+
+        perfil_borrarperfil.setOnClickListener {
+            // Mostramos un alert dialog
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Confirmar")
+            builder.setMessage("¿Estas seguro de eliminar este perfil?")
+            builder.setPositiveButton("Si") { _, _ ->
+                /** Eliminar Perfil... **/
+
+                val toLoginIntent = Intent(this, IniciarSesionActivity::class.java)
+                startActivity(toLoginIntent)
+            }
+
+            builder.setNegativeButton("No") {_, _ ->
+
+            }
+
+            builder.show()
         }
     }
 

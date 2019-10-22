@@ -107,7 +107,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="150sp"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/perfil_editarperfil"
@@ -115,6 +116,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/editar_perfilusuario"/>
+
+            <Button
+                android:id="@+id/perfil_borrarperfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/borrar_perfilusuario"/>
 
         </LinearLayout>
 

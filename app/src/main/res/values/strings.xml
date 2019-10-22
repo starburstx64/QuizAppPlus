@@ -102,6 +102,7 @@
     <string name="usuario_perfilusuario">Usuario: </string>
     <string name="password_perfilusuario">Contraseña: </string>
     <string name="editar_perfilusuario">Editar perfil</string>
+    <string name="borrar_perfilusuario">Borrar perfil</string>
     <string name="listo_perfilusuario">Guardar Cambios </string>
 
 
