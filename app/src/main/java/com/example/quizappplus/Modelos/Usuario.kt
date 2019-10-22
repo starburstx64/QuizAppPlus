@@ -52,5 +52,19 @@ data class Usuario(var id:Int,var nombre:String,var idImagenAvatar:Int,var userN
         {
             db.getJuegoDao().StartGame(idUsuario)
         }
+
+        fun BorrarUsuario(db:AppDatabase,idUsuario: Int)
+        {
+            var usuario = db.getUsuarioDao().getUsuarioById(idUsuario)
+            var juego = db.getJuegoDao().GetJuego(usuario.idUsuario)
+
+            db.getPreguntaJuegoDao().DeleteGameQuestions(juego.idJuego!!)
+            db.getJuegoDao().DeleteJuego(juego)
+
+            db.getConfiguracionDao().DeleteConfiguracion(usuario.idConfiguracion)
+            db.getPuntuacionDao().DeletePuntuaciones(usuario.idUsuario)
+
+            db.getUsuarioDao().DeleteUsuario(usuario)
+        }
     }
 }

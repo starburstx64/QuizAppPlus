@@ -11,4 +11,7 @@ interface PuntuacionDao {
     @Insert
     fun InsertarPuntuacion(puntuacion:PuntuacionEntity):Long
 
+    @Query("DELETE FROM puntuacion WHERE idUsuario=:idUsuario")
+    fun DeletePuntuaciones(idUsuario:Int)
+
 }

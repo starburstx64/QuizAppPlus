@@ -18,5 +18,8 @@ interface ConfiguracionDao {
     @Update
     fun UpdateConfiguraciones(configuraciones:ConfiguracionEntity)
 
+    @Query("DELETE FROM configuracion WHERE idConfiguracion=:idConfiguracion")
+    fun DeleteConfiguracion(idConfiguracion: Int)
+
 
 }
