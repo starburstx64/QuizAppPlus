@@ -18,7 +18,7 @@ interface PreguntaJuegoDao {
     @Query("SELECT * FROM preguntajuego WHERE idJuego=:idJuego AND idPregunta=:idPregunta")
     fun GetPregunta(idJuego: Int,idPregunta:Int):PreguntaJuegoEntity
 
-    @Query("SELECT COUNT(idPregunta) FROM preguntajuego GROUP BY idJuego HAVING idJuego=:idJuego AND contestada=1")
+    @Query("SELECT COUNT(idPregunta) FROM preguntajuego GROUP BY contestada HAVING idJuego=:idJuego AND contestada=1")
     fun GetNumberAnsweredQuestions(idJuego: Int):Int
 
     @Insert

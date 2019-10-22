@@ -1,9 +1,6 @@
 package com.example.quizappplus.DB.DAOs
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.quizappplus.DB.Entidades.JuegoEntity
 
 @Dao
@@ -23,4 +20,7 @@ interface JuegoDao {
 
     @Update
     fun UpdateJuego(juego: JuegoEntity)
+
+    @Delete
+    fun DeleteJuego(juego: JuegoEntity)
 }

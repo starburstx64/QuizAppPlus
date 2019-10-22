@@ -2,6 +2,7 @@ package com.example.quizappplus.DB.DAOs
 
 import androidx.room.Dao
 import androidx.room.DatabaseConfiguration
+import androidx.room.Delete
 import androidx.room.Query
 import com.example.quizappplus.DB.Entidades.UsuarioEntity
 
@@ -25,4 +26,7 @@ interface UsuarioDao {
 
     @Query("UPDATE Usuario SET userName = :userName, contraseña = :userPassword, imagenAvatar = :photoid WHERE idUsuario = :id")
     fun actualizarUsuario(id : Int, userName : String, userPassword : String, photoid : Int)
+
+    @Delete
+    fun DeleteUsuario(usuarioEntity: UsuarioEntity)
 }

@@ -94,6 +94,7 @@
                 android:layout_marginRight="20sp">
 
                 <EditText
+                    android:inputType=""
                     android:id="@+id/password_editView_registrarUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

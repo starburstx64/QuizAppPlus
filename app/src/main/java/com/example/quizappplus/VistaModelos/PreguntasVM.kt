@@ -59,6 +59,7 @@ class PreguntasVM : ViewModel() {
             idUsuario = Usuario.GetActiveUserId(db)
             var datosJuego = Usuario.GetGameData(db,idUsuario)
             idJuego = datosJuego.idJuego!!
+            preguntasContestadas = Pregunta.GetNumAnsweredQuestions(db,idJuego)
             //Guardamos las configuraciones
             this.configuraciones= Configuraciones.GetConfiguraciones(db,idUsuario)
             this.database = db
@@ -72,7 +73,6 @@ class PreguntasVM : ViewModel() {
                 questions = Pregunta.GetPreguntasUsadas(db)
                 pistasUsadas = datosJuego.numPistas
                 flagUsoPista=datosJuego.cheated
-                preguntasContestadas = Pregunta.GetNumAnsweredQuestions(db,idJuego)
                 setFlags()
             }
         }
