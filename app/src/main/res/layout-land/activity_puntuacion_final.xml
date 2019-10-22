@@ -300,6 +300,7 @@
             </LinearLayout>
 
             <Button
+                android:visibility="invisible"
                 android:layout_marginTop="40sp"
                 android:id="@+id/menu_button"
                 android:layout_width="wrap_content"
